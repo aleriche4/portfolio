@@ -3,18 +3,18 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-sass');
+    // grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-copy');
     // grunt.loadNpmTasks('grunt-contrib-imagemin');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks('grunt-git');
     grunt.loadNpmTasks('grunt-string-replace');
-    // grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks('grunt-postcss');
     // grunt.loadNpmTasks('grunt-autoprefixer');
     //grunt.loadNpmTasks("grunt-modernizr");
 
-    const sass = require('node-sass');
+    // const sass = require('node-sass');
     // const mozjpeg = require('imagemin-mozjpeg');
     // const imageminPngquant = require('imagemin-pngquant');
     // var creatives = grunt.file.expand({cwd: "src/"}, "*");
@@ -24,74 +24,49 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON("package.json"),
 
         // REPLACE
-        // config: {
-        //         src: 'dev/*.html',
-        //         dist: 'prod/'
-        // },
-        // 'string-replace': {
-        //     inline: {
-        //         files: {
-        //             'dest/': 'prod',
-        //         },
-        //         options: {
-        //             replacements: [
-        //                 // place files inline example
-        //                 {
-        //                     pattern: '<script src="assets/css/style.min.css"></script>',
-        //                     replacement: '<script><%= grunt.file.write("assets/css/style.min.css") %></script>'
-        //                 }//,
-        //                 // {
-        //                 //     pattern: '<script src="assets/main.min.js"></script>',
-        //                 //     replacement: '<script><%= grunt.file.read("assets/main.js") %></script>'
-        //                 // }
-        //             ]
-        //         }
-        //     }
-        // },
+         config: {
+                src: 'dev/*.html',
+                dist: 'prod/'
+        },
+        'string-replace': {
+            inline: {
+                files: {
+                    'dest/': 'prod',
+                },
+                options: {
+                    replacements: [
+                        // place files inline example
+                        {
+                            pattern: '<script src="components/main.css"></script>',
+                            replacement: '<script><%= grunt.file.write("components/main.css") %></script>'
+                        }
+                    ]
+                }
+            }
+        },
         
         // COPY
         copy: {
             static_mappings: {
                  files: [{ 
                     expand: true, 
-                    cwd: 'src/sarah',
-                    src: ['index.html'],
+                    cwd: 'src',
+                    src: ['*.html'],
                     dest: 'dev',
                     filter: 'isFile'
                 },
-                // { 
-                //     expand: true, 
-                //     cwd: 'src/sarah',
-                //     src: ['*.html'], 
-                //     dest: 'prod',
-                //     filter: 'isFile'
-                // },
-                // { 
-                //     expand: true, 
-                //     cwd: 'src/sarah/assets/js',
-                //     src: ['*.js'], 
-                //     dest: 'dev/assets/js',
-                //     filter: 'isFile'
-                // },
                 { 
                     expand: true, 
-                    cwd: 'src/sarah/assets',
-                    src: ['main.js'], 
-                    dest: 'dev/assets',
+                    cwd: 'src/components',
+                    src: ['*.js'], 
+                    dest: 'dev/components',
                     filter: 'isFile'
                 },
-                // { 
-                //     expand: true, 
-                //     cwd: 'dev/assets/js',
-                //     src: ['*.js'], 
-                //     dest: 'prod/assets/js',
-                //     filter: 'isFile'
-                // },
                 { 
                     expand: true, 
-                    cwd: 'src/sarah/assets/sass',
+                    cwd: 'src/components',
                     src: ['*.css'], 
-                    dest: 'dev/assets/css',
+                    dest: 'dev/components',
                     filter: 'isFile'
                 }
             ] 
@@ -99,9 +74,9 @@ module.exports = function(grunt){
             dynamic_mappings: {
                 files: [{
                     expand: true, 
-                    cwd: 'src/sarah/images', 
-                    src: ['**/*'], 
-                    dest: 'dev/images', 
+                    cwd: 'src/components/images', 
+                    src: ['**/**/*'], 
+                    dest: 'dev/components/images', 
                     filter: 'isFile'
                 }]
             }
@@ -114,12 +89,12 @@ module.exports = function(grunt){
             },
             src: {
                 files: [
-                    "src/**/**/*.js",
-                    "src/**/*.html",
-                    "src/**/**/**/*.scss",
-                    "src/**/**/**/*.css"
+                    "src/**/*.js",
+                    "src/*.html",
+                    // "src/**/*.scss",
+                    "src/**/*.css"
                 ],
-                tasks: ["clean", "concat", "sass", /*"postcss:dist",*/ "copy"/*, "string-replace"*/]
+                tasks: ["clean", "concat", /*"sass",*/ "postcss:dist", "copy"/*, "string-replace"*/]
             }
         },
         
@@ -130,11 +105,11 @@ module.exports = function(grunt){
             },
             dist: {
                 src: [
-                    'src/sarah/assets/js/jquery.js',
-                    'src/sarah/assets/js/what-input.js',
-                    'src/sarah/assets/js/foundation.js',
+                    'src/components/jquery.js',
+                    // 'src/components/js/what-input.js',
+                    // 'src/components/js/foundation.js',
                 ],
-                dest: 'dev/assets/js/foundation.js',
+                dest: 'dev/components/jquery.js',
             },
         },
 
@@ -144,7 +119,7 @@ module.exports = function(grunt){
         //         'bower_components/modernizr/modernizr.js',
         //         'src/js/custom.modernizr.js'
         //     ],
-        //     dest: 'dist/assets/js/modernizr.js'
+        //     dest: 'dist/components/js/modernizr.js'
         // },
 
         // IMAGEMIN
@@ -165,17 +140,17 @@ module.exports = function(grunt){
         // },
 
         // SASS
-        sass: {
-            dev: {
-                options: {
-                    style: "expanded",
-                    loadPath: ['node_modules/foundation-sites/scss']
-                },
-                files: {
-                    "dev/assets/css/styles.css": "src/sarah/assets/sass/styles.scss"
-                }
-            }
-        },
+        // sass: {
+        //     dev: {
+        //         options: {
+        //             style: "expanded",
+        //             loadPath: ['node_modules/foundation-sites/scss']
+        //         },
+        //         files: {
+        //             "dev/components/css/styles.css": "src/components/styles.scss"
+        //         }
+        //     }
+        // },
 
         // AUTOPREFIXER CSS
         // postcss: {
@@ -186,7 +161,7 @@ module.exports = function(grunt){
         //         ]
         //     },
         //     dist: {
-        //         cwd: 'dev/assets/css',
+        //         cwd: 'dev/components/css',
         //         src: ['*.css'],
         //     }
         // },
@@ -204,9 +179,9 @@ module.exports = function(grunt){
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'dev/assets/css',
+                    cwd: 'dev/components/css',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'prod/assets/css',
+                    dest: 'prod/components/css',
                     ext: '.min.css'
                 }]
             }
@@ -215,7 +190,7 @@ module.exports = function(grunt){
         // CLEAN
         clean: {
             build: {
-            //   src: ['prod/sarah/**']
+            //   src: ['prod/**']
             src: ['dev/**']
             }
         },
@@ -230,11 +205,11 @@ module.exports = function(grunt){
             my_target: {
               files: {
                 // expand: true,
-                // cwd: 'dev/assets/js',
+                // cwd: 'dev/components/js',
                 // src: ['*.js'],
-                // dest: 'prod/assets/js',
-                'prod/assets/main.min.js': ['dev/assets/main.js'],
-                //'prod/assets/js/*.min.js': ['dev/assets/js/*.js']
+                // dest: 'prod/components/js',
+                'prod/components/main.min.js': ['dev/components/main.js'],
+                //'prod/components/js/*.min.js': ['dev/components/js/*.js']
               }
             }
         }
