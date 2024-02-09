@@ -48,34 +48,35 @@ $(document).ready(function () {
     });
 
     // SCROLLER
-    $(window).on('scroll', function () {
+    // $(window).on('scroll', function () {
 
-        if (topOn) {
-            var wrap = $('#box'),
-                yOffset = window.pageYOffset,
-                status = $('#status');
-            contentHeight = wrap.height();
-            y = yOffset + inHeight;
-            if (y > inHeight) {
-                top.fadeIn(200);
-            } else {
-                top.fadeOut(400);
-            }
-            status.html(contentHeight + " | " + y + " | " + inHeight);
-        }
-    });
+    //     if (topOn) {
+    //         var wrap = $('#box'),
+    //             yOffset = window.pageYOffset,
+    //             status = $('#status');
+    //         contentHeight = wrap.height();
+    //         y = yOffset + inHeight;
+    //         if (y > inHeight) {
+    //             top.fadeIn(200);
+    //         } else {
+    //             top.fadeOut(400);
+    //         }
+    //         status.html(contentHeight + " | " + y + " | " + inHeight);
+    //     }
+    // });
 
-    top.on('click', function () {
-        var speed = (y * 1.3) / 10;
-        $('html, body').animate({
-            scrollTop: "0px"
-        }, speed);
-    });
+    // top.on('click', function () {
+    //     var speed = (y * 1.3) / 10;
+    //     $('html, body').animate({
+    //         scrollTop: "0px"
+    //     }, speed);
+    // });
 
     // SAMPLES
     linkSample.on('click', function () {
         sampleOpen = true;
         var samplePath = 'samples/' + $(this).data('name') + ".html";
+        console.log="samplePath = " + samplePath;
         wScreen.fadeIn();
         samples.css('left', samplesX);
         preload.css('left', preloadX).fadeIn();

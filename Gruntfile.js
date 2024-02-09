@@ -10,7 +10,9 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-contrib-cssmin");
     grunt.loadNpmTasks('grunt-git');
     grunt.loadNpmTasks('grunt-string-replace');
-    grunt.loadNpmTasks('grunt-postcss');
+    grunt.loadNpmTasks("grunt-ts");
+
+    // grunt.loadNpmTasks('grunt-postcss');
     // grunt.loadNpmTasks('grunt-autoprefixer');
     //grunt.loadNpmTasks("grunt-modernizr");
 
@@ -21,6 +23,17 @@ module.exports = function(grunt){
     // var environments = ["prod", "dev"];
 
     grunt.initConfig({
+
+        ts: {
+            default: {
+                tsconfig: true,
+            },
+            options: {
+                fast: 'never'
+            }
+        },
+
+
         pkg: grunt.file.readJSON("package.json"),
 
         // REPLACE
@@ -57,6 +70,20 @@ module.exports = function(grunt){
                 },
                 { 
                     expand: true, 
+                    cwd: 'src',
+                    src: ['samples/*.html'],
+                    dest: 'dev',
+                    filter: 'isFile'
+                },
+                { 
+                    expand: true, 
+                    cwd: 'src',
+                    src: ['components/data/*.json'],
+                    dest: 'dev',
+                    filter: 'isFile'
+                },
+                { 
+                    expand: true, 
                     cwd: 'src/components',
                     src: ['*.js'], 
                     dest: 'dev/components',
@@ -74,9 +101,9 @@ module.exports = function(grunt){
             dynamic_mappings: {
                 files: [{
                     expand: true, 
-                    cwd: 'src/components/images', 
+                    cwd: 'src/images', 
                     src: ['**/**/*'], 
-                    dest: 'dev/components/images', 
+                    dest: 'dev/images', 
                     filter: 'isFile'
                 }]
             }
@@ -89,12 +116,13 @@ module.exports = function(grunt){
             },
             src: {
                 files: [
-                    "src/**/*.js",
                     "src/*.html",
-                    // "src/**/*.scss",
-                    "src/**/*.css"
+                    "src/**/*.js",
+                    "src/**/*.html",
+                    "src/**/*.css",
+                    "src/**/**/*.json"
                 ],
-                tasks: ["clean", "concat", /*"sass",*/ "postcss:dist", "copy"/*, "string-replace"*/]
+                tasks: ["clean", "concat", /*"sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
             }
         },
         
@@ -104,12 +132,49 @@ module.exports = function(grunt){
                 separator: ';',
             },
             dist: {
-                src: [
-                    'src/components/jquery.js',
+                src: 'src/components/jquery.js',
                     // 'src/components/js/what-input.js',
                     // 'src/components/js/foundation.js',
-                ],
                 dest: 'dev/components/jquery.js',
+            },
+        },
+
+        ts: {
+            // A specific target
+            build: {
+            // The source TypeScript files, http://gruntjs.com/configuring-tasks#files
+            src: ["test/work/**/*.ts"],
+            // The source html files, https://github.com/grunt-ts/grunt-ts#html-2-typescript-support   
+            html: ["src/*.html"], 
+            // If specified, generate this file that to can use for reference management
+            reference: "./test/reference.ts",  
+            // If specified, generate an out.js file which is the merged js file
+            out: 'test/out.js',
+            // If specified, the generate JavaScript files are placed here. Only works if out is not specified
+            outDir: 'test/outputdirectory',
+            // If specified, watches this directory for changes, and re-runs the current target
+            watch: 'test',                     
+            // Use to override the default options, http://gruntjs.com/configuring-tasks#options
+            options: {     
+                // 'es3' (default) | 'es5'
+                target: 'es6',
+                // 'amd' (default) | 'commonjs'    
+                module: 'commonjs',
+                // true (default) | false
+                sourceMap: true,
+                // true | false (default)
+                declaration: false,
+                // true (default) | false
+                removeComments: true
+                },
+            },
+            // Another target
+            dist: {                               
+                src: ["test/work/**/*.ts"],
+                // Override the main options for this target
+                options: {
+                    sourceMap: false,
+                }
             },
         },
 
@@ -157,12 +222,14 @@ module.exports = function(grunt){
         //     options: {
         //         map: true,
         //         processors: [
-        //             require('autoprefixer')
+        //             require('autoprefixer')(),
+        //             require('cssnext')(),
+        //             require('precss')()
         //         ]
         //     },
         //     dist: {
-        //         cwd: 'dev/components/css',
-        //         src: ['*.css'],
+        //         src: 'src/components/main.css',
+        //         dest: 'dev/components/main.css'
         //     }
         // },
 
@@ -179,9 +246,9 @@ module.exports = function(grunt){
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'dev/components/css',
+                    cwd: 'dev/components',
                     src: ['*.css', '!*.min.css'],
-                    dest: 'prod/components/css',
+                    dest: 'prod/components',
                     ext: '.min.css'
                 }]
             }
@@ -215,6 +282,7 @@ module.exports = function(grunt){
         }
     });
 
+
     grunt.registerTask("removeLivereload", "Remove livereload", function(){
 
         grunt.file.recurse("prod/", function(abspath, rootdir, subdir, filename){
@@ -226,7 +294,7 @@ module.exports = function(grunt){
         });
 
     });
-    grunt.registerTask("default", ["watch"]);
+    grunt.registerTask("default", ["watch", "ts:build"]);
     grunt.registerTask("prod", ["clean", "uglify", "cssmin", /*"imagemin:dynamic",*/ "removeLivereload"]);
 
 };

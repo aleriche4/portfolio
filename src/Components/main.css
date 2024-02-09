@@ -284,8 +284,47 @@ header {
 
 .linkSample {
 	cursor: pointer;
-	font-size: 16px;
+	/* font-size: 16px; */
 }
+
+/* .buttonSample {
+	cursor: pointer;
+	font-size: 16px;
+	position: absolute;
+	right: 15px;
+
+	background-color: #04AA6D; /* Green */
+	/*border: none;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+} */
+
+.buttonSample {
+	white-space: nowrap;
+	position: absolute;
+	cursor: pointer;
+	font-size: 13px;
+	right: 0;
+	/* background-color: #85A3C2; */
+	background: rgb(133,163,194);
+	background: linear-gradient(180deg, rgba(133,163,194,1) 0%, rgba(51,102,153,1) 100%);
+	border: none;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 6px;
+	padding: 3px 9px;
+	box-shadow: 1px 1px 2px #999;
+}
+
+.buttonSample:hover {
+	background: #336699;
+	color: white;
+	box-shadow: none;
+  }
 
 .city {
 	padding-left: 4px;
@@ -314,7 +353,7 @@ header {
 .portfolio .rightSide .link ul {
 	position: absolute;
 	right: 15px;
-	list-style-image: url(../images/bullet2.gif);
+	/* list-style-image: url(../images/bullet2.gif); */
 }
 
 .portfolio .rightSide .nolink {
@@ -516,8 +555,129 @@ ul {
 
 /*--- SAMPLES /////////////////////////////////////////////////////*/
 
-#screen {
-	/* background: repeat url(../images/whiteBg.png) 0 0; */
+.setSample {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	/* font-size: 12px; */
+}
+
+
+.container {
+	position: relative;
+	display: block;
+	width: 100%;
+	margin: 0 0 60px -4px;
+  }
+  
+  .bg {
+	display: block;
+	position: fixed;
+	width: 98%;
+	height: 100%;
+	background-color: white;
+	opacity: 0.9;
+	cursor: default;
+  }
+  
+  .centerPosition {
+	display: block;
+	position: relative;
+	top: 0;
+	cursor: default;
+	width: 710px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	z-index: 10;
+  }
+  
+  .whiteBox {
+	position: relative;
+	background-color: white;
+	width: 690px;
+	padding: 18px 10px 18px 10px;
+	margin: 40px 0 20px 0;
+	border: solid 1px #CCC;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #ebe8e8;
+  }
+   
+   .titleSamples {
+	cursor: default;
+	width: 710px;
+	font-size: 21px;
+	line-height: 23px;
+	color: #336699;
+	padding: 60px 0 40px 0;
+  }
+  
+  .title2 {
+	margin-left: -10px;
+  }
+  
+  .txtSample, .txt2Sample {
+	padding-top: 8px;
+	font-size: 13px;
+	line-height: 16px;
+	color: #999;
+  }
+  
+  .txt2Sample {
+	padding-top: 40px;
+  }
+  
+  .sizeup {
+	font-size: 18px;
+	color: #336699;
+	padding: 2px 0 3px 0px;
+  }
+  
+  .width {
+	max-width: 710px;
+	margin: auto auto;
+  }
+  
+  .imageWrapper {
+	max-width: 710px;
+	display: grid;
+	column-gap: 8px;
+	row-gap: 12px;
+	grid-template: "auto auto auto";
+	padding: 25px 0 20px 0;
+	cursor: default;
+  }
+  
+  .imageWrapper2 {
+	max-width: 608px;
+	display: grid;
+	column-gap: 12px;
+	row-gap: 8px;
+	grid-template: "auto auto";
+	padding: 25px 0 20px 0;;
+  }
+  
+  .imageWrapper3 {
+	max-width: 710px;
+	display: grid;
+	row-gap: 12px;
+	grid-template: "auto";
+	padding: 16px 0 20px 0;
+  }
+  
+  .item224 {
+	width: 224px;
+  }
+  
+  .item690 {
+	width: 690px;
+  }
+  
+  .logo {
+	margin-right: 15px;
+	width: 80px !important;
+  }
+
+/* #screen {
+	background: repeat url(../images/whiteBg.png) 0 0;
 	background-color: white;
 	opacity: .97;
 	display: none;
@@ -545,13 +705,13 @@ ul {
 	position: absolute;
 	width: 728px;
 	margin-left: -9px;
-	/* background-color: #F1F1F1; */
-	/* border-radius: 0 15px 15px 15px;
+	background-color: #F1F1F1;
+	border-radius: 0 15px 15px 15px;
 	-moz-border-radius: 0 15px 15px 15px;
 	-webkit-border-radius: 0 15px 15px 15px;
 	box-shadow:4px 4px 8px #C7C7C7;
 	-moz-box-shadow:4px 4px 8px #C7C7C7;
-	-webkit-box-shadow:4px 4px 8px #C7C7C7; */
+	-webkit-box-shadow:4px 4px 8px #C7C7C7;
 }
 
 #menuSample {
@@ -567,7 +727,7 @@ ul {
 .titleSample {
 	margin: 0 0 25px;
 	font-size: 22px;
-	/* font-weight: bold; */
+	font-weight: bold;
 }
 
 .keySample {
@@ -575,9 +735,9 @@ ul {
 	color: #999;
 }
 
-/* .valueSample {
+.valueSample {
 	margin-left: -100px;
-} */
+}
 
 .selectedSample {
 	text-decoration: underline;
@@ -588,10 +748,10 @@ ul {
 	margin-top: 30px
 }
 
-/* #boxhorizontal {
+#boxhorizontal {
 	display: none;
-	/* margin: 0 0 15px 0px;
-}*/
+	margin: 0 0 15px 0px;
+}
 
 .linkSample {
 	cursor: pointer;
@@ -633,4 +793,4 @@ ul {
 	text-decoration: none;
 	color: red;
 	cursor: default;
-}
+} */
