@@ -23,7 +23,7 @@ sup {
 #topBox {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	position: fixed;
-	background-color: white;
+	/* background-color: white; */
 	opacity: 0.95;
 	filter: alpha(opacity=95);
 	width: 710px;
@@ -38,7 +38,7 @@ sup {
 	margin-right: auto;
 	width: 710px;
 	height: 150px;
-	background-color: white;
+	/* background-color: white; */
 }
 
 #nav {
@@ -53,7 +53,7 @@ sup {
 	height: 15px;
 	position: fixed;
 	top: 0;
-	background-color: white;
+	/* background-color: white; */
 }
 
 #nav a {
@@ -149,9 +149,15 @@ a:hover {
 }
 
 .jobPosition {
+	/* position: relative; */
 	font-size: 17px;
 	line-height: 19px;
 	margin-left: 300px;
+}
+
+.infoText {
+	font-size: 12px;
+	line-height: 14px;
 }
 
 .code {
@@ -160,10 +166,19 @@ a:hover {
 }
 
 .contact {
+	display: flex;
 	color: #999;
 	margin-top: 30px;
 	font-size: 12px;
 }
+
+/* .dash {
+	display: block;
+}
+
+.nextline {
+	display: none;
+} */
 
 a.emailLink {
 	color: #999;
@@ -219,7 +234,7 @@ a.emailLink:hover {
 	height: 120px;
 	opacity: 0.95;
 	filter: alpha(opacity=95);
-	background-color: white;
+	/* background-color: white; */
 	top: 20px;
 	border-bottom: #607090 1px solid;
 }
@@ -230,13 +245,13 @@ header {
 
 /*---BOTTOM LINK TO TOP /////////////////////////////////////////////////////*/
 
-#topPage {
+/* #topPage {
 	position: fixed;
 	display: none;
 	width: 55px;
 	height: 20px;
 	/*border: solid thin #999;*/
-	border-radius: 7px 0 0 7px;
+	/*border-radius: 7px 0 0 7px;
 	-moz-border-radius: 7px 0 0 7px;
 	-webkit-top-left-radius: 7px;
 	-webkit-bottom-left-radius: 7px;
@@ -258,13 +273,12 @@ header {
 	height: 20px;
 	font-size: 13px;
 	color: white;
-	/*font-weight: bold;*/
 	text-align: center;
 }
 
 #status {
 	position: fixed;
-}
+} */
 
 /*---BPORTFOLIO /////////////////////////////////////////////////////*/
 
@@ -279,7 +293,12 @@ header {
 	display: block;
 	margin: 230px auto 0 auto;
 	width: 710px;
-	background-color: white;
+	/* background-color: white; */
+}
+
+.topPositioning {
+	position: relative;
+	/* top: 35px; */
 }
 
 .linkSample {
@@ -335,6 +354,8 @@ header {
 .portfolio .image {
 	display: block;
 	position: absolute;
+	width: 100px;
+	top: 0;
 }
 
 .portfolio .rightSide {
@@ -342,12 +363,14 @@ header {
 	display: block;
 	width: 572px;
 	top: 0;
-	left: 135px
+	left: 135px;
+	/* background-color: red; */
 }
 
 .portfolio .rightSide .title {
 	float: left;
 	margin-bottom: 20px;
+	color: #336699;
 }
 
 .portfolio .rightSide .link ul {
@@ -366,7 +389,7 @@ header {
 	float: left;
 	display: block;
 	width: 120px;
-	margin-left: 20px;
+	margin-left: 0px;
 	color: #999;
 }
 
@@ -402,6 +425,7 @@ ul {
 .PortfolioContainer {
 	position: relative;
 	top: 0px;
+	/* background-color: blue; */
 }
 
 .info {
@@ -443,7 +467,7 @@ ul {
 	position: absolute;
 	width: 710px;
 	margin: 195px 0;
-	background-color: white;
+	/* background-color: white; */
 }
 
 /*--- INTRODUCTION /////////////////////////////////////////////////////*/
@@ -544,10 +568,10 @@ ul {
 	text-align: right !important;
 }
 
-ul {
+/* ul {
 	list-style-image: url(../images/bullet.gif);
 	line-height: 17px;
-}
+} */
 
 .spacer {
 	margin-top: 100px;
@@ -672,8 +696,9 @@ ul {
   }
   
   .logo {
-	margin-right: 15px;
-	width: 80px !important;
+	margin: 0 15px 0 10px;
+	width: 80px;
+	height: 80px;
   }
 
 /* #screen {
@@ -794,3 +819,247 @@ ul {
 	color: red;
 	cursor: default;
 } */
+/*//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////  MOBILE  /////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+@media screen and (max-width: 360px) {
+
+	/* body {
+		background-color: orange;
+		background-color: #f7f3f3;
+	} */
+
+	#topBox {
+		display: block;
+		width: 360px;
+		background-color: #336699;
+	}
+	
+	#topHeader {
+		/* position: fixed; */
+		display: block;
+		width: 360px;
+		/* height: 160px; */
+		top: 10px;
+		/* background-color: red; */
+	}
+
+	#topBgWhite {
+		
+		top: 0;
+		/* position: absolute;
+		display: block; */
+		width: 360px;
+		height: 120px;
+		/* opacity: 0.95; */
+		/* filter: alpha(opacity=95); */
+		background-color: white;
+		/* top: 20px; */
+		/* border-bottom: #607090 1px solid; */
+	}
+
+	#info {
+		top: 0;
+		width: 360px;
+		height: 126px;
+		/* font-style: normal; */
+		/* position: absolute; */
+		background-color: #336699;
+	}
+
+	#personalInfo .title {
+		position: absolute;
+		/*width: 2000px;
+		height: 60px;
+		text-align: left;
+		background-color: purple; */
+		/* font-size: 20px; */
+		margin: 0 0 40px 8px;
+		color: white;
+	}
+
+	a.emailLink {
+		color: #c7c2c2;
+		text-decoration: none;
+	}
+	
+	a.emailLink:hover {
+		color: #c7c2c2;
+		text-decoration: underline;
+	}
+
+	.contact {
+		color: #c7c2c2;
+		margin: 105px 0 0 8px;
+		font-size: 15px;
+	}
+
+	.topPositioning {
+		top: 35px;
+	}
+
+	.portfolio .rightSide {
+		/* position: relative;
+		display: block; */
+		width: 344px;
+		top: 0px;
+		left: 0px;
+		padding-bottom: 40px;
+		/* background-color: red; */
+	}
+
+	.personalInfoRight {
+		position: absolute;
+		width: 300px;
+		height: 60px;
+		/* right: 0; */
+		margin: 28px 0 0 8px;
+		left: 0;
+		text-align: left;
+	}
+	
+
+	.personalInfoRight .title {
+		font-size: 18px;
+		line-height: 19px;
+		/* position: absolute; */
+		/* margin: 40px 0 0 0;
+		padding: 20px 0 0 0; */
+		/* top: 5px; */
+		/* display: none; */
+	}
+
+	.portfolio .rightSide .value {
+		margin: 0px 0px 18px 0px;
+		/* background-color: pink; */
+	}
+
+	.jobPosition {
+		font-size: 16px;
+		line-height: 18px;
+		padding-top: 20px;
+	}
+
+	.infoText {
+		font-size: 16px;
+		line-height: 18px;
+		/* margin-top: 20px; */
+		padding-top: 20px;
+		/* background-color: red; */
+	}
+
+	.code {
+		font-size: 16px;
+		line-height: 18px;
+		padding-top: 20px;
+	}
+
+	ul {
+		/* list-style-image: url(../images/bullet.gif); */
+		margin: 0 -17px 0 -13px;
+		font-size: 16px;
+		line-height: 20px;
+		padding-top: 20px;
+		width: 310px;
+		/* margin-right: 3px; */
+	}
+
+	.noDisplay {
+		display: none;
+	}
+
+	.info {
+		width: 340px;
+		font-size: 16px;
+		/* color: #999999;
+		font-style: italic; */
+		line-height: 18px;
+	}
+
+
+	/*////////////////////////////////////////////////////////////////////*/
+
+	
+
+	.portfolio .rightSide .title {
+		position: relative;
+		left: 92px;
+		top: -4px;
+		margin-bottom: 20px;
+		color: #336699;
+	}
+
+	.city {
+		position: absolute;
+		padding-left: 0px;
+		font-size: 15px;
+		width: 250px;
+		top: 24px;
+		left: 0;
+		/* left: 92px; */
+		/* font-weight: normal; */
+	}
+
+	.lastUpdatedDate {
+		/* position: absolute;
+		bottom: 1px; */
+		/* right: 0; */
+		left: 8px;
+		font-size: 14px;
+		/* color: #999; */
+		text-align: left;
+		top: 128px;
+	}
+
+	#shadow {
+		/* display: block; */
+		opacity: 1;
+		width: 360px;
+		/* height: 10px; */
+		top: 126px;
+		/* position: absolute; */
+		/* bottom: 9px; */
+		/* background: url("../images/shadow.png") 0 0 repeat-x; */
+	}
+
+    .txt {
+        color: #336699;
+		font-size: 16px;
+		line-height: 19px;
+    }
+
+	#nav {
+		display: none;
+	}
+
+	/* #personalInfo {
+		height: 20px;
+	}*/
+
+	#topHeader {
+		position: absolute;
+	} 
+
+	.portfolio {
+		/* display: block;
+		position: relative; */
+		width: 344px;
+		margin: 60px 8px 0 8px;
+		background-color: white;
+	}
+
+	.portfolio .image {
+		/* display: block;
+		position: absolute; */
+		width: 70px;
+		height: 70px;
+		font-size: 12px;
+	}
+
+	.title {
+		font-size: 20px;
+		color: #c7c2c2;
+	}
+
+}

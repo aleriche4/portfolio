@@ -35,8 +35,8 @@ $(document).ready(function () {
             topOn = true;
         }
 
-        console.log(inWidth);
-        console.log("topOn = " + topOn);
+        // console.log(inWidth);
+        // console.log("topOn = " + topOn);
     }
 
     $(window).load(function () {
@@ -127,6 +127,4 @@ $(document).ready(function () {
             samples.add(wScreen).hide().empty();
         });
     });
-
-    console.log("format = ");
 });
