@@ -20,6 +20,10 @@ sup {
 	font-size: 10px;
 }
 
+.notSeen {
+	display: none;
+}
+
 #topBox {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	position: fixed;
@@ -287,6 +291,7 @@ header {
 	position: relative;
 	width: 710px;
 	margin: 90px 0;
+	/* background-color: orange; */
 }
 
 #PortfolioBox {
@@ -298,7 +303,10 @@ header {
 
 .topPositioning {
 	position: relative;
-	/* top: 35px; */
+	left: 135px;
+	width: 572px;
+	top: 20px;
+	/* background-color: pink; */
 }
 
 .linkSample {
@@ -325,23 +333,26 @@ header {
 	white-space: nowrap;
 	position: absolute;
 	cursor: pointer;
-	font-size: 13px;
+	font-size: 14px;
 	right: 0;
-	/* background-color: #85A3C2; */
+	top: 0;
+	transition-duration: 0.4s;
+	background-color: #85A3C2;
 	background: rgb(133,163,194);
-	background: linear-gradient(180deg, rgba(133,163,194,1) 0%, rgba(51,102,153,1) 100%);
+	/* background: linear-gradient(180deg, rgba(133,163,194,1) 0%, rgba(51,102,153,1) 100%); */
 	border: none;
 	color: white;
 	text-align: center;
 	text-decoration: none;
-	border-radius: 4px;
-	padding: 3px 9px;
+	border-radius: 3px;
+	padding: 2px 9px 4px 9px;
 	box-shadow: 1px 1px 2px #999;
-	transition-duration: 0.4s;
+	
 }
 
 .buttonSample:hover {
-	background: #336699;
+	background: rgb(51,102,153);
+	/* background: linear-gradient(180deg, rgba(51,102,153,1) 0%, rgba(133,163,194,1) 100%); */
 	color: white;
 	box-shadow: none;
   }
@@ -350,6 +361,14 @@ header {
 	padding-left: 4px;
 	font-size: 12px;
 	font-weight: normal;
+}
+
+.PortfolioContainer {
+	position: relative;
+	top: 0px;
+	width: 710px;
+	/* height: 600px; */
+	/* background-color: blue; */
 }
 
 .portfolio .image {
@@ -361,16 +380,19 @@ header {
 
 .portfolio .rightSide {
 	position: relative;
-	display: block;
-	width: 572px;
+	/* display: block; */
+	/* width: 572px; */
 	top: 0;
-	left: 135px;
-	/* background-color: red; */
+	/* left: 135px; */
+	left: 0;
+	/* background-color: yellow; */
 }
 
 .portfolio .rightSide .title {
-	float: left;
-	margin-bottom: 20px;
+	position: relative;
+	left: 120px;
+	/* float: left; */
+	/* margin-bottom: 20px; */
 	color: #336699;
 }
 
@@ -387,11 +409,15 @@ header {
 }
 
 .portfolio .rightSide .keys {
+	position: relative;
 	float: left;
 	display: block;
 	width: 120px;
-	margin-left: 0px;
+	/* margin-left: 0px; */
 	color: #999;
+	top: 0;
+	margin: 0;
+	padding: 0;
 }
 
 .portfolio .rightSide .note {
@@ -405,7 +431,7 @@ header {
 .portfolio .rightSide .value {
 	display: block;
 	text-align: left;
-	margin: 0 23px 12px 140px;
+	margin: 0 0 12px 120px;
 }
 
 .portfolio .rightSide .achievement .value {
@@ -423,18 +449,13 @@ ul {
 	clear: both;
 }
 
-.PortfolioContainer {
-	position: relative;
-	top: 0px;
-	/* background-color: blue; */
-}
-
 .info {
 	width: 430px;
 	font-size: 12px;
 	color: #999999;
 	font-style: italic;
 	line-height: 13px;
+	margin-top: 20px;
 }
 
 .line {
@@ -831,6 +852,15 @@ ul {
 		background-color: #f7f3f3;
 	} */
 
+	#PortfolioBox {
+		width: 360px;
+	}
+
+	.notSeen {
+		display: block;
+		
+	}
+
 	/* #topBox {
 		font-family: Verdana, Arial, Helvetica, sans-serif;
 		position: fixed;
@@ -851,44 +881,27 @@ ul {
 	} */
 	
 	#topHeader {
-		/* position: fixed; */
 		display: block;
 		width: 360px;
-		/* height: 160px; */
 		top: 10px;
-		/* background-color: red; */
 	}
 
 	#topBgWhite {
-		
 		top: 0;
-		/* position: absolute;
-		display: block; */
 		width: 360px;
 		height: 120px;
-		/* opacity: 0.95; */
-		/* filter: alpha(opacity=95); */
 		background-color: white;
-		/* top: 20px; */
-		/* border-bottom: #607090 1px solid; */
 	}
 
 	#info {
 		top: 0;
 		width: 360px;
 		height: 126px;
-		/* font-style: normal; */
-		/* position: absolute; */
 		background-color: #336699;
 	}
 
 	#personalInfo .title {
 		position: absolute;
-		/*width: 2000px;
-		height: 60px;
-		text-align: left;
-		background-color: purple; */
-		/* font-size: 20px; */
 		margin: 0 0 40px 8px;
 		color: white;
 	}
@@ -909,50 +922,45 @@ ul {
 		font-size: 15px;
 	}
 
-	.topPositioning {
-		top: 35px;
-	}
-
-	.portfolio .rightSide {
-		/* position: relative;
-		display: block; */
-		width: 344px;
-		/* top: 0px; */
-		left: 0px;
-		padding-bottom: 40px;
-		/* background-color: red; */
-	}
-
 	.personalInfoRight {
 		position: absolute;
 		width: 300px;
 		height: 60px;
-		/* right: 0; */
 		margin: 28px 0 0 8px;
 		left: 0;
 		text-align: left;
 	}
-	
 
 	.personalInfoRight .title {
 		font-size: 18px;
 		line-height: 19px;
-		/* position: absolute; */
-		/* margin: 40px 0 0 0;
-		padding: 20px 0 0 0; */
-		/* top: 5px; */
-		/* display: none; */
 	}
 
 	.PortfolioContainer {
-		/* position: relative; */
 		top: -25px;
-		/* background-color: blue; */
 	}
 
-	.portfolio .rightSide .value {
-		margin: 0px 0px 18px 0px;
+	.lastUpdatedDate {
+		left: 8px;
+		font-size: 14px;
+		text-align: left;
+		top: 128px;
+	}
+
+	#shadow {
+		opacity: 1;
+		width: 360px;
+		top: 126px;
+	}
+
+	.topPositioning {
+		position: relative;
+		top: 32px;
+		/* margin-top: 70px; */
 		/* background-color: pink; */
+		left: 0;
+		width: 344px;
+		margin-bottom: 30px;
 	}
 
 	.jobPosition {
@@ -964,9 +972,7 @@ ul {
 	.infoText {
 		font-size: 16px;
 		line-height: 20px;
-		/* margin-top: 20px; */
 		padding-top: 20px;
-		/* background-color: red; */
 	}
 
 	.code {
@@ -976,13 +982,11 @@ ul {
 	}
 
 	ul {
-		/* list-style-image: url(../images/bullet.gif); */
 		margin: 0 -17px 0 -13px;
 		font-size: 16px;
 		line-height: 20px;
 		padding-top: 20px;
 		width: 310px;
-		/* margin-right: 3px; */
 	}
 
 	.noDisplay {
@@ -992,50 +996,66 @@ ul {
 	.info {
 		width: 340px;
 		font-size: 16px;
-		/* color: #999999;
-		font-style: italic; */
 		line-height: 20px;
-	}
-
-	.portfolio .rightSide .title {
-		position: relative;
-		left: 80px;
-		top: -2px;
-		margin-bottom: 20px;
-		color: #336699;
 	}
 
 	.city {
 		position: absolute;
 		padding-left: 0px;
 		font-size: 15px;
+		line-height: 17px;
 		width: 250px;
 		top: 24px;
 		left: 0;
-		/* left: 92px; */
-		/* font-weight: normal; */
 	}
 
-	.lastUpdatedDate {
-		/* position: absolute;
-		bottom: 1px; */
-		/* right: 0; */
-		left: 8px;
-		font-size: 14px;
-		/* color: #999; */
-		text-align: left;
-		top: 128px;
+	.city2 {
+		left: 60px;
 	}
 
-	#shadow {
-		/* display: block; */
-		opacity: 1;
-		width: 360px;
-		/* height: 10px; */
-		top: 126px;
-		/* position: absolute; */
-		/* bottom: 9px; */
-		/* background: url("../images/shadow.png") 0 0 repeat-x; */
+	.exception {
+		position: absolute;
+		top: 26px;
+	}
+
+	#PortfolioBox {
+	display: block;
+	margin: 230px auto 0 auto;
+	width: 710px;
+}
+
+	.portfolio .rightSide {
+		width: 344px;
+		left: 0px;
+		padding-bottom: 10px;
+		/* background-color: yellow; */
+	}
+
+	.portfolio .rightSide .title {
+		position: relative;
+		left: 80px;
+		top: 3px;
+		padding-bottom: 35px;
+		color: #336699;
+		line-height: 11px;
+	}
+
+	.portfolio .rightSide .keys {
+		float: left;
+		display: block;
+		width: 120px;
+		margin-left: 0px;
+		color: #999;
+	}
+
+	.portfolio .rightSide .value {
+		margin: 0px 0px 14px 0px;
+	}
+
+	.buttonSample {
+		font-size: 16px;
+		padding: 1px 9px 3px 9px;
+		margin-top: -2px;
 	}
 
     .txt {
@@ -1048,25 +1068,17 @@ ul {
 		display: none;
 	}
 
-	/* #personalInfo {
-		height: 20px;
-	}*/
-
 	#topHeader {
 		position: absolute;
 	} 
 
 	.portfolio {
-		/* display: block;
-		position: relative; */
 		width: 344px;
 		margin: 60px 8px 0 8px;
 		background-color: white;
 	}
 
 	.portfolio .image {
-		/* display: block;
-		position: absolute; */
 		width: 70px;
 		height: 70px;
 		font-size: 12px;
@@ -1077,4 +1089,11 @@ ul {
 		color: #c7c2c2;
 	}
 
+	.copy {
+		width: 344px;
+		font-size: 14px;
+		text-align: left;
+		margin-left: 8px;
+		/* padding: 0 0 40px 0; */
+	}
 }
