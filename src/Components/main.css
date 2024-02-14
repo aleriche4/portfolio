@@ -615,8 +615,12 @@ ul {
 /*////////////////////////////////////////////////////////////////////////////*/
 
 .setSample {
+	position: fixed;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 12px;
+	/* overflow-y: scroll;
+	height: 3000px;
+	background-color: red; */
 }
 
 .close {
@@ -627,7 +631,7 @@ ul {
 	width: 44px;
 	height: 44px;
 	top: 10px;
-	right: 30px;
+	right: 0px;
 	/* z-index: 89; */
 }
 
@@ -635,21 +639,35 @@ ul {
 	background-position: bottom;
 }
 
-.container {
+/* .container {
 	position: relative;
 	display: block;
 	width: 100%;
+	height: 100%;
 	margin: 0 0 60px -4px;
-  }
+	background-color: red;
+  } */
   
   .bg {
 	display: block;
 	position: fixed;
-	width: 98%;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 100%;
 	background-color: white;
-	opacity: 0.9;
+	opacity: 0.92;
+  }
+
+  .overlayContainer {
+	display: block;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 	cursor: default;
+	overflow-y: auto;
   }
   
   .centerPosition {
@@ -660,8 +678,10 @@ ul {
 	width: 710px;
 	margin-left: auto;
 	margin-right: auto;
-	display: block;
-	/* z-index: 10; */
+	/* padding-left: 3.7%; */
+	/* background-color: red; */
+	z-index: 10;
+	padding-bottom: 10px;
   }
   
   .whiteBox {
@@ -669,7 +689,7 @@ ul {
 	background-color: white;
 	width: 690px;
 	padding: 18px 10px 18px 10px;
-	margin: 40px 0 20px 0;
+	margin: 10px 0 20px 0;
 	border: solid 1px #CCC;
 	border-radius: 5px;
 	box-shadow: 1px 1px 5px #ebe8e8;
@@ -769,6 +789,12 @@ ul {
 	height: 80px;
   }
 
+  #samples {
+	display: none;
+	position: fixed;
+	top: 0px;
+}
+
 /* #screen {
 	background: repeat url(../images/whiteBg.png) 0 0;
 	background-color: white;
@@ -788,11 +814,7 @@ ul {
 	position: fixed;
 }
 
-#samples {
-	display: none;
-	position: fixed;
-	top: 20px;
-}
+
 
 #boxSample {
 	position: absolute;
@@ -1160,13 +1182,13 @@ ul {
 	font-size: 16px;
 }
 
-.container {
+/* .container { */
 	/* position: relative;
 	display: block; */
-	width: 360px;
+	/* width: 360px; */
 	/* margin: 0 0 60px -4px; */
 	/* background-color: pink; */
-  }
+  /* } */
   
   .bg {
 	/* display: block;
@@ -1274,6 +1296,7 @@ ul {
 
   .close {
 	right: 12px;
+	z-index: 99;
 }
   
   /* .logo {

@@ -8,13 +8,13 @@ $(document).ready(function () {
         preload = $('#preload'),
         top = $('#topPage'),
         linkSample = $('.linkSample'),
-        contentHeight,
+        // contentHeight,
+        // y,
         This,
         samplesX,
         preloadX,
         sampleOpen = false,
-        topOn = true,
-        y;
+        topOn = true;
 
     // WINDOW SIZE
     function adjustStyle() {
@@ -73,7 +73,7 @@ $(document).ready(function () {
     // });
 
     // SAMPLES
-    linkSample.on('click', function () {
+    linkSample.on('click touchend', function () {
         sampleOpen = true;
         var samplePath = 'samples/' + $(this).data('name') + ".html";
         console.log="samplePath = " + samplePath;
@@ -85,7 +85,7 @@ $(document).ready(function () {
                 preload.fadeOut();
                 samples.fadeIn();
 
-                $('.banner').on('click', function () {
+                $('.banner').on('click touchend', function () {
                     This = $(this);
                     var bWidth = This.data('width'),
                         bHeight = This.data('height'),
@@ -111,17 +111,18 @@ $(document).ready(function () {
                         //     horizontal.html(format).show();
                         //     vertical.hide();
                         // }
+                        console.log("fileAddress = " + fileAddress + "     -      format = " + format)
                     });
-                $('.close').on('click', function () {
+                $('.close').on('click touchend', function () {
                     sampleOpen = false;
                     samples.add(wScreen).hide().empty();
                 });
             }
-            if (statusTxt == "error") {
-                alert("Error: " + xhr.status + ": " + xhr.statusText);
-            }
+            // if (statusTxt == "error") {
+            //     alert("Error: " + xhr.status + ": " + xhr.statusText);
+            // }
         });
-        wScreen.on('click', function () {
+        wScreen.on('click touchend', function () {
             preload.fadeOut();
             sampleOpen = false;
             samples.add(wScreen).hide().empty();
