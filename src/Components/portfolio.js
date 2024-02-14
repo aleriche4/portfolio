@@ -104,16 +104,16 @@ $(document).ready(function () {
 
                     // if (bHeight > bWidth/* || bWidth < 501*/) {
                     //     if (bWidth >= 460) vertical.css('margin-top', '40px');
-                        // else vertical.css('margin-top', '20px');
-                        vertical.html(format).show();
-                        // horizontal.hide();
-                        // } else {
-                        //     horizontal.html(format).show();
-                        //     vertical.hide();
-                        // }
-                        console.log("fileAddress = " + fileAddress + "     -      format = " + format)
-                    });
-                $('.close').on('click touchend', function () {
+                    // else vertical.css('margin-top', '20px');
+                    vertical.html(format).show();
+                    // horizontal.hide();
+                    // } else {
+                    //     horizontal.html(format).show();
+                    //     vertical.hide();
+                    // }
+                    console.log("fileAddress = " + fileAddress + "     -      format = " + format)
+                });
+                $('.close, .clickZone').on('click touchend', function () {
                     sampleOpen = false;
                     samples.add(wScreen).hide().empty();
                 });
