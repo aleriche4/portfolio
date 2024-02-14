@@ -24,6 +24,12 @@ sup {
 	display: none;
 }
 
+img {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #999;
+}
+
 #topBox {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	position: fixed;
@@ -33,6 +39,10 @@ sup {
 	width: 710px;
 	height: 20px;
 	top: 0;
+}
+
+.blueBox {
+	display: none;
 }
 
 #box {
@@ -122,7 +132,7 @@ a:hover {
 
 #personalInfo {
 	position: absolute;
-	width: 2000px;
+	width: 710px;
 	height: 60px;
 	text-align: left;
 }
@@ -229,6 +239,7 @@ a.emailLink:hover {
 	width: 710px;
 	height: 160px;
 	top: 20px;
+	/* background-color: red; */
 }
 
 #topBgWhite {
@@ -599,13 +610,30 @@ ul {
 	margin-top: 100px;
 }
 
-/*--- SAMPLES /////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////*/
+/*--- SAMPLES DESKTOP ---/////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////////////////////////////////*/
 
 .setSample {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	/* font-size: 12px; */
+	font-size: 12px;
 }
 
+.close {
+	position: absolute;
+	cursor: pointer;
+	background: url("../images/close.png") no-repeat 0 0;
+	/* float: right; */
+	width: 44px;
+	height: 44px;
+	top: 10px;
+	right: 30px;
+	/* z-index: 89; */
+}
+
+.close:hover {
+	background-position: bottom;
+}
 
 .container {
 	position: relative;
@@ -633,7 +661,7 @@ ul {
 	margin-left: auto;
 	margin-right: auto;
 	display: block;
-	z-index: 10;
+	/* z-index: 10; */
   }
   
   .whiteBox {
@@ -650,14 +678,19 @@ ul {
    .titleSamples {
 	cursor: default;
 	width: 710px;
-	font-size: 21px;
-	line-height: 23px;
+	font-size: 22px;
+	line-height: 24px;
 	color: #336699;
 	padding: 60px 0 40px 0;
   }
   
-  .title2 {
+  .title2, .title3 {
+	font-size: 22px;
 	margin-left: -10px;
+  }
+
+  .title3 {
+	margin-left: -30px;
   }
   
   .txtSample, .txt2Sample {
@@ -712,12 +745,25 @@ ul {
   .item224 {
 	width: 224px;
   }
+
+  .item600 {
+	width: 600px;
+  }
   
   .item690 {
 	width: 690px;
   }
+
+  .item254 {
+	width: 254px;
+  }
+
+  .item423 {
+	width: 423px;
+  }
   
   .logo {
+	font-size: 12px;
 	margin: 0 15px 0 10px;
 	width: 80px;
 	height: 80px;
@@ -808,21 +854,6 @@ ul {
 	font-size: 16px;
 }
 
-.close {
-	cursor: pointer;
-	background: url("../images/close.gif") no-repeat 0 0;
-	float: right;
-	height: 44px;
-	top: -10px;
-	width: 44px;
-	position: absolute;
-	left: 726px;
-}
-
-.close:hover {
-	background-position: bottom;
-}
-
 .banner {
 	margin-top: 5px;
 	color: #336699;
@@ -852,6 +883,18 @@ ul {
 		background-color: #f7f3f3;
 	} */
 
+	.blueBox {
+		position: relative;
+		display: block;
+		top: 0;
+		left: 0;
+		width: 360px;
+		height: 20px;
+		background-color: #245586;
+		/* z-index: 89; */
+		margin-top: -20px;
+	}
+
 	#PortfolioBox {
 		width: 360px;
 	}
@@ -861,15 +904,26 @@ ul {
 		
 	}
 
-	/* #topBox {
-		font-family: Verdana, Arial, Helvetica, sans-serif;
-		position: fixed;
-		background-color: white;
+	/* #topHeader {
+		position: absolute;
+		display: block;
+		width: 360px;
+		height: 160px;
+		top: 0px !important;
+		background-color: red;
+		z-index: 99;
+	} */
+
+	/* .topBox {
+		position: absolute;
+		background-color: red;
 		opacity: 0.95;
 		filter: alpha(opacity=95);
 		width: 710px;
 		height: 20px;
 		top: 0;
+		left: 0;
+		z-index: 100;
 	} */
 
 	/* #topBox {
@@ -889,8 +943,9 @@ ul {
 	#topBgWhite {
 		top: 0;
 		width: 360px;
-		height: 120px;
+		height: 140px;
 		background-color: white;
+		border-bottom: none;
 	}
 
 	#info {
@@ -1081,7 +1136,6 @@ ul {
 	.portfolio .image {
 		width: 70px;
 		height: 70px;
-		font-size: 12px;
 	}
 
 	.title {
@@ -1096,4 +1150,136 @@ ul {
 		margin-left: 8px;
 		/* padding: 0 0 40px 0; */
 	}
+
+/*///////////////////////////////////////////////////////////////////////////*/
+/*--- SAMPLES MOBILE ---/////////////////////////////////////////////////////*/
+/*///////////////////////////////////////////////////////////////////////////*/
+
+.setSample {
+	/* font-family: Verdana, Arial, Helvetica, sans-serif; */
+	font-size: 16px;
+}
+
+.container {
+	/* position: relative;
+	display: block; */
+	width: 360px;
+	/* margin: 0 0 60px -4px; */
+	/* background-color: pink; */
+  }
+  
+  .bg {
+	/* display: block;
+	position: fixed; */
+	width: 360px;
+	/* height: 100%; */
+	/* background-color: white;
+	opacity: 0.9;*/
+	/* cursor: pointer;  */
+  }
+  
+  .centerPosition {
+	/* display: block;
+	position: relative;
+	top: 0;
+	cursor: default; */
+	width: 344px;
+	/* margin-left: auto;
+	margin-right: auto;
+	display: block;
+	z-index: 10; */
+  }
+  
+  .whiteBox {
+	/* position: relative;
+	background-color: white; */
+	width: 326px;
+	padding: 18px 0px 0px 24px;
+	margin-top: 40px;
+	/* border: solid 1px #CCC;
+	border-radius: 5px;
+	box-shadow: 1px 1px 5px #ebe8e8; */
+  }
+   
+   .titleSamples {
+	/* cursor: default; */
+	width: 344px;
+	font-size: 22px;
+	/* background-color: pink; */
+	/* line-height: 24px; */
+	/* color: #336699;
+	padding: 60px 0 40px 0; */
+  }
+  
+  .title2 {
+	margin-left: -10px;
+  }
+
+  .title3 {
+	margin-left: -30px;
+  }
+  
+  .txtSample, .txt2Sample {
+	/* padding-top: 8px; */
+	font-size: 16px;
+	line-height: 20px;
+	/* color: #999; */
+  }
+  
+  /* .txt2Sample {
+	padding-top: 40px;
+  }
+  
+  .sizeup {
+	font-size: 18px;
+	color: #336699;
+	padding: 2px 0 3px 0px;
+  } */
+  
+  /* .width {
+	max-width: 710px;
+	margin: auto auto;
+  } */
+  
+  .imageWrapper {
+	max-width: 300px;
+	/* display: grid; */
+	/* column-gap: 8px; */
+	/* row-gap: 12px; */
+	grid-template: "auto";
+	padding: 25px 0 20px 0;
+	/* cursor: default; */
+  }
+  
+  .imageWrapper2 {
+	max-width: 300px;
+	/* display: grid; */
+	/* column-gap: 12px; */
+	/* row-gap: 8px; */
+	grid-template: "auto";
+	padding: 25px 0 20px 0;;
+  }
+  
+  .imageWrapper3 {
+	max-width: 300px;
+	/* display: grid;
+	row-gap: 12px;
+	grid-template: "auto"; */
+	padding: 16px 0 30px 0;
+  }
+  
+  .item224, .item690, .item254, .item423, .item600 {
+	width: 300px;
+  }
+
+  .close {
+	right: 12px;
+}
+  
+  /* .logo {
+	margin: 0 15px 0 10px;
+	width: 80px;
+	height: 80px;
+	font-size: 14px;
+  } */
 }
