@@ -1,3 +1,5 @@
+/*jslint browser:true*/
+/*global $, jQuery*/
 $(document).ready(function () {
     "use strict";
 
@@ -8,9 +10,11 @@ $(document).ready(function () {
         preload = $('#preload'),
         top = $('#topPage'),
         linkSample = $('.linkSample'),
+        // linkSample = $('PortfolioBox'),
+        // portfolioContainer = $('.portfolio'),
         // contentHeight,
         // y,
-        This,
+        // This,
         samplesX,
         preloadX,
         sampleOpen = false,
@@ -26,15 +30,15 @@ $(document).ready(function () {
         preloadX = (inWidth / 2) - 20 + "px";
         top.css({ 'left': xTop, top: yTop });
         wScreen.css({ 'height': inHeight, 'width': inWidth });
-        if (sampleOpen) samples.css('left', samplesX);
-
+        if (sampleOpen) {
+            samples.css('left', samplesX);
+        }
         if (inWidth < 760) {
             topOn = false;
             top.fadeOut(400);
         } else {
             topOn = true;
         }
-
         // console.log(inWidth);
         // console.log("topOn = " + topOn);
     }
@@ -47,85 +51,49 @@ $(document).ready(function () {
         adjustStyle();
     });
 
-    // SCROLLER
-    // $(window).on('scroll', function () {
-
-    //     if (topOn) {
-    //         var wrap = $('#box'),
-    //             yOffset = window.pageYOffset,
-    //             status = $('#status');
-    //         contentHeight = wrap.height();
-    //         y = yOffset + inHeight;
-    //         if (y > inHeight) {
-    //             top.fadeIn(200);
-    //         } else {
-    //             top.fadeOut(400);
-    //         }
-    //         status.html(contentHeight + " | " + y + " | " + inHeight);
-    //     }
-    // });
-
-    // top.on('click', function () {
-    //     var speed = (y * 1.3) / 10;
-    //     $('html, body').animate({
-    //         scrollTop: "0px"
-    //     }, speed);
-    // });
-
     // SAMPLES
     linkSample.on('click touchend', function () {
         sampleOpen = true;
         var samplePath = 'samples/' + $(this).data('name') + ".html";
-        console.log="samplePath = " + samplePath;
+        // console.log("samplePath = " + samplePath);
         wScreen.fadeIn();
         samples.css('left', samplesX);
         preload.css('left', preloadX).fadeIn();
-        samples.load(samplePath, function (responseTxt, statusTxt, xhr) {
-            if (statusTxt == "success") {
+        samples.load(samplePath, function (responseTxt, statusTxt, xhr) { // function (responseTxt, statusTxt, xhr) {
+            if (statusTxt === "success") {
                 preload.fadeOut();
-                samples.fadeIn();
+                samples.fadeIn(500);
 
-                $('.banner').on('click touchend', function () {
-                    This = $(this);
-                    var bWidth = This.data('width'),
-                        bHeight = This.data('height'),
-                        fileName = This.data('name'),
-                        company = This.data('company'),
-                        campaign = This.data('campaign'),
-                        type = This.data('type'),
-                        fileAddress = 'banners/' + company + '/' + campaign + '/' + fileName + type,
-                        vertical = $('#boxvertical'),
-                        // horizontal = $('#boxhorizontal'),
-                        format = '<img src="' + fileAddress + '" width="' + bWidth + '" height="' + bHeight + '" alt="' + campaign + '">';
+                // setTimeout(() => {
+                //     $('preloader2').hide();
+                //  }, 500);
 
-                    // format = type === '.jpg' ? '<img src="' + fileAddress + '" width="' + bWidth + '" height="' + bHeight + '" alt="' + campaign + '">' : '<embed src="' + fileAddress + '" width="' + bWidth + '" height="' + bHeight + '">';
+                document.body.style.overflow = 'hidden';
 
-                    /*format = '<img src="' + fileAddress + '" width="' + bWidth + '" height="' + bHeight + '" alt="' + campaign + '">'; : '<embed src="' + fileAddress + '" width="' + bWidth + '" height="' + bHeight + '">';*/
+                if(inWidth > 480) {
+                    document.body.style.marginLeft = '-17px';
+                }
 
-                    // if (bHeight > bWidth/* || bWidth < 501*/) {
-                    //     if (bWidth >= 460) vertical.css('margin-top', '40px');
-                    // else vertical.css('margin-top', '20px');
-                    vertical.html(format).show();
-                    // horizontal.hide();
-                    // } else {
-                    //     horizontal.html(format).show();
-                    //     vertical.hide();
-                    // }
-                    console.log("fileAddress = " + fileAddress + "     -      format = " + format)
-                });
                 $('.close, .clickZone').on('click touchend', function () {
+                    // preload.fadeOut();
+                    samples.fadeOut(600);
                     sampleOpen = false;
-                    samples.add(wScreen).hide().empty();
+                    setTimeout(() => {
+                        document.body.style.overflow = 'scroll';
+                        document.body.style.marginLeft = '0px';
+                        samples.add(wScreen).empty();
+                     }, 600);
+                    // samples.add(wScreen).hide().empty();
                 });
             }
             // if (statusTxt == "error") {
             //     alert("Error: " + xhr.status + ": " + xhr.statusText);
             // }
         });
-        wScreen.on('click touchend', function () {
-            preload.fadeOut();
-            sampleOpen = false;
-            samples.add(wScreen).hide().empty();
-        });
+        // wScreen.on('click touchend', function () {
+        //     preload.fadeOut();
+        //     sampleOpen = false;
+        //     samples.add(wScreen).hide().empty();
+        // });
     });
 });
