@@ -1,6 +1,6 @@
 module.exports = function(grunt){
 
-    grunt.loadNpmTasks('grunt-contrib-concat');
+    // grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     // grunt.loadNpmTasks('grunt-contrib-sass');
@@ -11,6 +11,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-git');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks("grunt-ts");
+    grunt.loadNpmTasks("grunt-contrib-htmlmin");
 
     // grunt.loadNpmTasks('grunt-postcss');
     // grunt.loadNpmTasks('grunt-autoprefixer');
@@ -37,7 +38,7 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON("package.json"),
 
         // REPLACE
-         config: {
+        config: {
                 src: 'dev/*.html',
                 dist: 'prod/'
         },
@@ -70,18 +71,18 @@ module.exports = function(grunt){
                 },
                 { 
                     expand: true, 
-                    cwd: 'src',
-                    src: ['samples/*.html'],
-                    dest: 'dev',
+                    cwd: 'src/samples',
+                    src: ['*.html'],
+                    dest: 'dev/samples',
                     filter: 'isFile'
                 },
-                { 
-                    expand: true, 
-                    cwd: 'src',
-                    src: ['components/data/*.json'],
-                    dest: 'dev',
-                    filter: 'isFile'
-                },
+                // { 
+                //     expand: true, 
+                //     cwd: 'src',
+                //     src: ['components/data/*.json'],
+                //     dest: 'dev',
+                //     filter: 'isFile'
+                // },
                 { 
                     expand: true, 
                     cwd: 'src/components',
@@ -105,15 +106,22 @@ module.exports = function(grunt){
                     src: ['**/**/*'], 
                     dest: 'dev/images', 
                     filter: 'isFile'
+                },
+                {
+                    expand: true, 
+                    cwd: 'dev/images', 
+                    src: ['**/**/*'], 
+                    dest: 'prod/images', 
+                    filter: 'isFile'
                 }]
             }
         },
 
         // WATCH
         watch: {
-            options: {
-                livereload: 3000
-            },
+            // options: {
+            //     livereload: 9988
+            // },
             src: {
                 files: [
                     "src/*.html",
@@ -122,22 +130,22 @@ module.exports = function(grunt){
                     "src/**/*.css",
                     "src/**/**/*.json"
                 ],
-                tasks: ["clean", "concat", /*"sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
+                tasks: ["clean", /*"sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
             }
         },
         
         // CONCAT
-        concat: {
-            options: {
-                separator: ';',
-            },
-            dist: {
-                src: 'src/components/jquery.js',
-                    // 'src/components/js/what-input.js',
-                    // 'src/components/js/foundation.js',
-                dest: 'dev/components/jquery.js',
-            },
-        },
+        // concat: {
+        //     options: {
+        //         separator: ';',
+        //     },
+        //     dist: {
+        //         src: 'src/components/jquery.js',
+        //             // 'src/components/js/what-input.js',
+        //             // 'src/components/js/foundation.js',
+        //         dest: 'dev/components/jquery.js',
+        //     },
+        // },
 
         ts: {
             // A specific target
@@ -246,10 +254,10 @@ module.exports = function(grunt){
             target: {
                 files: [{
                     expand: true,
-                    cwd: 'dev/components',
-                    src: ['*.css', '!*.min.css'],
+                    cwd: 'src/components',
+                    src: ['*.css'],
                     dest: 'prod/components',
-                    ext: '.min.css'
+                    ext: '.css'
                 }]
             }
         },
@@ -257,8 +265,9 @@ module.exports = function(grunt){
         // CLEAN
         clean: {
             build: {
-            //   src: ['prod/**']
-            src: ['dev/**']
+              src: ['prod/**']
+            // src: ['dev/**'],
+            // dev: ['prod/**']
             }
         },
 
@@ -271,30 +280,66 @@ module.exports = function(grunt){
             },
             my_target: {
               files: {
+                'prod/components/portfolio.js': ['dev/components/portfolio.js']
                 // expand: true,
-                // cwd: 'dev/components/js',
+                // cwd: 'src/components',
                 // src: ['*.js'],
-                // dest: 'prod/components/js',
-                'prod/components/main.min.js': ['dev/components/main.js'],
-                //'prod/components/js/*.min.js': ['dev/components/js/*.js']
+                // dest: 'prod/components',
+                // 'prod/components/portfolio.min.js': ['dev/components/portfolio.js'],
+                // 'prod/components/js/*.min.js': ['dev/components/js/*.js']
               }
             }
-        }
-    });
+        },
 
-
-    grunt.registerTask("removeLivereload", "Remove livereload", function(){
-
-        grunt.file.recurse("prod/", function(abspath, rootdir, subdir, filename){
-            if ( filename === "index.html" ) {
-                var index = grunt.file.read(abspath);
-                index = index.replace(/<script src="\/\/localhost:[0-9]*\/livereload.js"><\/script>/, '');
-                grunt.file.write(abspath, index);
+        htmlmin: {
+            dist: {
+              options: {
+                removeComments: true,
+                collapseWhitespace: true
+              },
+              files: [
+                {
+                    expand: true,
+                    cwd: 'dev/',
+                    src: ['*.html'],
+                    dest: 'prod/',
+                    ext: '.html'
+                 },
+                 {
+                    expand: true,
+                    cwd: 'dev/samples/',
+                    src: ['*.html'],
+                    dest: 'prod/samples/',
+                    ext: '.html'
+                 }
+              ]
             }
-        });
-
+            // }
+            // dev: {
+            //   files: {
+            //     'prod/index.html': 'dev/index.html',
+            //     'prod/resume.html': 'dev/resume.html',
+            //     'prod/samples/*.html' : 'dev/samples/*.html'
+            //   }
+        }
+        //   }
+        // });
     });
+
+
+    // grunt.registerTask("removeLivereload", "Remove livereload", function(){
+
+    //     grunt.file.recurse("prod/", function(abspath, rootdir, subdir, filename){
+    //         if ( filename === "index.html" ) {
+    //             var index = grunt.file.read(abspath);
+    //             index = index.replace(/<script src="\/\/localhost:[0-9]*\/livereload.js"><\/script>/, '');
+    //             grunt.file.write(abspath, index);
+    //         }
+    //     });
+
+    // });
+
     grunt.registerTask("default", ["watch", "ts:build"]);
-    grunt.registerTask("prod", ["clean", "uglify", "cssmin", /*"imagemin:dynamic",*/ "removeLivereload"]);
+    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy"/*, imagemin:dynamic", "removeLivereload"*/]);
 
 };
