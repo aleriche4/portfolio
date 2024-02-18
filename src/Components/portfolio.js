@@ -9,7 +9,7 @@ $(document).ready(function () {
         wScreen = $('#screen'),
         preload = $('#preload'),
         top = $('#topPage'),
-        linkSample = $('.linkSample'),
+        linkSample = $('.buttonSample'),
         // linkSample = $('PortfolioBox'),
         // portfolioContainer = $('.portfolio'),
         // contentHeight,
@@ -55,7 +55,7 @@ $(document).ready(function () {
     linkSample.on('click touchend', function () {
         sampleOpen = true;
         var samplePath = 'samples/' + $(this).data('name') + ".html";
-        // console.log("samplePath = " + samplePath);
+        console.log("samplePath = " + samplePath);
         wScreen.fadeIn();
         samples.css('left', samplesX);
         preload.css('left', preloadX).fadeIn();
@@ -63,7 +63,6 @@ $(document).ready(function () {
             if (statusTxt === "success") {
                 preload.fadeOut();
                 samples.fadeIn(500);
-
                 // setTimeout(() => {
                 //     $('preloader2').hide();
                 //  }, 500);
@@ -74,7 +73,7 @@ $(document).ready(function () {
                     document.body.style.marginLeft = '-17px';
                 }
 
-                $('.close, .clickZone').on('click touchend', function () {
+                $('.close').on('click touchend', function () {
                     // preload.fadeOut();
                     samples.fadeOut(600);
                     sampleOpen = false;
