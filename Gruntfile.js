@@ -130,7 +130,7 @@ module.exports = function(grunt){
                     "src/**/*.css",
                     "src/**/**/*.json"
                 ],
-                tasks: ["clean", /*"sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
+                tasks: [/*"clean", "sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
             }
         },
         

@@ -1,0 +1,359 @@
+@charset "utf-8";
+
+h1,
+h2 {
+	color: white;
+	display: none
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	background-color: white;
+}
+
+sup {
+	font-size: 8px;
+}
+
+.sup2 {
+	font-size: 10px;
+}
+
+.notSeen {
+	display: none;
+}
+
+img {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 10px;
+	color: #999;
+}
+
+.txt {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #336699;
+	line-height: 15px;
+}
+
+#mainContainer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	padding-top: -230px;
+	background-color: white;
+}
+
+#box {
+	position: relative;
+	margin: 0 auto 0 auto;
+	top: 0;
+	width: 710px;
+	background-color: white;
+}
+
+.portfolio {
+	padding-bottom: 90px;
+}
+
+#topHeader {
+	position: absolute;
+	width: 100%;
+	height: 180px;
+}
+
+#topBgWhite {
+	position: fixed;
+	width: 710px;
+	height: 160px;
+	opacity: 0.95;
+	filter: alpha(opacity=95);
+	background-color: white;
+	top: 0px;
+	border-bottom: #607090 1px solid;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////  NAV  //////////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+#nav {
+	position: fixed;
+	border-top: #607090 1px solid;
+	padding: 5px 0 8px 0;
+	margin: 20px 0 15px;
+	width: 710px;
+	border-bottom: #607090 1px solid;
+	font-size: 13px;
+	height: 15px;
+	top: 0;
+	background-color: white;
+}
+
+#nav a {
+	margin-right: 10px;
+	color: #336699;
+	text-decoration: none;
+	font-weight: normal
+}
+
+.selected {
+	font-weight: bold;
+	margin-right: 10px;
+	color: #336699;
+}
+
+#nav a:hover {
+	color: #2F3646
+}
+
+#portfolioBtn {
+	position: absolute;
+}
+
+#resumeBtn {
+	position: absolute;
+	left: 85px;
+}
+
+#resumeBtn2 {
+	position: absolute;
+	left: 78px;
+}
+
+a {
+	color: #336699;
+	font-weight: normal;
+	text-decoration: underline;
+	text-decoration-skip-ink: none;
+}
+
+a:hover {
+	color: #336699;
+	text-decoration: none;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////// HEADER STYLE //////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+address {
+	position: fixed;
+	font-style: normal;
+	top: 75px;
+	width: 710px;
+}
+
+address .title {
+	font-size: 18px;
+	line-height: 23px;
+}
+
+.experienceTitle {
+	float: right;
+	margin: -23px 0 0 257px;
+}
+
+.experience {
+	margin: -23px 0 0 0;
+}
+
+.contact {
+	width: 70%;
+	display: flex;
+	color: #999;
+	margin-top: 44px;
+	font-size: 12px;
+}
+
+#shadow {
+	position: absolute;
+	opacity: .6;
+	filter: alpha(opacity=6);
+	width: 710px;
+	height: 10px;
+	top: 85px;
+	background: url("../images/shadow.png") 0 0 repeat-x;
+}
+
+.lastUpdatedDate {
+	position: absolute;
+	top: 67px;
+	right: 0;
+	text-align: right;
+	font-size: 11px;
+	color: #999;
+}
+
+a.emailLink {
+	color: #999;
+	text-decoration: none;
+}
+
+a.emailLink:hover {
+	text-decoration: underline;
+}
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////  PORTFOLIO  ////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+footer {
+	width: 100%;
+}
+
+.line {
+	position: relative;
+	border-bottom: #607090 1px solid;
+	margin: 34px 0 2px 0;
+	width: 100%;
+}
+
+.city {
+	font-size: 12px;
+	font-weight: normal;
+}
+
+ul {
+	list-style-image: url(../images/bullet.gif);
+	margin: 3px 0 0 -13px;
+	line-height: 17px;
+}
+
+.clear_both {
+	clear: both;
+}
+
+
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////  RESUME  ///////////////////////////////////////////////////////////////*/
+/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
+#resume {
+	display: block;
+	position: absolute;
+	width: 710px;
+	background-color: white;
+}
+
+/*/////////////////////////////////////////////////// INTRODUCTION /////////////////////////////////////////////////////*/
+
+.spacer2 {
+	height: 180px;
+}
+
+#box #resume .title {
+	font-weight: bold;
+	font-size: 14px;
+	margin: 30px 0 20px;
+}
+
+#competencies {
+	display: block;
+	margin-bottom: 40px;
+}
+
+.introduction {
+	margin-left: 38px;
+}
+
+#competencies .title {
+	margin: 30px 0 0 0;
+}
+
+#box #resume #competencies {
+	margin-bottom: 20px;
+}
+
+#box #resume #competencies li {
+	line-height: 17px;
+}
+
+.work li {
+	margin-right: 20px;
+}
+
+.work ul {
+	margin: 0 0 44px 2px;
+}
+
+#box #resume .job {
+	display: block;
+	margin: 30px 0 50px 0;
+}
+
+.work {
+
+	width: 710px;
+	margin-right: 15px;
+	
+}
+
+.columnLeft {
+	width: 335px;
+}
+
+.columnRight {
+	position: absolute;
+	width: 335px;
+	height: 160px;
+	margin: -3px 0 0 370px;
+}
+
+.position {
+	position: absolute;
+	font-weight: bold;
+	font-size: 15px;
+	margin-bottom: 30px;
+}
+
+.position2 {
+	position: absolute;
+	margin-bottom: 20px;
+}
+
+.edu {
+	display: block;
+	margin-top: 15px
+}
+
+.company {
+	font-size: 15px;
+	font-style: italic;
+	margin: 25px 0px 5px 0px;
+}
+
+.year {
+	width: 150px;
+	margin: 0 0 0 560px;
+	text-align: right;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.withLine {
+	text-decoration: underline;
+}
+
+.placeTime {
+	font-size: 12px;
+	font-style: italic;
+	font-weight: normal;
+}
+
+.education {
+	display: block;
+	margin-top: 10px
+}
+
+.educationYear {
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+	text-align: right !important;
+}
+
+.spacer {
+	height: 230px;
+}

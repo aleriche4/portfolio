@@ -7,7 +7,7 @@ $(document).ready(function () {
         inWidth,
         samples = $('#samples'),
         wScreen = $('#screen'),
-        preload = $('#preload'),
+        // preload = $('#preload'),
         top = $('#topPage'),
         linkSample = $('.buttonSample'),
         // linkSample = $('PortfolioBox'),
@@ -58,10 +58,10 @@ $(document).ready(function () {
         console.log("samplePath = " + samplePath);
         wScreen.fadeIn();
         samples.css('left', samplesX);
-        preload.css('left', preloadX).fadeIn();
+        // preload.css('left', preloadX).fadeIn();
         samples.load(samplePath, function (responseTxt, statusTxt, xhr) { // function (responseTxt, statusTxt, xhr) {
             if (statusTxt === "success") {
-                preload.fadeOut();
+                // preload.fadeOut();
                 samples.fadeIn(500);
                 // setTimeout(() => {
                 //     $('preloader2').hide();

@@ -9,7 +9,7 @@ h2 {
 body {
 	margin: 0;
 	padding: 0;
-	background-color: pink;
+	background-color: white;
 }
 
 sup {
@@ -43,6 +43,7 @@ img {
 	left: 0;
 	width: 100vw;
 	padding-top: -230px;
+	background-color: white;
 }
 
 #box {
@@ -307,14 +308,14 @@ footer {
 	padding: 0;
 }
 
-.portfolio .rightSide .note {
+/* .portfolio .rightSide .note {
 	float: left;
 	font-size: 11px;
 	color: #999;
 	font-style: italic;
 	line-height: 12px;
 	margin-top: 15px;
-}
+} */
 
 .portfolio .rightSide .value {
 	text-align: left;
@@ -348,134 +349,6 @@ ul {
 	padding: 0 0 40px 0;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////  RESUME  ///////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-#resume {
-	display: block;
-	position: absolute;
-	width: 710px;
-	background-color: white;
-}
-
-/*/////////////////////////////////////////////////// INTRODUCTION /////////////////////////////////////////////////////*/
-
-.spacer2 {
-	height: 180px;
-}
-
-#box #resume .title {
-	font-weight: bold;
-	font-size: 14px;
-	margin: 30px 0 20px;
-}
-
-#competencies {
-	display: block;
-	margin-bottom: 40px;
-}
-
-.introduction {
-	margin-left: 38px;
-}
-
-#competencies .title {
-	margin: 30px 0 0 0;
-}
-
-#box #resume #competencies {
-	margin-bottom: 20px;
-}
-
-#box #resume #competencies li {
-	line-height: 17px;
-}
-
-.work li {
-	margin-right: 20px;
-}
-
-.work ul {
-	margin: 0 0 44px 2px;
-}
-
-#box #resume .job {
-	display: block;
-	margin: 30px 0 50px 0;
-}
-
-.work {
-
-	width: 710px;
-	margin-right: 15px;
-	
-}
-
-.columnLeft {
-	width: 335px;
-}
-
-.columnRight {
-	position: absolute;
-	width: 335px;
-	height: 160px;
-	margin: -3px 0 0 370px;
-}
-
-.position {
-	position: absolute;
-	font-weight: bold;
-	font-size: 15px;
-	margin-bottom: 30px;
-}
-
-.position2 {
-	position: absolute;
-	margin-bottom: 20px;
-}
-
-.edu {
-	display: block;
-	margin-top: 15px
-}
-
-.company {
-	font-size: 15px;
-	font-style: italic;
-	margin: 25px 0px 5px 0px;
-}
-
-.year {
-	width: 150px;
-	margin: 0 0 0 560px;
-	text-align: right;
-	font-size: 12px;
-	font-weight: bold;
-}
-
-.withLine {
-	text-decoration: underline;
-}
-
-.placeTime {
-	font-size: 12px;
-	font-style: italic;
-	font-weight: normal;
-}
-
-.education {
-	display: block;
-	margin-top: 10px
-}
-
-.educationYear {
-	font-size: 12px;
-	font-style: italic;
-	font-weight: bold;
-	text-align: right !important;
-}
-
 .spacer {
 	height: 230px;
 }
@@ -500,9 +373,9 @@ ul {
 	right: 30px;
 }
 
-.repositioning {
+/* .repositioning {
 	margin-left: -12px !important;
-}
+} */
 
 #preload {
 	display: none; 
@@ -778,13 +651,17 @@ ul {
 	}
 
 	.portfolio {
-		margin: 60px 20px 0 20px;
+		margin: 140px 20px 0 20px;
+		padding-bottom: 0;
+		/* background-color: pink; */
 	}
-w
+
 	.portfolio .rightSide {
-		left: 12px;
-		background-color: blue;
-		z-index: 89;
+		/* margin-right: 80px; */
+		width: 100%;
+		/* height: 300px; */
+		/* left: 12px; */
+		/* background-color: yellow; */
 	}
 
 	.topPositioning {
@@ -792,6 +669,7 @@ w
 		left: 0;
 		width: 100%;
 		margin-bottom: 30px;
+		/* background-color: orange; */
 	}
  
 	.portfolio .rightSide .title {
@@ -805,6 +683,11 @@ w
 
 	.portfolio .rightSide .title4 {
 		width: 68%;
+	}
+
+	.portfolio .rightSide .title5 {
+		width: 72%;
+		/* background-color: red; */
 	}
 
 	.portfolio .rightSide .value {
@@ -843,9 +726,9 @@ w
 	}
 
 	.info {
-		width: 100%;
-		float: left;
-		margin-top: 1px;
+		/* width: 100%; */
+		text-align: left;
+		margin-top: 0;
 		font-size: 15px;
 		line-height: 17px;
 	}
@@ -869,7 +752,7 @@ w
 	.buttonSample {
 		font-size: 18px;
 		padding: 1px 9px 3px 9px;
-		margin: -2px 10px 0 0;
+		margin: -3px 3px 0 0;
 	}
 
     .txt {
