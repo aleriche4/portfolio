@@ -562,7 +562,7 @@ ul {
 @media only screen and (max-width: 480px) {
 
 	.spacer {
-		height: 170px;
+		height: 90px;
 	}
 
 	#box {
@@ -774,11 +774,16 @@ ul {
 		color: #c7c2c2;
 	}
 
+	footer {
+		width: 100%;
+		margin-top: 100px;
+	}
+
 	.copy {
 		width: 344px;
 		font-size: 14px;
 		text-align: left;
-		margin-left: 8px;
+		margin-left: 20px;
 	}
 
 /*///////////////////////////////////////////////////////////////////////////*/
