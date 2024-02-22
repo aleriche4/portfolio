@@ -41,7 +41,7 @@ img {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 100%;
 	padding-top: -230px;
 	background-color: white;
 }
@@ -152,7 +152,7 @@ address .title {
 
 .experienceTitle {
 	float: right;
-	margin: -23px 0 0 257px;
+	margin: -23px 0 0 255px;
 }
 
 .experience {

@@ -10,6 +10,7 @@ body {
 	margin: 0;
 	padding: 0;
 	background-color: white;
+	/* overflow-x: hidden; */
 }
 
 sup {
@@ -41,9 +42,9 @@ img {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 100vw;
+	width: 100%;
 	padding-top: -230px;
-	background-color: white;
+	/* background-color: pink; */
 }
 
 #box {
@@ -152,7 +153,7 @@ address .title {
 
 .experienceTitle {
 	float: right;
-	margin: -23px 0 0 257px;
+	margin: -23px 0 0 255px;
 }
 
 .experience {
@@ -560,7 +561,7 @@ ul {
 ///////////////////////////////////////////////  MOBILE  /////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
 
-@media only screen and (max-width: 370px) {
+@media only screen and (max-width: 480px) {
 
 	.spacer {
 		height: 90px;
@@ -691,17 +692,17 @@ ul {
 
 	.portfolio .rightSide .title5 {
 		width: 72%;
-		/* background-color: red; */
+		/* background-color: yellow; */
 	}
 
 	.portfolio .rightSide .title6 {
 		width: 49%;
-		/* background-color: yellow; */
+		/* background-color: orange; */
 	}
 
 	.portfolio .rightSide .title7 {
-		width: 47%;
-		/* background-color: yellow; */
+		width: 45%;
+		/* background-color: grey; */
 	}
 
 	.portfolio .rightSide .value {
