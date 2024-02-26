@@ -67,7 +67,7 @@ $(document).ready(function () {
                 //     $('preloader2').hide();
                 //  }, 500);
 
-                document.body.style.overflow = 'hidden';
+                document.body.style.overflowY = 'hidden';
 
                 if(inWidth > 480) {
                     document.body.style.marginLeft = '-17px';
@@ -78,7 +78,7 @@ $(document).ready(function () {
                     samples.fadeOut(600);
                     sampleOpen = false;
                     setTimeout(() => {
-                        document.body.style.overflow = 'scroll';
+                        document.body.style.overflowY = 'scroll';
                         document.body.style.marginLeft = '0px';
                         samples.add(wScreen).empty();
                      }, 600);
