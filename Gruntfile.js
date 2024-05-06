@@ -11,6 +11,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-git');
     grunt.loadNpmTasks('grunt-string-replace');
     grunt.loadNpmTasks("grunt-ts");
+    // grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-htmlmin");
 
     // grunt.loadNpmTasks('grunt-postcss');
@@ -27,12 +28,42 @@ module.exports = function(grunt){
 
         ts: {
             default: {
-                tsconfig: true,
+                // tsconfig: true,
+                tsconfig: './tsconfig.json'
+                // src: ["**/*.ts", "!node_modules/**/*.ts"],
             },
-            options: {
-                fast: 'never'
-            }
+            // options: {
+            //     compile: true,                 // perform compilation. [true (default) | false]
+            //     comments: false,               // same as !removeComments. [true | false (default)]
+            //     target: 'es6',                 // target javascript language. [es3 | es5 (grunt-ts default) | es6]
+            //     module: 'amd',                 // target javascript module style. [amd (default) | commonjs]
+            //     sourceMap: true,               // generate a source map for every output js file. [true (default) | false]
+            //     sourceRoot: '',                // where to locate TypeScript files. [(default) '' == source ts location]
+            //     mapRoot: '',                   // where to locate .map.js files. [(default) '' == generated js location.]
+            //     declaration: false,            // generate a declaration .d.ts file for every output js file. [true | false (default)]
+            //     // htmlModuleTemplate: 'My.Module.<%= filename %>',    // Template for module name for generated ts from html files [(default) '<%= filename %>']
+            //     htmlVarTemplate: '<%= ext %>',                      // Template for variable name used in generated ts from html files [(default) '<%= ext %>]
+            //                                                         // Both html templates accept the ext and filename parameters.
+            //     noImplicitAny: false,          // set to true to pass --noImplicitAny to the compiler. [true | false (default)]
+            //     fast: "watch"
+            // }
         },
+
+        // ts: {
+        //     default : {
+        //       tsconfig: './tsconfig.json'
+        //     }
+        // },
+
+        // browserify: {
+        //     all: {
+        //       src: "**/*.ts",
+        //       dest: "dev/**/*.js",
+        //       options: {
+        //         plugin: ["tsify"],
+        //       },
+        //     },
+        // },
 
 
         pkg: grunt.file.readJSON("package.json"),
@@ -90,6 +121,20 @@ module.exports = function(grunt){
                     dest: 'dev/components',
                     filter: 'isFile'
                 },
+                // { 
+                //     expand: true, 
+                //     cwd: 'dev/components',
+                //     src: ['*.js.map'], 
+                //     dest: 'prod/components',
+                //     filter: 'isFile'
+                // },
+                // { 
+                //     expand: true, 
+                //     cwd: 'src/components',
+                //     src: ['*.ts'], 
+                //     dest: 'dev/components',
+                //     filter: 'isFile'
+                // },
                 { 
                     expand: true, 
                     cwd: 'src/components',
@@ -126,11 +171,12 @@ module.exports = function(grunt){
                 files: [
                     "src/*.html",
                     "src/**/*.js",
+                    "src/**/*.ts",
                     "src/**/*.html",
                     "src/**/*.css",
                     "src/**/**/*.json"
                 ],
-                tasks: [/*"clean", "sass", "postcss:dist",*/ "copy"/*, "string-replace"*/]
+                tasks: [/*"clean", "sass", "postcss:dist",*/ "copy", "ts" /*, "string-replace"*/]
             }
         },
         
@@ -147,44 +193,44 @@ module.exports = function(grunt){
         //     },
         // },
 
-        ts: {
-            // A specific target
-            build: {
-            // The source TypeScript files, http://gruntjs.com/configuring-tasks#files
-            src: ["test/work/**/*.ts"],
-            // The source html files, https://github.com/grunt-ts/grunt-ts#html-2-typescript-support   
-            html: ["src/*.html"], 
-            // If specified, generate this file that to can use for reference management
-            reference: "./test/reference.ts",  
-            // If specified, generate an out.js file which is the merged js file
-            out: 'test/out.js',
-            // If specified, the generate JavaScript files are placed here. Only works if out is not specified
-            outDir: 'test/outputdirectory',
-            // If specified, watches this directory for changes, and re-runs the current target
-            watch: 'test',                     
-            // Use to override the default options, http://gruntjs.com/configuring-tasks#options
-            options: {     
-                // 'es3' (default) | 'es5'
-                target: 'es6',
-                // 'amd' (default) | 'commonjs'    
-                module: 'commonjs',
-                // true (default) | false
-                sourceMap: true,
-                // true | false (default)
-                declaration: false,
-                // true (default) | false
-                removeComments: true
-                },
-            },
-            // Another target
-            dist: {                               
-                src: ["test/work/**/*.ts"],
-                // Override the main options for this target
-                options: {
-                    sourceMap: false,
-                }
-            },
-        },
+        // ts: {
+        //     // A specific target
+        //     build: {
+        //     // The source TypeScript files, http://gruntjs.com/configuring-tasks#files
+        //     src: ["test/work/**/*.ts"],
+        //     // The source html files, https://github.com/grunt-ts/grunt-ts#html-2-typescript-support   
+        //     html: ["src/*.html"], 
+        //     // If specified, generate this file that to can use for reference management
+        //     reference: "./test/reference.ts",  
+        //     // If specified, generate an out.js file which is the merged js file
+        //     out: 'test/out.js',
+        //     // If specified, the generate JavaScript files are placed here. Only works if out is not specified
+        //     outDir: 'test/outputdirectory',
+        //     // If specified, watches this directory for changes, and re-runs the current target
+        //     watch: 'test',                     
+        //     // Use to override the default options, http://gruntjs.com/configuring-tasks#options
+        //     options: {     
+        //         // 'es3' (default) | 'es5'
+        //         target: 'es6',
+        //         // 'amd' (default) | 'commonjs'    
+        //         module: 'commonjs',
+        //         // true (default) | false
+        //         sourceMap: true,
+        //         // true | false (default)
+        //         declaration: false,
+        //         // true (default) | false
+        //         removeComments: true
+        //         },
+        //     },
+        //     // Another target
+        //     dist: {                               
+        //         src: ["test/work/**/*.ts"],
+        //         // Override the main options for this target
+        //         options: {
+        //             sourceMap: false,
+        //         }
+        //     },
+        // },
 
         // MODERNIZR
         // modernizr: {
@@ -280,12 +326,13 @@ module.exports = function(grunt){
             },
             my_target: {
               files: {
-                'prod/components/portfolio.js': ['dev/components/portfolio.js']
+                'prod/components/portfolio.js': ['dev/components/portfolio.js'],
+                // 'prod/components/portfolio.js.map': ['dev/components/portfolio.js.map']
                 // expand: true,
-                // cwd: 'src/components',
+                // cwd: 'dev/components',
                 // src: ['*.js'],
                 // dest: 'prod/components',
-                // 'prod/components/portfolio.min.js': ['dev/components/portfolio.js'],
+                // 'prod/components/*.min.js': ['dev/components/*.js'],
                 // 'prod/components/js/*.min.js': ['dev/components/js/*.js']
               }
             }
@@ -338,8 +385,8 @@ module.exports = function(grunt){
     //     });
 
     // });
-
-    grunt.registerTask("default", ["watch", "ts:build"]);
+    grunt.registerTask("default", [/*"browserify", */"watch", "ts"]);
     grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy"/*, imagemin:dynamic", "removeLivereload"*/]);
+    // grunt.registerTask("prod", ["watch", "ts"]);
 
 };

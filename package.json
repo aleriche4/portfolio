@@ -15,6 +15,7 @@
     "url": ""
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.29",
     "grunt": "^1.6.1",
     "grunt-cli": "^1.4.3",
     "grunt-contrib-clean": "^2.0.1",
@@ -32,6 +33,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
-    "grunt-ts": "^6.0.0-beta.22"
+    "grunt-ts": "^6.0.0-beta.22",
+    "jquery": "^3.7.1"
   }
 }
