@@ -153,7 +153,7 @@ address .title {
 
 .experienceTitle {
 	float: right;
-	margin: -23px 0 0 255px;
+	margin: -23px 0 0 195px;
 }
 
 .experience {
@@ -256,7 +256,7 @@ ul {
 }
 
 .introduction {
-	margin-left: 38px;
+	margin: 20px 0 0 38px;
 }
 
 #competencies .title {
@@ -291,9 +291,9 @@ ul {
 	
 }
 
-.columnLeft {
+/* .columnLeft {
 	width: 335px;
-}
+} */
 
 .columnRight {
 	position: absolute;
