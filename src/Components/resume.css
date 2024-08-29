@@ -1,41 +1,32 @@
 @charset "utf-8";
 
-h1,
-h2 {
-	color: white;
+h1 {
 	display: none
+}
+
+h2 {
+	font-weight: bold;
+	font-size: 14px;
+	margin-bottom: 2px;
 }
 
 body {
 	margin: 0;
 	padding: 0;
-	background-color: white;
+	background-color: #ffffff;
+	background: #ffffff;
 	overflow-x: hidden;
 }
 
-sup {
-	font-size: 8px;
-}
-
-.sup2 {
-	font-size: 10px;
-}
-
-.notSeen {
-	display: none;
-}
-
-img {
-	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
-	color: #999;
+html {
+    background-color: #ffffff;
 }
 
 .txt {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 12px;
+	font-size: 13px;
 	color: #336699;
-	line-height: 15px;
+	line-height: 19px;
 }
 
 #mainContainer {
@@ -43,8 +34,9 @@ img {
 	top: 0;
 	left: 0;
 	width: 100vw;
-	padding-top: -230px;
-	background-color: white;
+	height: 100%;
+	/* padding-top: -230px; */
+	background-color: #FFFFFF;
 }
 
 #box {
@@ -52,7 +44,7 @@ img {
 	margin: 0 auto 0 auto;
 	top: 0;
 	width: 710px;
-	background-color: white;
+	background-color: #ffffff;
 }
 
 .portfolio {
@@ -71,14 +63,17 @@ img {
 	height: 160px;
 	opacity: 0.95;
 	filter: alpha(opacity=95);
-	background-color: white;
+	background-color: #ffffff;
 	top: 0px;
 	border-bottom: #607090 1px solid;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+.bold {
+	font-weight: bold;
+}
+
 /*////////////////////////////////////////////////  NAV  //////////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+
 #nav {
 	position: fixed;
 	border-top: #607090 1px solid;
@@ -89,7 +84,7 @@ img {
 	font-size: 13px;
 	height: 15px;
 	top: 0;
-	background-color: white;
+	background-color: #ffffff;
 }
 
 #nav a {
@@ -115,11 +110,6 @@ img {
 
 #resumeBtn {
 	position: absolute;
-	left: 85px;
-}
-
-#resumeBtn2 {
-	position: absolute;
 	left: 78px;
 }
 
@@ -135,9 +125,7 @@ a:hover {
 	text-decoration: none;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*//////////////////////////////////////////////// HEADER STYLE //////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*//////////////////////////////////////////////// HEADER //////////////////////////////////////////////////////////*/
 
 address {
 	position: fixed;
@@ -153,17 +141,14 @@ address .title {
 
 .experienceTitle {
 	float: right;
-	margin: -23px 0 0 195px;
-}
-
-.experience {
-	margin: -23px 0 0 0;
+	margin: -23px 0 0 225px;
 }
 
 .contact {
 	width: 70%;
 	display: flex;
-	color: #999;
+	/* color: #999; */
+	color: #999999;
 	margin-top: 44px;
 	font-size: 12px;
 }
@@ -184,11 +169,11 @@ address .title {
 	right: 0;
 	text-align: right;
 	font-size: 11px;
-	color: #999;
+	color: #999999;
 }
 
 a.emailLink {
-	color: #999;
+	color: #999999;
 	text-decoration: none;
 }
 
@@ -196,165 +181,37 @@ a.emailLink:hover {
 	text-decoration: underline;
 }
 
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////  PORTFOLIO  ////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
+/*////////////////////////////////////////////////  RESUME  ///////////////////////////////////////////////////////////////*/
 
-footer {
-	width: 100%;
+#resume {
+	display: block;
+	position: absolute;
+	margin-top: 180px;
+	width: 710px;
+	background-color: #FFFFFF;
 }
 
-.line {
-	position: relative;
-	border-bottom: #607090 1px solid;
-	margin: 34px 0 2px 0;
-	width: 100%;
-}
-
-.city {
-	font-size: 12px;
-	font-weight: normal;
+.bullet ul {
+	margin:10px 0 44px 2px
 }
 
 ul {
 	list-style-image: url(../images/bullet.gif);
 	margin: 3px 0 0 -13px;
-	line-height: 17px;
+	line-height: 20px;
 }
 
 .clear_both {
 	clear: both;
 }
 
-
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-/*////////////////////////////////////////////////  RESUME  ///////////////////////////////////////////////////////////////*/
-/*/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////*/
-
-#resume {
-	display: block;
-	position: absolute;
-	width: 710px;
-	background-color: white;
-}
-
-/*/////////////////////////////////////////////////// INTRODUCTION /////////////////////////////////////////////////////*/
-
-.spacer2 {
-	height: 180px;
-}
-
-#box #resume .title {
-	font-weight: bold;
-	font-size: 14px;
-	margin: 30px 0 20px;
-}
-
-#competencies {
-	display: block;
-	margin-bottom: 40px;
-}
-
-.introduction {
-	margin: 20px 0 0 38px;
-}
-
-#competencies .title {
-	margin: 30px 0 0 0;
-}
-
-#box #resume #competencies {
-	margin-bottom: 20px;
-}
-
-#box #resume #competencies li {
-	line-height: 17px;
-}
-
-.work li {
-	margin-right: 20px;
-}
-
-.work ul {
-	margin: 0 0 44px 2px;
-}
-
-#box #resume .job {
-	display: block;
-	margin: 30px 0 50px 0;
-}
-
-.work {
-
-	width: 710px;
-	margin-right: 15px;
-	
-}
-
-/* .columnLeft {
-	width: 335px;
-} */
-
-.columnRight {
-	position: absolute;
-	width: 335px;
-	height: 160px;
-	margin: -3px 0 0 370px;
-}
-
-.position {
-	position: absolute;
-	font-weight: bold;
-	font-size: 15px;
-	margin-bottom: 30px;
-}
-
-.position2 {
-	position: absolute;
-	margin-bottom: 20px;
-}
-
-.edu {
-	display: block;
-	margin-top: 15px
-}
-
-.company {
-	font-size: 15px;
-	font-style: italic;
-	margin: 25px 0px 5px 0px;
-}
-
-.year {
-	width: 150px;
-	margin: 0 0 0 560px;
-	text-align: right;
-	font-size: 12px;
-	font-weight: bold;
-}
-
-.withLine {
-	text-decoration: underline;
-}
-
-.placeTime {
-	font-size: 12px;
-	font-style: italic;
-	font-weight: normal;
-}
-
-.education {
-	display: block;
-	margin-top: 10px
-}
-
-.educationYear {
-	font-size: 12px;
-	font-style: italic;
-	font-weight: bold;
-	text-align: right !important;
-}
-
 .spacer {
 	height: 230px;
 }
+
+#box #resume .title {
+	font-size: 14px;
+	margin: 50px 0 25px;
+}
+
+

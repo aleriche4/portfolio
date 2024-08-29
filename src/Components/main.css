@@ -153,7 +153,7 @@ address .title {
 
 .experienceTitle {
 	float: right;
-	margin: -23px 0 0 195px;
+	margin: -23px 0 0 225px;
 }
 
 .experience {
@@ -338,7 +338,7 @@ ul {
 	font-size: 12px;
 	color: #999999;
 	font-style: italic;
-	line-height: 13px;
+	line-height: 15px;
 	margin: 20px 0 30px 0;
 }
 
