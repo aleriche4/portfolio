@@ -29,6 +29,9 @@ module.exports = function(grunt){
         ts: {
             default: {
                 // tsconfig: true,
+                //src: ["src/**/*.ts"], // Only include TypeScript files from src
+                src: ["src/*.ts", "src/**/*.ts"], // Only include TypeScript files from src
+                outDir: "dist",
                 tsconfig: './tsconfig.json'
                 // src: ["**/*.ts", "!node_modules/**/*.ts"],
             },
@@ -386,7 +389,5 @@ module.exports = function(grunt){
 
     // });
     grunt.registerTask("default", [/*"browserify", */"watch", "ts"]);
-    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy"/*, imagemin:dynamic", "removeLivereload"*/]);
-    // grunt.registerTask("prod", ["watch", "ts"]);
-
+    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy"/*", imagemin:dynamic", "removeLivereload"*/]);
 };

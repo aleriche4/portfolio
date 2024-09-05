@@ -21,7 +21,7 @@ body {
 html {
     background-color: #ffffff;
 }
-
+ 
 .txt {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	font-size: 13px;
@@ -30,13 +30,13 @@ html {
 }
 
 #mainContainer {
-	position: absolute;
+	position: absolute; 
 	top: 0;
 	left: 0;
 	width: 100vw;
 	height: 100%;
 	/* padding-top: -230px; */
-	background-color: #FFFFFF;
+	background-color: white;
 }
 
 #box {

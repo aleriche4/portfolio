@@ -1,4 +1,3 @@
 //grunt-start
-/// <reference path="../src/index.html.ts" />
-/// <reference path="../src/resume.html.ts" />
+/// <reference path="../src/components/portfolio.ts" />
 //grunt-end
