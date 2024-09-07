@@ -18,11 +18,10 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#336699">
 
-  <link rel="stylesheet" type="text/css" href="components/main.css?version=1">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="components/main.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
   <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
   <script src="components/portfolio.js?version=1"></script>
-  <!-- <script src="components/portfolio.js"></script> -->
 </head>
 
 <body>
@@ -32,10 +31,12 @@
             <!-- <div id="loader"></div> -->
 
             <!-- LOADED PAGES *********************************************************************-->
-            <div id="loader"></div>
-            <div id="portfolioPage" class="pages"></div>
-            <div id="resumePage" class="pages"></div>
-            <div id="projectsPage" class="pages"></div> 
+            <section id="pageContent">
+                <div id="loader"></div>
+                <div id="portfolioPage" class="pages"></div>
+                <div id="resumePage" class="pages"></div>
+                <div id="projectsPage" class="pages"></div>
+            </section>
               
             <!-- FOOTER *********************************************************************-->
             <footer id="footer">
@@ -45,64 +46,31 @@
 
             <!-- HEADER *********************************************************************-->
             <header>
-                <h1>Portfolio</h1>
+                <div id="topBgWhite"></div>
                 <div id="topHeader">
-                    <div id="topBgWhite"></div>
-                    <h1>Main Navigation</h1>
                     <nav id="nav">
-                        <!-- <div id="topBox"></div> -->
-                        <!-- <div id="portfolioBtn" class="selected">portfolio</div>
-                        <div id="resumeBtn"><a href="resume.html">resume</a></div> -->
                         <button class="nav-btn" data-name="portfolio">portfolio</button>
                         <button class="nav-btn" data-name="resume">resume</button>
                         <button class="nav-btn" data-name="projects">personal projects</button>
                     </nav>
-                    <div id="samplesBtn"></div>
-                    <!-- <button class="close" style="display:none;">Close</button> -->
-                    <address> 
-                        <div class="title">
+                    <div class="title">
+                        <div>
                             Alain Leriche
                         </div>
-                        <div class="title experienceTitle">
-                            Senior Front End Developer / <span class="notSeen"><br /></span> HTML5 Banner & Email Developer
+                        <div class="experienceTitle">
+                            Senior Front End Developer / <br />HTML5 Banner & Email Developer
                         </div>
-                        <section class="contact">
-                            <a href="tel:6462286013" class="emailLink">646 228 6013</a>&nbsp;&mdash;&nbsp;<span class="nextline"><br /></span><a class="emailLink" rel="author" href="mailto:aleriche4@gmail.com">aleriche4@gmail.com</a>
-                        </section>
-                        <div id="shadow"></div>
-                        <div class="lastUpdatedDate noDisplay">
-                            Last modified <time datetime="2024-05-09">September, 2024</time>
-                        </div>
+                    </div>
+                    <address>
+                        <a href="tel:6462286013" class="emailLink">646 228 6013</a>&nbsp;&mdash;&nbsp;<a class="emailLink" rel="author" href="mailto:aleriche4@gmail.com">aleriche4@gmail.com</a>
+                    
+                        <time class="noDisplay">
+                            Last modified <span datetime="2024-05-09">September, 2024</span>
+                        </time>
                     </address>
+                    <div id="shadow"></div>        
                 </div>
             </header>
-            <!-- <header>
-                <h1>Portfolio</h1>
-                <div id="topHeader">
-                    <div id="topBgWhite"></div>
-                    <nav id="nav"> -->
-                        <!-- <div id="topBox"></div> -->
-                        <!-- <h1>Main Navigation</h1>
-                        <div id="portfolioBtn" class="selected">portfolio</div>
-                        <div id="resumeBtn"><a href="resume.html">resume</a></div>
-                    </nav>
-                    <address> 
-                        <div class="title">
-                            Alain Leriche
-                        </div>
-                        <div class="title experienceTitle">
-                            Senior Front End Developer / <span class="notSeen"><br /></span> HTML5 Banner & Email Developer
-                        </div>
-                        <section class="contact">
-                            <a href="tel:6462286013" class="emailLink">646 228 6013</a>&nbsp;&mdash;&nbsp;<span class="nextline"><br /></span><a class="emailLink" rel="author" href="mailto:aleriche4@gmail.com">aleriche4@gmail.com</a>
-                        </section>
-                        <div id="shadow"></div>
-                        <div class="lastUpdatedDate noDisplay">
-                            Last modified <time datetime="2024-29-08">August, 2024</time>
-                        </div>
-                    </address>
-                </div>
-            </header> -->
         </div>
     </div>
     <!-- <div id="screen"></div> -->

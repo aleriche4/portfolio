@@ -4,25 +4,49 @@ document.addEventListener("DOMContentLoaded", function() {
 
     const portfolioPage = $('#portfolioPage');
 
-    function setInitialState() {
-        // Load portfolio page content and handle errors
-        portfolioPage.load( "portfolio.html", function(response, status, xhr) {
-            if (status === "error") {
-                console.error("Error loading portfolio page: ", xhr.status, xhr.statusText);
-            } else {
-                // Hide main container until portfolio content is fully loaded
-                $('#mainContainer').hide();
-                // Ensure DOM is ready before fading in the content
-                $(function () {
-                    $('#mainContainer').fadeIn(600);
-                });
-            }
+    async function setInitialState() {
+        try {
+            // Asynchronously load portfolio page content
+            // await loadPageContent(portfolioPage, 'portfolio.html');
+            // $('#mainContainer').hide();
+
+            // Ensure DOM is ready before fading in the content
+            $(function () {
+                $('#mainContainer').fadeIn(600);
+            });
+
+            // Push the initial state to the history
+            history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+
+            // Set initial state of portfolio button
+            $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+        } 
+        catch (error) {
+            console.error("Error loading portfolio page: ", error);
+        }
+    }
+
+    async function loadPageContent(page: JQuery<HTMLElement>, url: string): Promise<void> {
+        return new Promise<void>((resolve, reject) => {
+            page.load(url, function (response, status, xhr) {
+                if (status === "success") {
+                    resolve();
+                } else {
+                    reject(new Error(`Error loading page: ${xhr.status} ${xhr.statusText}`));
+                }
+            });
         });
-        // Set initial state of portfolio button
-        $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
     }
 
     setInitialState();
+
+    const initialSection = window.location.hash.replace('#', '') || 'portfolio';
+    
+    // Find the corresponding navigation button and trigger its click handler programmatically
+    const initialNavButton = document.querySelector(`.nav-btn[data-name="${initialSection}"]`);
+    if (initialNavButton) {
+        initialNavButton.dispatchEvent(new Event('touchend'));
+    }
 
     //////////////////////////////////////////////// MAIN NAVIGATION /////////////////////////////
 
@@ -39,10 +63,13 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     // Function to handle loading and history management
-    function loadPage(section: string, addToHistory = true) {
+    async function loadPage(section: string, addToHistory = true) {
         const sectionPath: string = `${section}.html`,  // Path to the section's HTML file
             pageId: string = `#${section}Page`,  // Dynamically generate the ID selector for the page
             page = $(pageId);  // Get the page element by ID
+
+            // For testing
+            // console.log(`Loading page sample from: ${sectionPath}`);
 
         // Hide all pages first
         $('.pages').fadeOut(400);
@@ -50,17 +77,18 @@ document.addEventListener("DOMContentLoaded", function() {
         // Check if the section content has not been loaded yet
         if (!pageLoadStatus[section]) {
             // Load the content for the selected section
-            page.load(sectionPath, function (responseTxt, statusTxt, xhr) {
-                if (statusTxt === "success") {
-                    pageLoadStatus[section] = true;
-                } else {
-                    console.error(`Error loading ${section} page:`, xhr.status, xhr.statusText);
-                }
-            });
+            try {
+                await loadPageContent(page, sectionPath);
+                pageLoadStatus[section] = true;
+            } catch (error) {
+                console.error(`Error loading ${section} page:`, error);
+            }
         }
         // After fade-out is complete, fade in the selected section
         $('.pages').promise().done(function () {
-            page.fadeIn(600);
+            // Reset the scroll position to the top
+            window.scrollTo(0, 0);
+            page.fadeIn(500);
             document.body.style.overflowY = 'auto'; // Re-enable scrolling after fade-in is complete
         });
 
@@ -75,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Attach event listener to all navigation buttons
     $('.nav-btn').on('click touchend', function () {
+
         const thisNavButton = $(this),  // Reference the clicked button
             section: string = thisNavButton.data('name');  // Get the section name from data-name attribute
 
@@ -84,10 +113,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
         // Load the page and add it to the history
         loadPage(section);
+        
     });
 
     // Event listener for browser back/forward buttons
-    window.onpopstate = function (event) {
+    window.onpopstate = async function (event) {
         if (event.state && event.state.section) {
             const section = event.state.section;
 
@@ -96,52 +126,52 @@ document.addEventListener("DOMContentLoaded", function() {
             $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
 
             // Load the page corresponding to the history state
-            loadPage(section, false); 
+            await loadPage(section, false); 
         }
     };
 
-    // Initialize the first page based on the URL hash if available
-    // $(document).ready(function () {
-    //     const initialSection = window.location.hash.replace('#', '') || 'portfolio';
-    //     $('.nav-btn[data-name="' + initialSection + '"]').click(); // Trigger click to load initial section
-    // });
-
-    document.addEventListener('DOMContentLoaded', function () {
-        const initialSection = window.location.hash.replace('#', '') || 'portfolio';
-        
-        // Find the corresponding navigation button and trigger its click handler programmatically
-        const initialNavButton = document.querySelector(`.nav-btn[data-name="${initialSection}"]`);
-        if (initialNavButton) {
-            initialNavButton.dispatchEvent(new Event('touchend'));
-        }
-    });
-
     //////////////////////////////////////////////// LOADING SAMPLES /////////////////////////////////////
 
-    let samples = $('#samples'),
-        linkSample = $('.buttonSample');
+    let samples: JQuery<HTMLElement> = $('#samples');
 
-    linkSample.on('click touchend', function () {
-        let samplePath = 'samples/' + $(this).data('name') + ".html";
-        console.log("samplePath = " + samplePath);
-
-        samples.load(samplePath, function(responseTxt, statusTxt, xhr) {
-            if (statusTxt === "success") {
-                samples.fadeIn(500);
-                document.body.style.overflowY = 'hidden';
-
-                $('.close').on('click touchend', function() {
-                    samples.fadeOut(600);
-                    setTimeout(() => {
-                        document.body.style.overflowY = 'auto'; // Change to 'auto' for better scrollbar behavior
-                    }, 600);
-                });
-            } else if (statusTxt === "error") {
-                console.error("Error loading the file: " + xhr.status + " " + xhr.statusText);
-            }
+    async function loadSample(samplePath: string) {
+        return new Promise<void>((resolve, reject) => {
+            samples.load(samplePath, function (responseTxt, statusTxt, xhr) {
+                if (statusTxt === "success") {
+                    resolve(); // Make sure to resolve the promise
+                    // samples.fadeIn(600);
+                    // document.body.style.overflowY = 'hidden';
+                } else {
+                    reject(new Error(`Error loading sample: ${xhr.status} ${xhr.statusText}`));
+                }
+            });
         });
+    }
+
+    // from parents
+    $(document).on('click touchend', '.buttonSample', async function () {
+
+        let samplePath: string = 'samples/' + $(this).data('name') + ".html";
+
+        // For testing
+            // console.log(`Loading page sample from: ${samplePath}`);
+    
+        try {
+            await loadSample(samplePath);
+            samples.fadeIn(600);
+            // Hide the main scroller
+            document.body.style.overflowY = 'hidden';
+    
+            // Set up the close button event
+            $('.close').off('click touchend').on('click touchend', function () {
+                samples.fadeOut(400);
+                setTimeout(() => {
+                    document.body.style.overflowY = 'auto';
+                }, 400);
+            });
+        } 
+        catch (error) {
+            console.error(error);
+        }
     });
 });
-
-
-
