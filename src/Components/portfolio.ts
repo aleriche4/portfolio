@@ -7,8 +7,8 @@ document.addEventListener("DOMContentLoaded", function() {
     async function setInitialState() {
         try {
             // Asynchronously load portfolio page content
-            // await loadPageContent(portfolioPage, 'portfolio.html');
-            // $('#mainContainer').hide();
+            await loadPageContent(portfolioPage, 'portfolio.html');
+            $('#mainContainer').hide();
 
             // Ensure DOM is ready before fading in the content
             $(function () {
@@ -148,13 +148,20 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    async function triggerEvent() {
+        samples.fadeOut(400);
+        // setTimeout(() => {
+            document.body.style.overflowY = 'auto';
+        // }, 400);
+    }
+
     // from parents
     $(document).on('click touchend', '.buttonSample', async function () {
 
         let samplePath: string = 'samples/' + $(this).data('name') + ".html";
 
         // For testing
-            // console.log(`Loading page sample from: ${samplePath}`);
+        // console.log(`Loading page sample from: ${samplePath}`);
     
         try {
             await loadSample(samplePath);
@@ -163,11 +170,12 @@ document.addEventListener("DOMContentLoaded", function() {
             document.body.style.overflowY = 'hidden';
     
             // Set up the close button event
-            $('.close').off('click touchend').on('click touchend', function () {
-                samples.fadeOut(400);
-                setTimeout(() => {
-                    document.body.style.overflowY = 'auto';
-                }, 400);
+            // $('.overlayContainer').on('click touchend', '.closeBtn', function () {
+            $('.overlayContainer').on('click touchend', function (event) {
+                // Determine if the click was on .closeBtn
+                if ($(event.target).hasClass('closeBtn')) {
+                    triggerEvent();
+                } else triggerEvent();
             });
         } 
         catch (error) {
