@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <link rel="shortcut icon" href="images/al-ico.png" type="image/png">
   <title>Alain Leriche - Senior Front End Developer</title>
@@ -24,15 +24,18 @@
   <script src="components/portfolio.js?version=1"></script>
 </head>
 
-<body>
+<body style="background-color: white;">
     <div id="mainContainer">
         <h1>Alain Leriche's Portfolio</h1>
         <div class="box" class="txt">
-            <!-- <div id="loader"></div> -->
 
-            <!-- LOADED PAGES *********************************************************************-->
+            <!-- LOADER ********************************************************************-->
+            <div id="loader">
+                <div class="preload"></div>
+            </div>
+
+            <!-- LOADED PAGES *********************************************************************************-->
             <section id="pageContent">
-                <div id="loader"></div>
                 <div id="portfolioPage" class="pages"></div>
                 <div id="resumePage" class="pages"></div>
                 <div id="projectsPage" class="pages"></div>
@@ -49,9 +52,9 @@
                 <div id="topBgWhite"></div>
                 <div id="topHeader">
                     <nav id="nav">
-                        <button class="nav-btn" data-name="portfolio">portfolio</button>
+                        <button class="nav-btn spacing" data-name="portfolio">portfolio</button>
                         <button class="nav-btn" data-name="resume">resume</button>
-                        <button class="nav-btn" data-name="projects">personal projects</button>
+                        <button class="nav-btn" data-name="projects"  style="display: none">personal projects</button>
                     </nav>
                     <div class="title">
                         <div>
