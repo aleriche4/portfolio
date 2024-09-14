@@ -158,7 +158,7 @@ address {
 time {
 	font-size: 0.625rem;
 	float: right;
-	margin-top: 0.25rem;
+	margin-top: -0.75rem;
 }
 
 #shadow {
@@ -327,7 +327,7 @@ ul {
 	transition-duration: 0.4s;
 	background-color: var(--blue-btn);
 	padding: 0.125rem 0.563rem 0.25rem 0.563rem;
-	margin-right: 3px;
+	margin-right: 0.188rem;
 	/* background: rgb(133,163,194); */
 	/* background: linear-gradient(180deg, rgba(133,163,194,1) 0%, rgba(51,102,153,1) 100%); */
 	border: none;
@@ -380,10 +380,6 @@ ul {
 #resumeContainer ul {
 	margin: 0.188rem 0 0 0;
 	line-height: 1.25rem;
-}
-
-.bullet ul {
-	margin: 0.625rem 0 2.75rem 0.125rem
 }
 
 .bold {
@@ -580,7 +576,7 @@ ul {
 	
 	.experienceTitle {
 		color: var(--grey-header);
-		margin: 1.25rem 0 0 0;
+		margin: 1.25rem 30px 0 0;
 		line-height: 1.5rem;
 		letter-spacing: -0.6px;
 	}
@@ -636,13 +632,15 @@ ul {
 	}
 	
 	.portfolio .title {
-		margin: -4.375rem 0 0 5.625rem;
+		margin: -4.5rem 0 0 5.125rem;
 		color: var(--blue);
+		letter-spacing: -0.6px;
 	}
 
 	.city {
 		font-size: 0.875rem;
 		line-height: 0.875rem;
+		letter-spacing: 0px;
 	}
 
 	.jobContainer {
@@ -661,9 +659,26 @@ ul {
 		line-height: 1.375rem;
 	}
 
+	ul {
+		margin-left: -0.75rem;
+	}
+
 	.buttonSample {
 		font-size: 1.125rem;
-		letter-spacing: 0.6px;
+		letter-spacing: 0.2px;
+		margin-right: -5px;
+		margin-top: -2px;
+		/* padding-left: 0.25rem; */
+		/* padding: 0.125rem 0.563rem 0.25rem 0.563rem;
+		margin-right: 3px; */
+	}
+
+	.info {
+		font-size: 0.938rem;
+		/* color: var(--grey); */
+		line-height: 1.125rem;
+		/* margin: 1.25rem 0 0 0;
+		font-style: italic; */
 	}
 
 
