@@ -110,13 +110,13 @@ module.exports = function(grunt){
                     dest: 'dev/samples',
                     filter: 'isFile'
                 },
-                // { 
-                //     expand: true, 
-                //     cwd: 'src',
-                //     src: ['components/data/*.json'],
-                //     dest: 'dev',
-                //     filter: 'isFile'
-                // },
+                { 
+                    expand: true, 
+                    cwd: 'src',
+                    src: ['components/data/*.json'],
+                    dest: 'dev',
+                    filter: 'isFile'
+                },
                 { 
                     expand: true, 
                     cwd: 'src/components',

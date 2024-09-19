@@ -2,20 +2,68 @@ document.addEventListener("DOMContentLoaded", function() {
 
 ////////////////////////////////// INITIALIZATION / HISTORY ///////////////////////////////////
 
-    const portfolioPage = $('#portfolioPage');
-    let samples: JQuery<HTMLElement> = $('#samples');
-    const overlayContainer: JQuery<HTMLElement> = $('.overlayContainer');
+    // Define the structure of the data you're expecting
+    interface ApiData {
+        name: string;
+        value: string | number;  // Modify this based on your actual data
+    }
+
+    const portfolioPage = $('#portfolioPage'),
+        apiEndpoint = "data/data.json", // Replace with your API
+        overlayContainer: JQuery<HTMLElement> = $('.overlayContainer'),
+        loader: JQuery<HTMLElement> = $('#loader'),
+        samples: JQuery<HTMLElement> = $('#samples');
+
+
+    fetch(apiEndpoint)
+    .then((response: Response): Promise<ApiData[]> => {
+        if (!response.ok) {
+            throw new Error('Network response was not OK');
+        }
+        return response.json(); // This is now Promise<ApiData[]>
+    })
+    .then((data: ApiData[]): void => {
+
+        // Processing the fetched JSON data
+        const contentDiv = document.getElementById('json-content');
+        if (contentDiv) {
+            contentDiv.innerHTML = formatData(data);
+        } else {
+            console.error("Element with id 'json-content' not found.");
+        }
+    })
+    .catch((error: Error): void => {
+        console.error('Fetch error:', error);
+        const contentDiv = document.getElementById('json-content');
+        if (contentDiv) {
+            contentDiv.textContent = 'Error loading data';
+        }
+    });
+
+    // Helper function to format JSON data with type annotations
+    function formatData(data: ApiData[]): string {
+        let content = '<ul>';
+        data.forEach(item => {
+            content += `<li>${item.name}: ${item.value}</li>`;  // Customize based on your data structure
+        });
+        content += '</ul>';
+        return content;
+    }
+
+
+
 
     async function setInitialState() {
         try {
             // Asynchronously load portfolio page content
             await loadPageContent(portfolioPage, 'portfolio.html');
-            $('#mainContainer').hide();
+            // $('#mainContainer').hide();
             $('#mainContainer').fadeIn(800);
+            loader.fadeOut(200);
             // Ensure DOM is ready before fading in the content
-            $(function () {
-                $('#mainContainer').fadeIn(800);
-            });
+            // $(function () {
+            //     $('#mainContainer').fadeIn(800);
+            // });
             // Push the initial state to the history
             history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
             // Set initial state of portfolio button
@@ -48,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
         initialNavButton.dispatchEvent(new Event('touchend'));
     }
 
-    ////////////////////////////////////////// MAIN NAVIGATION & HISTORY //////////////////////////
+    //////////////////////////////////// MAIN NAVIGATION & HISTORY //////////////////////////
 
     // Define the page load status type
     type PageLoadStatus = {
@@ -69,34 +117,37 @@ document.addEventListener("DOMContentLoaded", function() {
             pageId: string = `#${section}Page`,  // Dynamically generate the ID selector for the page
             page = $(pageId);  // Get the page element by ID
 
-            // For testing
-            console.log(`Loading page sample from: ${sectionPath}`);
+        // For testing
+        // console.log(`Loading page from: ${sectionPath}`);
 
-            // Hide all pages first
-            $('.pages').fadeOut(400);
-            // Check if the section content has not been loaded yet
-            if (!pageLoadStatus[section]) {
-                // Load the content for the selected section
-                try {
-                    await loadPageContent(page, sectionPath);
-                    pageLoadStatus[section] = true;
-                } catch (error) {
-                    console.error(`Error loading ${section} page:`, error);
-                }
+        // Hide all pages first
+        $('.pages').fadeOut(400);
+        // Check if the section content has not been loaded yet
+        if (!pageLoadStatus[section]) {
+            loader.fadeIn(200);
+            // Load the content for the selected section
+            try {
+                await loadPageContent(page, sectionPath);
+                loader.fadeOut(200);
+                pageLoadStatus[section] = true;
+            } catch (error) {
+                // console.error(`Error loading ${section} page:`, error);
+                console.log(`Error loading ${section} page:`, error);
             }
-            // After fade-out is complete, fade in the selected section
-            $('.pages').promise().done(function () {
-                // Reset the scroll position to the top
-                window.scrollTo(0, 0);
-                page.fadeIn(500);
-                document.body.style.overflowY = 'auto'; // Re-enable scrolling after fade-in is complete
-            });
-            // Optionally lock body scrolling when switching sections
-            document.body.style.overflowY = 'hidden';
-            // Add the state to the browser history
-            if (addToHistory) {
-                history.pushState({ section }, section, `#${section}`);
-            }
+        }
+        // After fade-out is complete, fade in the selected section
+        $('.pages').promise().done(function () {
+            // Reset the scroll position to the top
+            window.scrollTo(0, 0);
+            page.fadeIn(500);
+            document.body.style.overflowY = 'auto'; // Re-enable scrolling after fade-in is complete
+        });
+        // Optionally lock body scrolling when switching sections
+        document.body.style.overflowY = 'hidden';
+        // Add the state to the browser history
+        if (addToHistory) {
+            history.pushState({ section }, section, `#${section}`);
+        }
     }
 
     // Attach event listener to all navigation buttons
@@ -110,9 +161,13 @@ document.addEventListener("DOMContentLoaded", function() {
         loadPage(section);
     });
 
+    // Detect with agent if it's a mobile, tablet or desktop
+    // function isMobileDevice() {
+    //     return /Mobi|Android/i.test(navigator.userAgent) || window.matchMedia("only screen and (max-width: 768px)").matches;
+    // }
+
     //////////////////////////////////// HISTORY MANAGEMENT ///////////////////////////////////
-
-
+    
     // Event listener for browser back/forward buttons
     window.onpopstate = async function (event) {
         if (event.state) {
@@ -129,7 +184,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         if ($(event.target).hasClass('closeBtn')) {
                             triggerEvent();
                         } else {
-                            triggerEvent();
+                            checkDeviceType();
                         }
                     });
                 } else {
@@ -147,73 +202,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    // window.onpopstate = async function (event) {
-    //     if (event.state) {
-    //         if (event.state.section) {
-    //             const section = event.state.section;
-    //             // Update the navigation button states
-    //             $('.nav-btn').removeClass('active').prop('disabled', false);
-    //             $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
-    //             await loadPage(section, false); // Load page without adding to history
-    //             // If a sample is open, close it when navigating to a different section
-    //             if (samples.is(':visible')) {
-    //                 triggerEvent(); // Close the sample page
-    //             }
-    //         } else if (event.state.sample) {
-    //             const sampleName = event.state.sample,
-    //                 samplePath = samples/${sampleName}.html;
-    //             try {
-    //                 // Load the page corresponding to the history state
-    //                 await loadSample(samplePath, false); // Load sample without adding to history
-    //                 samples.fadeIn(600);
-    //                 document.body.style.overflowY = 'hidden';
-
-    //                 // **IMPORTANT**: Reattach the close button event listener here
-    //                 $('.overlayContainer').on('click touchend', function (event) {
-    //                     if ($(event.target).hasClass('closeBtn')) {
-    //                         triggerEvent();
-    //                     } else {
-    //                         triggerEvent();
-    //                     }
-    //                 });
-
-    //             } catch (error) {
-    //                 console.error(Error loading sample: ${error});
-    //             }
-    //         }
-    //     } else {
-    //         // If no state is present, close any open sample page
-    //         if (samples.is(':visible')) {
-    //             triggerEvent(); // Close the sample page
-    //         }
-    //     }
-    // };
-
-    ///////////////////////////////// LOADING SAMPLES / HISTORY //////////////////////////////////
-
-    // let samples: JQuery<HTMLElement> = $('#samples');
-
-    // const overlayContainer: JQuery<HTMLElement> = $('.overlayContainer');
-
-
-    // function debugScrollContainer() {
-        // const overlayContainer: JQuery<HTMLElement> = $('.overlayContainer');
-        // console.log("overlayContainer element visibility:", overlayContainer.is(':visible'));
-        // console.log("overlayContainer element height:", overlayContainer.height());
-        // console.log("overlayContainer element scrollHeight:", overlayContainer[0].scrollHeight);
-        // console.log("overlayContainer element scrollTop:", overlayContainer.scrollTop());
-        // overlayContainer.scrollTop(0);  
-        
-        // overlayContainer.css('display', 'none');
-        // overlayContainer[0].offsetHeight; // Trigger reflow
-        // overlayContainer.css('display', '');
-        // overlayContainer.scrollTop(0);
-
-    // }
-
+    ///////////////////////////// LOADING SAMPLES / HISTORY //////////////////////////////////
  
     async function loadSample(samplePath: string, addToHistory = true) {
         return new Promise<void>((resolve, reject) => {
+            samples.hide();
             samples.load(samplePath, function (responseTxt, statusTxt, xhr) {
                 if (statusTxt === "success") {
                     if (addToHistory) {
@@ -222,10 +215,9 @@ document.addEventListener("DOMContentLoaded", function() {
                         // Push the state to the history
                         history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`);
                     }
-                    // Debug container size and scroll position
-                    // debugScrollContainer(overlayContainer);
+                    // $('.overlayContainer')[0].offsetHeight;
                     // $('.overlayContainer').scrollTop(0);
-                    // overlayContainer.scrollTop(0);
+                    samples.fadeIn(600);
 
                     // setTimeout(() => {
                     //     debugScrollContainer();
@@ -240,7 +232,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     // Closing the sample page
-    async function triggerEvent(): Promise<void> {
+    async function triggerEvent() {
         // history.pushState(null, '', "/dev/#portfolio");
         // history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
         samples.fadeOut(400, function () {
@@ -256,14 +248,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 
+    //////////////////////////////////////// AGENT //////////////////////////////////////////
+
+    async function getDeviceType(): Promise<"mobile" | "tablet" | "desktop"> {
+
+        const userAgent = navigator.userAgent;
+    
+        if (/Mobi|Android/i.test(userAgent)) {
+            return 'mobile';
+        } else if (/iPad|Tablet|Android(?!.*Mobile)/i.test(userAgent)) /*|| window.matchMedia("only screen and (min-width: 480px) and (max-width: 709px)").matches)*/ {
+            return 'tablet';
+        } else {
+            return 'desktop';
+        }
+    }
+
+    async function checkDeviceType() {
+
+        const deviceType = await getDeviceType(); // Use await here
+    
+        if (deviceType === 'mobile') {
+            $('.overlayContainer').css("cursor: auto;");
+            console.log('This is a mobile device.');
+        } else if (deviceType === 'tablet') {
+            $('.overlayContainer').css("cursor: auto;");
+            console.log('This is a tablet device.');
+        } else {
+            triggerEvent();
+            console.log('This is a desktop device.');
+        }
+    }
+    
+
     // from parents
     $(document).on('click touchend', '.buttonSample', async function () {
+        loader.fadeIn(200);
         const samplePath: string = 'samples/' + $(this).data('name') + ".html";
         // For testing
         console.log(`Loading page sample from: ${samplePath}`);
         try {
             await loadSample(samplePath);
-            samples.fadeIn(600);
+            loader.fadeOut(200);
+            // alert($('.overlayContainer').scrollTop());
+            $('.overlayContainer').scrollTop(0),
             // Hide the main scroller
             document.body.style.overflowY = 'hidden';
             // history.pushState(null, '', window.location.pathname + window.location.search);
@@ -273,7 +300,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if ($(event.target).hasClass('closeBtn')) {
                     triggerEvent();
                 } else {
-                    triggerEvent();
+                    checkDeviceType();
                 }
             });
         } 
