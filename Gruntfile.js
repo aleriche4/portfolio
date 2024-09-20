@@ -177,7 +177,7 @@ module.exports = function(grunt){
                     "src/**/*.ts",
                     "src/**/*.html",
                     "src/**/*.css",
-                    "src/**/**/*.json"
+                    "src/components/data/*.json"
                 ],
                 tasks: [/*"clean", "sass", "postcss:dist",*/ "copy", "ts" /*, "string-replace"*/]
             }

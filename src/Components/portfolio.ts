@@ -1,73 +1,131 @@
+import { data } from "jquery";
+
 document.addEventListener("DOMContentLoaded", function() {
 
-////////////////////////////////// INITIALIZATION / HISTORY ///////////////////////////////////
 
     // Define the structure of the data you're expecting
-    interface ApiData {
-        name: string;
-        value: string | number;  // Modify this based on your actual data
-    }
+    // interface ApiData {
+    //     name: string;
+    //     value: string | number;  // Modify this based on your actual data
+    // }
 
-    const portfolioPage = $('#portfolioPage'),
-        apiEndpoint = "data/data.json", // Replace with your API
-        overlayContainer: JQuery<HTMLElement> = $('.overlayContainer'),
+    const jsonURL: string = "components/data/data.json", // Replace with your API
+        // overlayContainer: JQuery<HTMLElement> = $('.overlayContainer'),
         loader: JQuery<HTMLElement> = $('#loader'),
         samples: JQuery<HTMLElement> = $('#samples');
 
 
-    fetch(apiEndpoint)
-    .then((response: Response): Promise<ApiData[]> => {
-        if (!response.ok) {
-            throw new Error('Network response was not OK');
-        }
-        return response.json(); // This is now Promise<ApiData[]>
-    })
-    .then((data: ApiData[]): void => {
+    // Helper function to format JSON data with type annotations
+    // function formatData(data: ApiData[]): string {
+    //     let content = '<ul>';
+    //     data.forEach(item => {
+    //         content += `<li>${item.name}: ${item.value}</li>`;  // Customize based on your data structure
+    //     });
+    //     content += '</ul>';
+    //     return content;
+    // }
 
-        // Processing the fetched JSON data
-        const contentDiv = document.getElementById('json-content');
-        if (contentDiv) {
-            contentDiv.innerHTML = formatData(data);
+    // Helper function to format individual items
+    // function formatItem(item: ApiData): string {
+    //     // console.log(`<li>${item.name}: ${item.value}</li>`)
+    //     // console.log(`__________: ${item.name[0]}`)
+    //     return `<li>${item.name}: ${item.value}</li>`;
+       
+    // }
+
+/////////////////////////////// RENDER PORTFOLIO CONTENTS ///////////////////////////////////
+    async function portfolioContent(data: any[]){
+        let content: string = "";
+
+        for (let i: number = 0; i < data.length; i++) {
+            content += `<section id="${data[i].companyName}">
+            <h1>${data[i].companyName}</h1>
+            <div class="portfolio">`;
+            // if there is a sample section
+            if(data[i].sample !== null) {
+                content += `<button class="buttonSample" data-name=${data[i].companyName}>samples</button>`;
+            }
+            content += `<a href="${data[i].link}" target="_blank" rel="external">
+            <img class="image" src="images/thumbs/${data[i].imageName}.png" alt="Heartbeat" />
+            </a>
+            <div class="title seen">
+                ${data[i].companyName} <span class="city"> - ${data[i].city}</span>
+            </div>
+            <div class="title noDisplay">
+                ${data[i].companyName}<span class="city"><br />New York City</span>
+            </div>
+            <div class="jobContainer">
+                <div class="clear_both"></div>
+                <div class="keys">Position:</div>
+                <div class="jobPosition">${data[i].position}</div>
+                <div class="keys">Applications:</div>
+                <div class="infoText">${data[i].applications}</div>
+                <div class="keys">Technologies:</div>
+                <div class="code">${data[i].technologies}</div>
+                <div class="keys">Achievements:</div>
+                <ul>`;
+                // Looping the bullet contents
+                for (let j: number = 0; j < data[i].achievements.length; j++) {
+                    content += `<li>${data[i].achievements[j]}</li>`;
+                }
+                content += `</ul>`
+                // if there is a note content
+                if(data[i].note !== null) {
+                    content += `<div class="info">${data[i].note}</div>`
+                }
+                content += `</div>
+            </div>
+        </section>`
+    }       
+        
+        // Find the element by ID and check if it exists
+        const jsonContentElement = document.getElementById('portfolioContainer');
+        
+        if (jsonContentElement) {
+            // Insert the content into a DOM element, e.g.:
+            jsonContentElement.innerHTML = content;
         } else {
             console.error("Element with id 'json-content' not found.");
         }
-    })
-    .catch((error: Error): void => {
-        console.error('Fetch error:', error);
-        const contentDiv = document.getElementById('json-content');
-        if (contentDiv) {
-            contentDiv.textContent = 'Error loading data';
-        }
-    });
-
-    // Helper function to format JSON data with type annotations
-    function formatData(data: ApiData[]): string {
-        let content = '<ul>';
-        data.forEach(item => {
-            content += `<li>${item.name}: ${item.value}</li>`;  // Customize based on your data structure
-        });
-        content += '</ul>';
-        return content;
     }
 
 
+//////////////////////////////////// GET JSON / DATA ////////////////////////////////////////
+    async function getData() {
+        try {
+            const response = await fetch(jsonURL);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
+            const data = await response.json();
+            // console.log("__________ : " + data[1].companyName + "_____ " + response.status);
+            portfolioContent(data);
+        } catch (error: any) {
+            console.error(error.message);
+        }
+    }
 
+//////////////////////////////// INITIALIZATION / HISTORY ///////////////////////////////////
 
     async function setInitialState() {
         try {
             // Asynchronously load portfolio page content
-            await loadPageContent(portfolioPage, 'portfolio.html');
+            await loadPageContent($('#portfolioPage'), 'portfolio.html');
+            await getData();
             // $('#mainContainer').hide();
             $('#mainContainer').fadeIn(800);
             loader.fadeOut(200);
+            
             // Ensure DOM is ready before fading in the content
             // $(function () {
             //     $('#mainContainer').fadeIn(800);
             // });
+
             // Push the initial state to the history
             history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
             // Set initial state of portfolio button
             $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+            
         } 
         catch (error) {
             console.error("Error loading portfolio page: ", error);
