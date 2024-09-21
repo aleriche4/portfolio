@@ -13,6 +13,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-ts");
     // grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-htmlmin");
+    grunt.loadNpmTasks('grunt-json-minify');
 
     // grunt.loadNpmTasks('grunt-postcss');
     // grunt.loadNpmTasks('grunt-autoprefixer');
@@ -92,6 +93,12 @@ module.exports = function(grunt){
                 }
             }
         },
+
+        'json-minify': {
+            build: {
+                files: 'prod/**/**/*.json'
+            }
+        },
         
         // COPY
         copy: {
@@ -112,9 +119,16 @@ module.exports = function(grunt){
                 },
                 { 
                     expand: true, 
-                    cwd: 'src',
-                    src: ['components/data/*.json'],
-                    dest: 'dev',
+                    cwd: 'src/components/data',
+                    src: ['*.json'],
+                    dest: 'dev/components/data',
+                    filter: 'isFile'
+                },
+                { 
+                    expand: true, 
+                    cwd: 'dev/components/data',
+                    src: ['*.json'],
+                    dest: 'prod/components/data',
                     filter: 'isFile'
                 },
                 { 
@@ -177,7 +191,7 @@ module.exports = function(grunt){
                     "src/**/*.ts",
                     "src/**/*.html",
                     "src/**/*.css",
-                    "src/components/data/*.json"
+                    "src/**/**/*.json"
                 ],
                 tasks: [/*"clean", "sass", "postcss:dist",*/ "copy", "ts" /*, "string-replace"*/]
             }
@@ -389,5 +403,5 @@ module.exports = function(grunt){
 
     // });
     grunt.registerTask("default", [/*"browserify", */"watch", "ts"]);
-    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy"/*", imagemin:dynamic", "removeLivereload"*/]);
+    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy", "json-minify" /*, imagemin:dynamic", "removeLivereload"*/]);
 };

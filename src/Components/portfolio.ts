@@ -14,24 +14,9 @@ document.addEventListener("DOMContentLoaded", function() {
         loader: JQuery<HTMLElement> = $('#loader'),
         samples: JQuery<HTMLElement> = $('#samples');
 
-
-    // Helper function to format JSON data with type annotations
-    // function formatData(data: ApiData[]): string {
-    //     let content = '<ul>';
-    //     data.forEach(item => {
-    //         content += `<li>${item.name}: ${item.value}</li>`;  // Customize based on your data structure
-    //     });
-    //     content += '</ul>';
-    //     return content;
-    // }
-
-    // Helper function to format individual items
-    // function formatItem(item: ApiData): string {
-    //     // console.log(`<li>${item.name}: ${item.value}</li>`)
-    //     // console.log(`__________: ${item.name[0]}`)
-    //     return `<li>${item.name}: ${item.value}</li>`;
-       
-    // }
+    // $(function() {
+    //     $('.lazy').Lazy();
+    // });
 
 /////////////////////////////// RENDER PORTFOLIO CONTENTS ///////////////////////////////////
     async function portfolioContent(data: any[]){
@@ -43,10 +28,10 @@ document.addEventListener("DOMContentLoaded", function() {
             <div class="portfolio">`;
             // if there is a sample section
             if(data[i].sample !== null) {
-                content += `<button class="buttonSample" data-name=${data[i].companyName}>samples</button>`;
+                content += `<button class="buttonSample" data-name=${data[i].sample}>samples</button>`;
             }
             content += `<a href="${data[i].link}" target="_blank" rel="external">
-            <img class="image" src="images/thumbs/${data[i].imageName}.png" alt="Heartbeat" />
+            <img class="image" src="images/thumbs/${data[i].imageName}.png" alt="${data[i].companyName} logo" />
             </a>
             <div class="title seen">
                 ${data[i].companyName} <span class="city"> - ${data[i].city}</span>
@@ -176,7 +161,7 @@ document.addEventListener("DOMContentLoaded", function() {
             page = $(pageId);  // Get the page element by ID
 
         // For testing
-        // console.log(`Loading page from: ${sectionPath}`);
+        console.log(`Loading page from: ${sectionPath}`);
 
         // Hide all pages first
         $('.pages').fadeOut(400);
@@ -273,14 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         // Push the state to the history
                         history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`);
                     }
-                    // $('.overlayContainer')[0].offsetHeight;
-                    // $('.overlayContainer').scrollTop(0);
                     samples.fadeIn(600);
-
-                    // setTimeout(() => {
-                    //     debugScrollContainer();
-                    // }, 100); // Small delay to ensure scroll position is applied
-
                     resolve();
                 } else {
                     reject(new Error(`Error loading sample: ${xhr.status} ${xhr.statusText}`));
@@ -304,6 +282,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             // resolve();
         });
+        
     }
 
     //////////////////////////////////////// AGENT //////////////////////////////////////////
@@ -336,7 +315,6 @@ document.addEventListener("DOMContentLoaded", function() {
             console.log('This is a desktop device.');
         }
     }
-    
 
     // from parents
     $(document).on('click touchend', '.buttonSample', async function () {
@@ -352,6 +330,7 @@ document.addEventListener("DOMContentLoaded", function() {
             // Hide the main scroller
             document.body.style.overflowY = 'hidden';
             // history.pushState(null, '', window.location.pathname + window.location.search);
+
             // Set up the close button event
             $('.overlayContainer').on('click touchend', function (event) {
                 // Determine if the click was on .closeBtn

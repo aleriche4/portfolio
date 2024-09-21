@@ -1,7 +1,7 @@
 var __awaiter=this&&this.__awaiter||function(t,s,d,l){return new(d=d||Promise)(function(o,e){function n(t){try{a(l.next(t))}catch(t){e(t)}}function i(t){try{a(l.throw(t))}catch(t){e(t)}}function a(t){var e;t.done?o(t.value):((e=t.value)instanceof d?e:new d(function(t){t(e)})).then(n,i)}a((l=l.apply(t,s||[])).next())})};document.addEventListener("DOMContentLoaded",function(){const e="components/data/data.json",a=$("#loader"),d=$("#samples");function t(){return __awaiter(this,void 0,void 0,function*(){try{var t=yield fetch(e);if(!t.ok)throw new Error("Response status: "+t.status);!function(n){__awaiter(this,void 0,void 0,function*(){let o="";for(let e=0;e<n.length;e++){o+=`<section id="${n[e].companyName}">
             <h1>${n[e].companyName}</h1>
-            <div class="portfolio">`,null!==n[e].sample&&(o+=`<button class="buttonSample" data-name=${n[e].companyName}>samples</button>`),o+=`<a href="${n[e].link}" target="_blank" rel="external">
-            <img class="image" src="images/thumbs/${n[e].imageName}.png" alt="Heartbeat" />
+            <div class="portfolio">`,null!==n[e].sample&&(o+=`<button class="buttonSample" data-name=${n[e].sample}>samples</button>`),o+=`<a href="${n[e].link}" target="_blank" rel="external">
+            <img class="image" src="images/thumbs/${n[e].imageName}.png" alt="${n[e].companyName} logo" />
             </a>
             <div class="title seen">
                 ${n[e].companyName} <span class="city"> - ${n[e].city}</span>

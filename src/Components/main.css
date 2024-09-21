@@ -76,6 +76,23 @@ img {
 	clear: both;
 }
 
+/* img[data-src] {
+	opacity: 0;
+} */
+
+/* .lazy {
+	opacity: 0;
+}
+
+img.lazy {
+	-webkit-transition: opacity .15s;
+	-moz-transition: opacity .15s;
+	transition: opacity .15s;
+	opacity: 1;
+} */
+
+
+
 /* ////////////////// LOADER ////////////////// */
 
 #loader {

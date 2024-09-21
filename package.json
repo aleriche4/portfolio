@@ -33,6 +33,7 @@
     "typescript": "^5.3.3"
   },
   "dependencies": {
+    "grunt-json-minify": "^1.1.0",
     "grunt-ts": "^6.0.0-beta.22",
     "jquery": "^3.7.1"
   }
