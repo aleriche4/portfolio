@@ -3,7 +3,8 @@ document.addEventListener("DOMContentLoaded", function() {
     const jsonURL: string = "components/data/data.json", // Replace with your API
         loader: JQuery<HTMLElement> = $('#loader'),
         samples: JQuery<HTMLElement> = $('#samples');
-    let changingSection: Boolean = true;
+    let changingSection: Boolean = true,
+        footer: JQuery<HTMLElement> = $('#footer');
 
 
 /////////////////////////////// RENDER PORTFOLIO CONTENTS ///////////////////////////////////
@@ -102,15 +103,54 @@ document.addEventListener("DOMContentLoaded", function() {
 
 //////////////////////////////// INITIALIZATION ///////////////////////////////////
 
+    // async function setInitialState() {
+    //     await loadPageContent($('#portfolioPage'), 'portfolio.html');
+    //     await getData(); // Load portfolio data
+    //     await restoreStateOnReload(); // Handle page reload and restore state
+    //     loader.fadeOut(200);
+    //     $('#mainContainer').fadeIn(800);
+    //     history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+    //     $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+    // }
+
     async function setInitialState() {
-        await loadPageContent($('#portfolioPage'), 'portfolio.html');
+        const hash = window.location.hash.replace('#', ''); // Get the current hash from the URL
+        if (hash && hash !== 'portfolio') {
+            // await loadPage(hash, false); // Load the corresponding section, without adding to history
+            // $(`.nav-btn[data-name="${hash}"]`).addClass('active').prop('disabled', true);
+            console.log(`____HASH : ${hash}`)
+            // await loadPage(hash, false);
+            await loadPageContent($('#portfolioPage'), 'portfolio.html');
+            // await loadPageContent($(`#${hash}`), `${hash}.html`);
+            // $(`.nav-btn[data-name="${hash}"]`).addClass('active').prop('disabled', true);
+            // history.pushState({ section: hash }, hash, `#${hash}`);
+        } else {
+            await loadPageContent($('#portfolioPage'), 'portfolio.html');
+            $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+            history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+        }
+        // await loadPageContent($('#portfolioPage'), 'portfolio.html');
         await getData(); // Load portfolio data
         await restoreStateOnReload(); // Handle page reload and restore state
         loader.fadeOut(200);
         $('#mainContainer').fadeIn(800);
-        history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
-        $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+        $('#footer').fadeIn(800);
+        // history.pushState({ section: `'portfolio'` }, 'portfolio', '#portfolio');
     }
+
+    // async function setInitialState() {
+    //     await getData(); // Load portfolio data
+    //     const hash = window.location.hash.replace('#', ''); // Get the current hash from the URL
+    //     if (hash && hash !== 'portfolio') {
+    //         await loadPage(hash, false); // Load the corresponding section, without adding to history
+    //         $(`.nav-btn[data-name="${hash}"]`).addClass('active').prop('disabled', true);
+    //     } else {
+    //         await loadPage('portfolio', false); // Default to portfolio if no hash or portfolio is present
+    //         $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+    //     }
+    //     loader.fadeOut(200);
+    //     $('#mainContainer').fadeIn(800);
+    // }
 
     setInitialState();
 
@@ -146,6 +186,7 @@ async function loadPage(section: string, addToHistory = true) {
     console.log(`Loading page from: ${sectionPath}`);
     if(changingSection) {
         $('.pages').fadeOut(400); // Hide all pages first
+        $('#footer').fadeOut(400);
     }
     if (!pageLoadStatus[section]) { // Check if the section content has not been loaded yet
         loader.fadeIn(200);
@@ -160,6 +201,7 @@ async function loadPage(section: string, addToHistory = true) {
     $('.pages').promise().done(function () { // After fade-out is complete, fade in the selected section
         if(changingSection) window.scrollTo(0, 0);
         page.fadeIn(500);
+        $('#footer').fadeIn(500);
         document.body.style.overflowY = 'auto';
         $('.nav-btn').removeClass('active').prop('disabled', false);
         $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
@@ -255,7 +297,6 @@ async function loadPage(section: string, addToHistory = true) {
             await loadPage('portfolio', false);
             // $('.nav-btn').removeClass('active').prop('disabled', false);
             // $(`.nav-btn[data-name="${hash}"]`).addClass('active').prop('disabled', true);
-            // console.log(`___________||||||||||||||||\\\\\\\\\\\\\___________: ${hash}`)
         }
     }
 
