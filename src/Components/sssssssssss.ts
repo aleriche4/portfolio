@@ -3,6 +3,7 @@
 document.addEventListener("DOMContentLoaded", function() {
 
     const jsonURL: string = "components/data/data.json", // Replace with your API
+        // overlayContainer: JQuery<HTMLElement> = $('.overlayContainer'),
         loader: JQuery<HTMLElement> = $('#loader'),
         samples: JQuery<HTMLElement> = $('#samples');
 
@@ -64,21 +65,26 @@ document.addEventListener("DOMContentLoaded", function() {
 
 
 //////////////////////////////////// GET JSON / DATA ////////////////////////////////////////
-
     async function getData() {
         try {
             const response = await fetch(jsonURL);
-            if (!response.ok) throw new Error(`Response status: ${response.status}`);
+            if (!response.ok) {
+                throw new Error(`Response status: ${response.status}`);
+            }
             const data = await response.json();
-            await portfolioContent(data);
+            // console.log("__________ : " + data[1].companyName + "_____ " + response.status);
+            portfolioContent(data);
         } catch (error: any) {
             console.error(error.message);
         }
     }
 
-//////////////////////////////// INITIALIZATION ///////////////////////////////////
+//////////////////////////////// INITIALIZATION / HISTORY ///////////////////////////////////
 
     async function setInitialState() {
+        // Check for saved section in localStorage (refresh page)
+        // const lastOpenedSection = localStorage.getItem('lastOpenedSection') || 'portfolio'; // Default to 'portfolio' if none
+
         try {
             // Asynchronously load portfolio page content
             await loadPageContent($('#portfolioPage'), 'portfolio.html');
@@ -86,8 +92,22 @@ document.addEventListener("DOMContentLoaded", function() {
             // $('#mainContainer').hide();
             $('#mainContainer').fadeIn(800);
             loader.fadeOut(200);
+
+            // Push the initial state to the history
+            // if()
+            // history.replaceState({ section: `${lastOpenedSection}` }, `${lastOpenedSection}`, `#${lastOpenedSection}`);
             history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+            // console.log(`___________ : ${section}`)
+
+            // Set initial state of portfolio button
             $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+
+            // Check for saved section in localStorage (refresh page)
+            
+            // Load the saved section
+            // loadPage(lastOpenedSection, false); // Pass false to avoid adding to history
+            // console.log(`___________ : ${lastOpenedSection}`)
+            
         } 
         catch (error) {
             console.error("Error loading portfolio page: ", error);
@@ -116,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function() {
         initialNavButton.dispatchEvent(new Event('touchend'));
     }
 
-    //////////////////////////////////// MAIN NAVIGATION //////////////////////////
+    //////////////////////////////////// MAIN NAVIGATION & HISTORY //////////////////////////
 
     // Define the page load status type
     type PageLoadStatus = {
@@ -151,8 +171,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 loader.fadeOut(200);
                 pageLoadStatus[section] = true;
             } catch (error) {
-                console.error(`Error loading ${section} page:`, error);
-                // console.log(`Error loading ${section} page:`, error);
+                // console.error(`Error loading ${section} page:`, error);
+                console.log(`Error loading ${section} page:`, error);
             }
         }
         // After fade-out is complete, fade in the selected section
@@ -187,7 +207,13 @@ document.addEventListener("DOMContentLoaded", function() {
         loadPage(section);
     });
 
-   
+    // Detect with agent if it's a mobile, tablet or desktop
+    // function isMobileDevice() {
+    //     return /Mobi|Android/i.test(navigator.userAgent) || window.matchMedia("only screen and (max-width: 768px)").matches;
+    // }
+
+//////////////////////////////////// HISTORY MANAGEMENT ///////////////////////////////////
+    
     // Event listener for browser back/forward buttons
     window.onpopstate = async function (event) {
         if (event.state) {
@@ -222,7 +248,7 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     };
 
-    ///////////////////////////// LOADING SAMPLES //////////////////////////////////
+    ///////////////////////////// LOADING SAMPLES / HISTORY //////////////////////////////////
  
     async function loadSample(samplePath: string, addToHistory = true) {
         return new Promise<void>((resolve, reject) => {
@@ -246,8 +272,18 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Closing the sample page
     async function triggerEvent() {
+        // history.pushState(null, '', "/dev/#portfolio");
+        // history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
         samples.fadeOut(400, function () {
             document.body.style.overflowY = 'auto';
+            // history.pushState({ section: 'portfolio' }, '', '');
+            // history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+            // if (history.state?.section !== 'portfolio') {
+                // console.log("______________________ " + history.state.section)
+                // history.replaceState(null, '', '#portfolio');
+            // }
+
+            // resolve();
         });
         
     }
@@ -287,6 +323,13 @@ document.addEventListener("DOMContentLoaded", function() {
     $(document).on('click touchend', '.buttonSample', async function () {
         loader.fadeIn(200);
         const samplePath: string = 'samples/' + $(this).data('name') + ".html";
+
+        // Save the current section to localStorage
+        // localStorage.setItem('lastOpenedSection', section);
+        // const sectionID = $(this).data('section-id'); // Assumes the section link has a data attribute for the section ID
+        // localStorage.setItem('lastOpenedSection', sectionID); // Save it
+        // loadSection(sectionID); // Function to load the section
+
 
         // For testing
         console.log(`Loading page sample from: ${samplePath}`);

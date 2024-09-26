@@ -71,10 +71,37 @@ document.addEventListener("DOMContentLoaded", function() {
             const response = await fetch(jsonURL);
             if (!response.ok) throw new Error(`Response status: ${response.status}`);
             const data = await response.json();
-            // console.log("__________ : " + data[1].companyName + "_____ " + response.status);
             await portfolioContent(data);
         } catch (error: any) {
             console.error(error.message);
+        }
+    }
+
+/////////////////////////////// AGENT DESKTOP/MOBILE/TABLET ////////////////////////////////////
+
+    // Be able to remove the event of the close background button for mobile and tablet so it won't close after scrolling the section
+    async function getDeviceType(): Promise<"mobile" | "tablet" | "desktop"> {
+        const userAgent = navigator.userAgent;
+        if (/Mobi|Android/i.test(userAgent)) {
+            return 'mobile';
+        } else if (/iPad|Tablet|Android(?!.*Mobile)/i.test(userAgent)) /*|| window.matchMedia("only screen and (min-width: 480px) and (max-width: 709px)").matches)*/ {
+            return 'tablet';
+        } else {
+            return 'desktop';
+        }
+    }
+
+    async function checkDeviceType() {
+        const deviceType = await getDeviceType();
+        if (deviceType === 'mobile') {
+            $('.overlayContainer').css("cursor: auto;");
+            console.log('This is a mobile device.');
+        } else if (deviceType === 'tablet') {
+            $('.overlayContainer').css("cursor: auto;");
+            console.log('This is a tablet device.');
+        } else {
+            triggerEvent();
+            console.log('This is a desktop device.');
         }
     }
 
@@ -86,7 +113,7 @@ async function setInitialState() {
     await restoreStateOnReload(); // Handle page reload and restore state
     loader.fadeOut(200);
     $('#mainContainer').fadeIn(800);
-    history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+    history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
     $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
 }
 
@@ -126,18 +153,6 @@ async function setInitialState() {
     //     }
     // }
 
-    async function loadPageContent(page: JQuery<HTMLElement>, url: string): Promise<void> {
-        return new Promise<void>((resolve, reject) => {
-            page.load(url, function (response, status, xhr) {
-                if (status === "success") {
-                    resolve();
-                } else {
-                    reject(new Error(`Error loading page: ${xhr.status} ${xhr.statusText}`));
-                }
-            });
-        });
-    }
-
     // Call the initialization function when the page loads
     setInitialState();
 
@@ -149,7 +164,63 @@ async function setInitialState() {
         initialNavButton.dispatchEvent(new Event('touchend'));
     }
 
-    //////////////////////////////////// MAIN NAVIGATION //////////////////////////
+
+//////////////////////////////////// MAIN SECTION /////////////////////////////////////
+
+async function loadPageContent(page: JQuery<HTMLElement>, url: string): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+        page.load(url, function (response, status, xhr) {
+            if (status === "success") {
+                resolve();
+            } else {
+                reject(new Error(`Error loading page: ${xhr.status} ${xhr.statusText}`));
+            }
+        });
+    });
+}
+
+// Function to handle loading and history management
+async function loadPage(section: string, addToHistory = true) {
+
+    const sectionPath = `${section}.html`,  // Path to the section's HTML file
+        pageId = `#${section}Page`,  // Dynamically generate the ID selector for the page
+        page = $(pageId);  // Get the page element by ID
+
+    // For testing
+    console.log(`Loading page from: ${sectionPath}`);
+
+    // Hide all pages first
+    $('.pages').fadeOut(400);
+    // Check if the section content has not been loaded yet
+    if (!pageLoadStatus[section]) {
+        loader.fadeIn(200);
+        // Load the content for the selected section
+        try {
+            await loadPageContent(page, sectionPath);
+            loader.fadeOut(200);
+            pageLoadStatus[section] = true;
+
+        } catch (error) {
+            // console.error(`Error loading ${section} page:`, error);
+            console.log(`Error loading ${section} page:`, error);
+        }
+    }
+    // After fade-out is complete, fade in the selected section
+    $('.pages').promise().done(function () {
+        // Reset the scroll position to the top
+        window.scrollTo(0, 0);
+        page.fadeIn(500);
+        document.body.style.overflowY = 'auto'; // Re-enable scrolling after fade-in is complete
+    });
+    // Optionally lock body scrolling when switching sections
+    document.body.style.overflowY = 'hidden';
+    // Add the state to the browser history
+    if (addToHistory) {
+        history.pushState({ section }, section, `#${section}`);
+    }
+}
+
+//////////////////////////////////// GENERAL NAVIGATION //////////////////////////
 
     // Define the page load status type
     type PageLoadStatus = {
@@ -162,46 +233,6 @@ async function setInitialState() {
         resume: false,
         projects: false,
     };
-
-    // Function to handle loading and history management
-    async function loadPage(section: string, addToHistory = true) {
-
-        const sectionPath = `${section}.html`,  // Path to the section's HTML file
-            pageId = `#${section}Page`,  // Dynamically generate the ID selector for the page
-            page = $(pageId);  // Get the page element by ID
-
-        // For testing
-        console.log(`Loading page from: ${sectionPath}`);
-
-        // Hide all pages first
-        $('.pages').fadeOut(400);
-        // Check if the section content has not been loaded yet
-        if (!pageLoadStatus[section]) {
-            loader.fadeIn(200);
-            // Load the content for the selected section
-            try {
-                await loadPageContent(page, sectionPath);
-                loader.fadeOut(200);
-                pageLoadStatus[section] = true;
-            } catch (error) {
-                // console.error(`Error loading ${section} page:`, error);
-                console.log(`Error loading ${section} page:`, error);
-            }
-        }
-        // After fade-out is complete, fade in the selected section
-        $('.pages').promise().done(function () {
-            // Reset the scroll position to the top
-            window.scrollTo(0, 0);
-            page.fadeIn(500);
-            document.body.style.overflowY = 'auto'; // Re-enable scrolling after fade-in is complete
-        });
-        // Optionally lock body scrolling when switching sections
-        document.body.style.overflowY = 'hidden';
-        // Add the state to the browser history
-        if (addToHistory) {
-            history.pushState({ section }, section, `#${section}`);
-        }
-    }
 
     // Attach event listener to all navigation buttons
     $('.nav-btn').on('click touchend', function () {
@@ -225,6 +256,60 @@ async function setInitialState() {
     //     return /Mobi|Android/i.test(navigator.userAgent) || window.matchMedia("only screen and (max-width: 768px)").matches;
     // }
 
+    function closingSample() {
+        $('.overlayContainer').on('click touchend', function (event) {
+            // Determine if the click was on .closeBtn
+            if ($(event.target).hasClass('closeBtn')) {
+                samples.fadeOut(400, function () {
+                    document.body.style.overflowY = 'auto';
+                });
+            } else {
+                checkDeviceType();
+            }
+        });
+    }
+
+
+    // from parents
+    $(document).on('click touchend', '.buttonSample', async function () {
+        loader.fadeIn(200);
+        const samplePath: string = 'samples/' + $(this).data('name') + ".html";
+
+        // Save the current section to localStorage
+        // localStorage.setItem('lastOpenedSection', section);
+        // const sectionID = $(this).data('section-id'); // Assumes the section link has a data attribute for the section ID
+        // localStorage.setItem('lastOpenedSection', sectionID); // Save it
+        // loadSection(sectionID); // Function to load the section
+
+        // For testing
+        console.log(`Loading page sample from: ${samplePath}`);
+
+        try {
+            await loadSample(samplePath);
+            loader.fadeOut(200);
+            // alert($('.overlayContainer').scrollTop());
+            $('.overlayContainer').scrollTop(0),
+            // Hide the main scroller
+            document.body.style.overflowY = 'hidden';
+            // history.pushState(null, '', window.location.pathname + window.location.search);
+
+            closingSample();
+
+            // Set up the close button event
+            // $('.overlayContainer').on('click touchend', function (event) {
+            //     // Determine if the click was on .closeBtn
+            //     if ($(event.target).hasClass('closeBtn')) {
+            //         triggerEvent();
+            //     } else {
+            //         checkDeviceType();
+            //     }
+            // });
+        } 
+        catch (error) {
+            console.error(error);
+        }
+    });
+
 //////////////////////////////// REFRESH & HISTORY HANDLING //////////////////////////////////
 
     // Function to restore state from URL hash or history
@@ -239,6 +324,15 @@ async function setInitialState() {
                 await loadSample(samplePath, false);  // Don't add to history again
                 samples.fadeIn(600);
                 document.body.style.overflowY = 'hidden';
+                // **IMPORTANT**: Reattach the close button event listener here
+                closingSample();
+                // $('.overlayContainer').on('click touchend', function (event) {
+                //     if ($(event.target).hasClass('closeBtn')) {
+                //         triggerEvent();
+                //     } else {
+                //         checkDeviceType();
+                //     }
+                // });
             } catch (error) {
                 console.error(`Error loading sample from URL: ${error}`);
             }
@@ -252,26 +346,30 @@ async function setInitialState() {
     }
 
     // Handle browser back/forward button (popstate)
-    window.onpopstate = async function (event) {
+    window.onpopstate = async function (event: any) {
         if (event.state) {
             const section = event.state.section || event.state.sample;
             if (event.state.sample) {
                 await loadSample(`samples/${section}.html`, false);
                 samples.fadeIn(600);
                 document.body.style.overflowY = 'hidden';
-                // **IMPORTANT**: Reattach the close button event listener here
-                $('.overlayContainer').on('click touchend', function (event) {
-                    if ($(event.target).hasClass('closeBtn')) {
-                        triggerEvent();
-                    } else {
-                        checkDeviceType();
-                    }
-                });
+                // // **IMPORTANT**: Reattach the close button event listener here
+                closingSample();
+                // $('.overlayContainer').on('click touchend', function (event) {
+                //     if ($(event.target).hasClass('closeBtn')) {
+                //         triggerEvent();
+                //     } else { 
+                //         checkDeviceType();
+                //     }
+                // });
             } else {
                 await loadPage(section, false);
                 if (samples.is(':visible')) {
                     triggerEvent();
                 }
+                // Handle section button state
+                $('.nav-btn').removeClass('active').prop('disabled', false);
+                $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
             }
         }
     };
@@ -309,37 +407,6 @@ async function setInitialState() {
     //     }
     // };
 
-//////////////////////////////////////// AGENT //////////////////////////////////////////
-
-    async function getDeviceType(): Promise<"mobile" | "tablet" | "desktop"> {
-
-        const userAgent = navigator.userAgent;
-
-        if (/Mobi|Android/i.test(userAgent)) {
-            return 'mobile';
-        } else if (/iPad|Tablet|Android(?!.*Mobile)/i.test(userAgent)) /*|| window.matchMedia("only screen and (min-width: 480px) and (max-width: 709px)").matches)*/ {
-            return 'tablet';
-        } else {
-            return 'desktop';
-        }
-    }
-
-    async function checkDeviceType() {
-
-        const deviceType = await getDeviceType(); // Use await here
-
-        if (deviceType === 'mobile') {
-            $('.overlayContainer').css("cursor: auto;");
-            console.log('This is a mobile device.');
-        } else if (deviceType === 'tablet') {
-            $('.overlayContainer').css("cursor: auto;");
-            console.log('This is a tablet device.');
-        } else {
-            triggerEvent();
-            console.log('This is a desktop device.');
-        }
-    }
-
 ///////////////////////////// LOADING SAMPLES //////////////////////////////////
  
     async function loadSample(samplePath: string, addToHistory = true) {
@@ -362,12 +429,26 @@ async function setInitialState() {
         });
     }
 
+    ///////////////////////////// CLOSING SAMPLES //////////////////////////////////
+
     // Closing the sample page
     async function triggerEvent() {
+        
+       // $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
+        
         // history.pushState(null, '', "/dev/#portfolio");
         // history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
         samples.fadeOut(400, function () {
             document.body.style.overflowY = 'auto';
+            history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
+
+        // $('.overlayContainer').on('click touchend', function (event) {
+        //     if ($(event.target).hasClass('closeBtn')) {
+        //         triggerEvent();
+        //     } else {
+        //         checkDeviceType();
+        //     }
+        // });
             // history.pushState({ section: 'portfolio' }, '', '');
             // history.replaceState({ section: 'portfolio' }, 'portfolio', '#portfolio');
             // if (history.state?.section !== 'portfolio') {
@@ -380,43 +461,5 @@ async function setInitialState() {
         
     }
 
-    // from parents
-    $(document).on('click touchend', '.buttonSample', async function () {
-        loader.fadeIn(200);
-        const samplePath: string = 'samples/' + $(this).data('name') + ".html";
-
-        // Save the current section to localStorage
-        // localStorage.setItem('lastOpenedSection', section);
-        // const sectionID = $(this).data('section-id'); // Assumes the section link has a data attribute for the section ID
-        // localStorage.setItem('lastOpenedSection', sectionID); // Save it
-        // loadSection(sectionID); // Function to load the section
-
-
-        // For testing
-        console.log(`Loading page sample from: ${samplePath}`);
-
-        try {
-            await loadSample(samplePath);
-            loader.fadeOut(200);
-            // alert($('.overlayContainer').scrollTop());
-            $('.overlayContainer').scrollTop(0),
-            // Hide the main scroller
-            document.body.style.overflowY = 'hidden';
-            // history.pushState(null, '', window.location.pathname + window.location.search);
-
-            // Set up the close button event
-            $('.overlayContainer').on('click touchend', function (event) {
-                // Determine if the click was on .closeBtn
-                if ($(event.target).hasClass('closeBtn')) {
-                    triggerEvent();
-                } else {
-                    checkDeviceType();
-                }
-            });
-        } 
-        catch (error) {
-            console.error(error);
-        }
-    });
     
 });
