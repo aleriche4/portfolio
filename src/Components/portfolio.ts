@@ -144,7 +144,9 @@ async function loadPage(section: string, addToHistory = true) {
         page = $(pageId);  // Get the page element by ID // For testing
 
     console.log(`Loading page from: ${sectionPath}`);
-    if(changingSection) $('.pages').fadeOut(400); // Hide all pages first
+    if(changingSection) {
+        $('.pages').fadeOut(400); // Hide all pages first
+    }
     if (!pageLoadStatus[section]) { // Check if the section content has not been loaded yet
         loader.fadeIn(200);
         try {
@@ -159,6 +161,8 @@ async function loadPage(section: string, addToHistory = true) {
         if(changingSection) window.scrollTo(0, 0);
         page.fadeIn(500);
         document.body.style.overflowY = 'auto';
+        $('.nav-btn').removeClass('active').prop('disabled', false);
+        $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
     });
     document.body.style.overflowY = 'hidden'; 
     if (addToHistory) {
@@ -216,7 +220,7 @@ async function loadPage(section: string, addToHistory = true) {
         loader.fadeIn(200);
         const samplePath: string = 'samples/' + $(this).data('name') + ".html";
         changingSection = false;
-        console.log(`Loading page sample from: ${samplePath}`);
+        console.log(`Loading page sample from: ${samplePath}`);  // For testing
         try {
             await loadSample(samplePath);
             loader.fadeOut(200);
@@ -236,20 +240,22 @@ async function loadPage(section: string, addToHistory = true) {
         const hash = window.location.hash.replace('#', '');
         if (hash.startsWith('sample-')) {
             const sampleName = hash.replace('sample-', '');
-            const samplePath = `samples/${sampleName}.html`;
+            const samplePath = `samples/${sampleName}.html`;  // Extract the sample name from the URL
             try {
                 await loadSample(samplePath, false);  // Don't add to history again
                 samples.fadeIn(600);
                 document.body.style.overflowY = 'hidden';
-                closingSample(); // **IMPORTANT**: Reattach the close button event listener
+                closingSample(); // **IMPORTANT**: Reattach the close button event listener here
             } catch (error) {
                 console.error(`Error loading sample from URL: ${error}`);
             }
         } else if (hash) {
-            await loadPage(hash);
+            await loadPage(hash, false);  
         } else {
-            // await loadPage('portfolio');
-            console.log(`HELLO : ${hash}`)
+            await loadPage('portfolio', false);
+            // $('.nav-btn').removeClass('active').prop('disabled', false);
+            // $(`.nav-btn[data-name="${hash}"]`).addClass('active').prop('disabled', true);
+            // console.log(`___________||||||||||||||||\\\\\\\\\\\\\___________: ${hash}`)
         }
     }
 
@@ -261,16 +267,17 @@ async function loadPage(section: string, addToHistory = true) {
                 await loadSample(`samples/${section}.html`, false);
                 samples.fadeIn(600);
                 document.body.style.overflowY = 'hidden';
-                closingSample(); // **IMPORTANT**: Reattach the close button event listener
+                closingSample(); // **IMPORTANT**: Reattach the close button event listener here
             } else {
                 await loadPage(section, false);
-                if (samples.is(':visible')) {
+                console.log(`___________||||||||||||||||\\\\\\\\\\\\\: ${section}`)
+                $('.nav-btn').removeClass('active').prop('disabled', false);
+                $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
+                // If a sample is open, close it when navigating to a different section
+                if (samples.is(':visible')) { 
                     triggerEvent();
-                    // $('.nav-btn').removeClass('active').prop('disabled', false);
-                    // $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
                 }
             }
-            // If a sample is open, close it when navigating to a different section
         }
     };
 
@@ -282,8 +289,8 @@ async function loadPage(section: string, addToHistory = true) {
             samples.load(samplePath, function (responseTxt, statusTxt, xhr) {
                 if (statusTxt === "success") {
                     if (addToHistory) {
-                        const sampleName = samplePath.split('/').pop()?.replace('.html', '');
-                        history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`);
+                        const sampleName = samplePath.split('/').pop()?.replace('.html', ''); // Extract the sample name from the path (assuming it follows 'samples/sampleName.html')
+                        history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`); // Push the state to the history
                     }
                     samples.fadeIn(600);
                     resolve();
