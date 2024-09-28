@@ -17,14 +17,18 @@
     <meta property="og:image:alt" content="Alain Leriche - Senior Front End Developer">
     <meta name="robots" content="index, follow">
     <meta name="theme-color" content="#336699">
-
+    <link rel="preload" href="images/loading.gif" as="image">
     <link rel="stylesheet" type="text/css" href="components/main.css?version=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.lazy/1.7.11/jquery.lazy.min.js"></script>-->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
     <script type="module" src="components/portfolio.js?version=1"></script>
-
+    <noscript>
+        <div class="no-js-alert">
+          <p><u>JavaScript is disabled</u> in your browser. Please enable JavaScript to view this site properly.</p>
+        </div>
+    </noscript>
     <script>
         $(document).on('lazyloaded', function(e) {
             if (typeof LazyLoad === 'undefined') {
@@ -42,8 +46,6 @@
     <div id="mainContainer" style="display: none;">
         <h1>Alain Leriche's Portfolio</h1>
         <div class="box" class="txt">
-
-            
 
             <!-- LOADED PAGES *********************************************************************************-->
             <!-- <section id="pageContent"> -->
@@ -94,7 +96,9 @@
         <!-- <div id="loader2"></div> -->
     </div> 
     <div id="loader">
-        <div class="preload"></div>
+        <div class="loaderBox">
+            <div class="preload"><img src="images/loading.gif" alt="Loading..." /></div>
+        </div>
     </div>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script> -->
     <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->

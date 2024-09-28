@@ -13,7 +13,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-ts");
     // grunt.loadNpmTasks("grunt-browserify");
     grunt.loadNpmTasks("grunt-contrib-htmlmin");
-    grunt.loadNpmTasks('grunt-json-minify');
+    // grunt.loadNpmTasks('grunt-json-minify');
 
     // grunt.loadNpmTasks('grunt-postcss');
     // grunt.loadNpmTasks('grunt-autoprefixer');
@@ -32,7 +32,7 @@ module.exports = function(grunt){
                 // tsconfig: true,
                 //src: ["src/**/*.ts"], // Only include TypeScript files from src
                 src: ["src/*.ts", "src/**/*.ts"], // Only include TypeScript files from src
-                outDir: "dist",
+                // outDir: "dist",
                 tsconfig: './tsconfig.json'
                 // src: ["**/*.ts", "!node_modules/**/*.ts"],
             },
@@ -94,11 +94,16 @@ module.exports = function(grunt){
             }
         },
 
-        'json-minify': {
-            build: {
-                files: 'prod/**/**/*.json'
-            }
-        },
+        // 'json-minify': {
+        //     build: {
+        //         files: [{ 
+        //             cwd: 'src/components/data',
+        //             src: ['*.json'],
+        //             dest: 'prod/components/data',
+        //         }]
+        //     }
+        // },
+
         
         // COPY
         copy: {
@@ -375,7 +380,14 @@ module.exports = function(grunt){
                     src: ['*.html'],
                     dest: 'prod/samples/',
                     ext: '.html'
-                 }
+                 },
+                //  {
+                //     expand: true,
+                //     cwd: 'src/component/',
+                //     src: ['*.js'],
+                //     dest: 'dev/component/',
+                //     ext: '.js'
+                //  }
               ]
             }
             // }
@@ -403,5 +415,5 @@ module.exports = function(grunt){
 
     // });
     grunt.registerTask("default", [/*"browserify", */"watch", "ts"]);
-    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy", "json-minify" /*, imagemin:dynamic", "removeLivereload"*/]);
+    grunt.registerTask("prod", ["clean", "uglify", "cssmin", "htmlmin", "copy" /*, imagemin:dynamic", "removeLivereload"*/]);
 };
