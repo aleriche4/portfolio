@@ -593,6 +593,10 @@ ul {
 
 @media only screen and (max-width: 480px) {
 
+	.loaderBox {
+		margin: 65% auto 35% auto;
+	}
+
 	/* ////////////////// CONTAINERS MOBILE ////////////////// */
 
 	.box {
@@ -604,12 +608,12 @@ ul {
 
 	header { 
 		width: 100vw;
-		height: 11.25rem;
-		overflow: hidden;
+		/* height: 11.25rem; */
+		/* overflow: hidden; */
 	}
 
 	#topBgWhite {
-		height: 10.625rem;
+		height: 11.875rem;
 		background-color: var(--blue);
 		border-bottom: none;
 		opacity: 1;
@@ -617,13 +621,15 @@ ul {
 	}
 
 	#topHeader {
+		/* height: 190px; */
 		margin-left: 1.875rem;
 	}
 	
 	#shadow {
 		opacity: 1;
 		filter: alpha(opacity=1);
-		margin: 0.563rem 0 0 -1.875rem;
+		margin: 1.813rem 0 0 -1.875rem;
+		/* background-color: red; */
 	}
 
 	#nav {
@@ -631,13 +637,14 @@ ul {
 	}
 	
 	.title {
-		font-size: 1.25rem;
+		font-size: 1.375rem;
 		line-height: 1.375rem;
 		margin: 1.063rem 0 0 0;
 		color: var(--white);
 	}
 	
 	.experienceTitle {
+		font-size: 1.25rem;
 		color: var(--grey-header);
 		margin: 1.25rem 30px 0 0;
 		line-height: 1.5rem;
@@ -655,8 +662,11 @@ ul {
 	} */
 
 	a.contact {
+		font-size: 1rem;
+		line-height: 1.125rem;
 		color: var(--grey-header);
 		text-decoration: underline;
+		margin-bottom: 10px;
 	}
 	
 	a.contact:hover {
@@ -763,7 +773,7 @@ ul {
 	
 	.centerPosition {
 		width: 90%;
-		padding-right: 8px;
+		padding: 0 8px 40px 0;
 	}
 
 	.whiteBox {
