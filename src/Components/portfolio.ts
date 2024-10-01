@@ -87,10 +87,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     async function setInitialState() {
         const hash = window.location.hash.replace('#', '') || 'portfolio'; // Get the current hash from the URL
+        // await fetchPortfolioData(); // Load portfolio data
+
         if (hash && hash !== 'portfolio') {
             await loadPageContent($('#portfolioPage'), 'portfolio.html');
+            // await loadPage('portfolio', true)
         } else {
             await loadPageContent($('#portfolioPage'), 'portfolio.html');
+            // await loadPage('portfolio', true)
             $('.nav-btn[data-name="portfolio"]').addClass('active').prop('disabled', true);
             history.pushState({ section: 'portfolio' }, 'portfolio', '#portfolio');
         }
@@ -124,18 +128,28 @@ document.addEventListener("DOMContentLoaded", function() {
     async function loadPage(section: string, addToHistory = true) {
         const sectionPath = `${section}.html`,  // Path to the section's HTML file
             pageId = `#${section}Page`,  // Dynamically generate the ID selector for the page
-            page = $(pageId);  // Get the page element by ID // For testing
-        console.log(`Loading page: ${sectionPath}`);
+            page = $(pageId);  // Get the page element by ID
+
+            
         if(changingSection) $('.pages, #footer').fadeOut(400); // Hide all pages first
+
+        console.log(`Loading page: ${sectionPath}`); // For testing
+
         if (!pageLoadStatus[section]) { // Check if the section content has not been loaded yet
-            loader.fadeIn(200);
             try {
+                pageLoadStatus[section] = true;
+                loader.fadeIn(200);
                 await loadPageContent(page, sectionPath);
                 loader.fadeOut(200);
-                pageLoadStatus[section] = true;
             } catch (error) {
-                console.log(`Error loading ${section} page:`, error); // console.error(`Error loading ${section} page:`, error);
+                console.error(`Error loading ${section} page:`, error);
             }
+        } 
+        if (addToHistory) {
+            console.log(`:::: LoadPage History Added : ${section} and ${addToHistory}`);
+            history.pushState({ section }, section, `#${section}`);
+            // renaming the <title></title> for each sections/samples
+            document.title = `Alain Leriche - ${section}`;
         }
         $('.pages').promise().done(function () { // After fade-out is complete, fade in the selected section
             if(changingSection) window.scrollTo(0, 0);
@@ -145,8 +159,8 @@ document.addEventListener("DOMContentLoaded", function() {
             $('.nav-btn').removeClass('active').prop('disabled', false);
             $(`.nav-btn[data-name="${section}"]`).addClass('active').prop('disabled', true);
         });
+
         document.body.style.overflowY = 'hidden'; 
-        if (addToHistory) history.pushState({ section }, section, `#${section}`);
     }
 
 ///////////////////////////// SAMPLES LOADING //////////////////////////////////
@@ -157,7 +171,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (statusTxt === "success") {
                     if (addToHistory) {
                         const sampleName = samplePath.split('/').pop()?.replace('.html', '');
+                        document.title = `Alain Leriche - ${sampleName}`;
                         history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`);
+
+                        console.log(`____SamplePage History Added : ${sampleName} and ${addToHistory}`);
+
                     }
                     samples.fadeIn(600);
                     resolve();
@@ -174,21 +192,29 @@ document.addEventListener("DOMContentLoaded", function() {
     $('.nav-btn').on('click', function () {
         const thisNavButton = $(this),  // Reference the clicked button
             section: string = thisNavButton.data('name');  // Get the section name from data-name attribute
-        localStorage.setItem('lastOpenedSection', section);  // Save the current section to localStorage
+
+        // console.log(`${thisNavButton} et ${section}`);
+
+        // localStorage.setItem('lastOpenedSection', section);  // Save the current section to localStorage
+
         $('.nav-btn').removeClass('active').prop('disabled', false);
         thisNavButton.addClass('active').prop('disabled', true);
+
         changingSection = true;
-        loadPage(section, true); // Load the page and add it to the history
+
+        loadPage(section); // Load the page and add it to the history
     });
 
 /////////////////////////// CLOSING SAMPLE EVENT /////////////////////////////////////
 
     // Closing the Sample pages
-    async function triggerEvent() {
-        loadPage('portfolio', true);
+    async function triggerEvent(fromHistory: boolean = true) {
+        if(!fromHistory) await loadPage('portfolio');
         samples.fadeOut(400, function () {
             document.body.style.overflowY = 'auto';
         });
+        document.title = `Alain Leriche - portfolio`;
+        
     }
 
     // Creating the Closing Sample pages event
@@ -197,11 +223,11 @@ document.addEventListener("DOMContentLoaded", function() {
         const isTablet = /iPad|Tablet|Android(?!.*Mobile)/i.test(navigator.userAgent);
         if (isMobile || isTablet) {
             $('.closeBtn').off('touchend').on('touchend', function() {
-                triggerEvent()
+                triggerEvent(false)
             });
         } else {
             $('.overlayContainer').off('click').on('click', function () {
-                triggerEvent();
+                triggerEvent(false);
             });
         }
     }
@@ -212,11 +238,13 @@ document.addEventListener("DOMContentLoaded", function() {
         changingSection = false;
         loader.fadeIn(200);
         const samplePath: string = 'samples/' + $(this).data('name') + ".html";
+        const section: string = $(this).data('name');
         console.log(`Loading page sample: ${samplePath}`);  // For testing
-        await loadSample(samplePath);
+        await loadSample(samplePath, true);
         loader.fadeOut(200, function() {document.body.style.overflowY = 'hidden';});
         $('.overlayContainer').scrollTop(0);
         await closeBtn();
+        // console.log(` sampleName :::: ${section}`)
     });
 
 //////////////////////////////// REFRESH & HISTORY HANDLING //////////////////////////////////
@@ -238,18 +266,18 @@ document.addEventListener("DOMContentLoaded", function() {
     window.onpopstate = async function (event: any) {
         if (event.state) {
             const sections = event.state.section || event.state.sample;
+            // console.log(`|||||||||||||||||||||||||  ${sections}`);
             if (sections) {
                 if (event.state.sample) {
                     await loadSample(`samples/${sections}.html`, false);
+                    changingSection = false;
                     closeBtn();
                 } else {
                     await loadPage(sections, false);
+                    changingSection = true;
                     $('.nav-btn').removeClass('active').prop('disabled', false);
                     $(`.nav-btn[data-name="${sections}"]`).addClass('active').prop('disabled', true);
-                    // If a sample is open, close it when navigating to a different page
-                    if (samples.is(':visible')) { 
-                        triggerEvent();
-                    }
+                    if (samples.is(':visible')) triggerEvent(true); // If a sample is open, close it when navigating to a different page
                 }
             } else {
                 await loadPage('portfolio', false);  // Default fallback if state is missing
