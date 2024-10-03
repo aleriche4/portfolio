@@ -88,12 +88,12 @@ img {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
     background-color: var(--blue);
     color: var(--white);
-    padding: 8px;
+    padding: 0.5rem;
     text-align: center;
 	width: 70vw;
     margin: 40% auto;
-    border-radius: 5px;
-	font-size: 15px;
+    border-radius: 0.313rem;
+	font-size: 0.938rem;
 }
 
 img .lazyload {
@@ -113,21 +113,21 @@ img .lazyload {
 	display: none;
 	position: fixed;
 	width: 100%;
-	margin-top: 260px;
+	margin-top: 16.25rem;
 }
 
 #errorMessage {
-	padding: 20px;
+	padding: 1.25rem;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 18px;
+	font-size: 1.125rem;
 	border: 1px;
 	border-color: var(--grey-border);
 	border-style: solid;
 	box-shadow: 0.063rem 0.063rem 0.125rem var(--grey-border);
 	margin: 0 auto 0 auto;
-	max-width: 600px;
+	max-width: 37.5rem;
 	background-color: var(--white);
-	border-radius: 5px;
+	border-radius: 0.313rem;
 	color: var(--red-alert);
 	text-align: center;
 }
@@ -148,7 +148,7 @@ img .lazyload {
 	padding: 0.625rem;
 	width: 2.875rem;
 	height: 2.875rem;
-	border-radius: 50px;
+	border-radius: 3.125rem;
 	margin: 40% auto 0 auto;
 	/* margin: auto; */
 	background-color: var(--white-alpha9);
@@ -445,7 +445,7 @@ ul {
 }
 
 .companyName {
-	font-size: 15px;
+	font-size: 0.938rem;
 }
 
 .bullet ul {
@@ -590,9 +590,9 @@ ul {
 	position: fixed;
 	cursor: pointer;
 	background: url("../images/close.png") no-repeat 0 0;
-	background-size: 30px 60px;
-	width: 30px;
-	height: 30px;
+	background-size: 1.875rem 3.75rem;
+	width: 1.875rem;
+	height: 1.875rem;
 	top: 1.875rem;
 	margin-left: 45rem;
 	box-shadow: 0.063rem 0.063rem 0.125rem var(--grey);
@@ -602,14 +602,13 @@ ul {
 .closeBtn:hover {
 	background-position: bottom;
 	box-shadow: none;
-
 }
 
 /* ///////////////////////////////////////////////////////// */
 /* /////////////////////  MOBILE /////////////////////////// */
 /* ///////////////////////////////////////////////////////// */
 
-@media only screen and (max-width: 480px ) {
+@media only screen and (max-width: 600px ) { /* 480px */
 
 	.loaderBox {
 		margin: 65% auto 35% auto;
@@ -639,7 +638,6 @@ ul {
 	}
 
 	#topHeader {
-		/* height: 190px; */
 		margin-left: 1.875rem;
 	}
 	
@@ -664,9 +662,9 @@ ul {
 	.experienceTitle {
 		font-size: 1.25rem;
 		color: var(--grey-header);
-		margin: 1.25rem 30px 0 0;
+		margin: 1.25rem 1.875rem 0 0;
 		line-height: 1.5rem;
-		letter-spacing: -0.6px;
+		letter-spacing: -0.038rem;
 	}
 
 	address {
@@ -680,7 +678,7 @@ ul {
 		line-height: 1.125rem;
 		color: var(--grey-header);
 		text-decoration: underline;
-		margin-bottom: 10px;
+		margin-bottom: 0.625rem;
 	}
 	
 	a.contact:hover {
@@ -699,7 +697,7 @@ ul {
 	/* ////////////////// ERROR ////////////////// */
 
 #errorMessage {
-	font-size: 21px;
+	font-size: 1.313rem;
 	max-width: 70%;
 }
 
@@ -728,13 +726,13 @@ ul {
 	.portfolio .title {
 		margin: -4.5rem 0 0 5.125rem;
 		color: var(--blue);
-		letter-spacing: -0.6px;
+		letter-spacing: -0.038rem;
 	}
 
 	.city {
 		font-size: 0.875rem;
 		line-height: 0.875rem;
-		letter-spacing: 0px;
+		letter-spacing: 0;
 	}
 
 	.jobContainer {
@@ -759,9 +757,9 @@ ul {
 
 	.buttonSample {
 		font-size: 1.125rem;
-		letter-spacing: 0.2px;
-		margin-right: -5px;
-		margin-top: -2px;
+		letter-spacing: 0.013rem;
+		margin-right: -0.313rem;
+		margin-top: -0.125rem;
 	}
 
 	.info {
@@ -775,10 +773,6 @@ ul {
 	.overlayContainer {
 		margin-left: 0;
 		cursor: default;
-		/* width: 100vw;
-		height: 100%;
-		margin-right: 40px !important;
-		background-color: pink; */
 	}
 
 	#comedyCentral .overlayContainer {
@@ -795,13 +789,13 @@ ul {
 	
 	.centerPosition {
 		width: 90%;
-		padding: 0 8px 55px 0;
+		padding: 0 0.5rem 3.438rem 0;
 	}
 
 	.whiteBox {
 		max-width: 100%; 
 		padding: 0.75rem 0;
-		margin: 0.75rem 0 20px 0;
+		margin: 0.75rem 0 1.25rem 0;
 	}
 
 	.sizeup {
@@ -815,9 +809,9 @@ ul {
 
 	.closeBtn {
 		margin: 0.625rem 1.25rem 0 82%;
-		background-size: 40px 80px;
-		width: 40px;
-		height: 40px;
+		background-size: 2.5rem 5rem;
+		width: 2.5rem;
+		height: 2.5rem;
 	}
 
 	.width224, .width690, .width254, .width600, .width423 {
