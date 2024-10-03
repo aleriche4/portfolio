@@ -69,6 +69,13 @@ document.addEventListener("DOMContentLoaded", function() {
         portfolioContainer.innerHTML = content;
     }
 
+//////////////////////////////////// ERROR HANDLER ////////////////////////////////////////
+
+    function showError(message: string) {
+        $('#errorMessage').text(message);
+        $('#errorContainer').fadeIn(600);
+    }
+
 //////////////////////////////////// GET JSON / DATA ////////////////////////////////////////
 
     // Function to fetch JSON data
@@ -80,6 +87,7 @@ document.addEventListener("DOMContentLoaded", function() {
             await renderPortfolioContent(data);
         } catch (error: any) {
             console.error(error.message);
+            showError(`Oops! Something went wrong while loading the content. Please refresh or try again later. Error ${error.message}`);
         }
     }
 
@@ -119,7 +127,9 @@ document.addEventListener("DOMContentLoaded", function() {
             const content = await response.text();
             page.html(content);
         } catch (error) {
-            console.error(error);
+            // console.error(error);
+            console.error(`Error loading ${url}:`, error);
+            showError(`Failed to load page content ${url}. Please try to reload your page.`);
         }
     }
 
@@ -129,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
             pageId = `#${section}Page`,  // Dynamically generate the ID selector for the page
             page = $(pageId);  // Get the page element by ID
         if(changingSection) $('.pages, #footer').fadeOut(400); // Hide all pages first
-        console.log(`Loading page: ${sectionPath}`); // For testing
+        // console.log(`Loading page: ${sectionPath}`); // For testing
         if (!pageLoadStatus[section]) { // Check if the section content has not been loaded yet
             try {
                 pageLoadStatus[section] = true;
@@ -141,11 +151,11 @@ document.addEventListener("DOMContentLoaded", function() {
             }
         } 
         if (addToHistory) {
-            console.log(`:::: LoadPage History Added : ${section} and ${addToHistory}`);
+            // console.log(`:::: LoadPage History Added : ${section} and ${addToHistory}`);
             history.pushState({ section }, section, `#${section}`);
             document.title = `Alain Leriche - ${section}`; // renaming the <title></title> for each sections/samples
         }
-        $('.pages').promise().done(function () { // After fade-out is complete, fade in the selected section
+        $('.pages').promise().done(function () {
             if(changingSection) window.scrollTo(0, 0);
             page.fadeIn(600);
             document.body.style.overflowY = 'auto'
@@ -166,11 +176,13 @@ document.addEventListener("DOMContentLoaded", function() {
                         const sampleName = samplePath.split('/').pop()?.replace('.html', '');
                         document.title = `Alain Leriche - ${sampleName}`;
                         history.pushState({ sample: sampleName }, sampleName || '', `#sample-${sampleName}`);
-                        console.log(`____SamplePage History Added : ${sampleName} and ${addToHistory}`);
+                        // console.log(`____SamplePage History Added : ${sampleName} and ${addToHistory}`);
                     }
                     samples.fadeIn(600);
                     resolve();
                 } else {
+                    console.error(`Error loading sample: ${xhr.status} ${xhr.statusText}`);
+                    showError('Something went wrong while loading this sample. Please refresh the page or try again later.');
                     reject(new Error(`Error loading sample: ${xhr.status} ${xhr.statusText}`));
                 }
             });   
@@ -183,7 +195,6 @@ document.addEventListener("DOMContentLoaded", function() {
     $('.nav-btn').on('click', function () {
         const thisNavButton = $(this),  // Reference the clicked button
             section: string = thisNavButton.data('name');  // Get the section name from data-name attribute
-        // console.log(`${thisNavButton} et ${section}`);
         localStorage.setItem('lastOpenedSection', section);  // Save the current section to localStorage
         $('.nav-btn').removeClass('active').prop('disabled', false);
         thisNavButton.addClass('active').prop('disabled', true);
@@ -204,8 +215,9 @@ document.addEventListener("DOMContentLoaded", function() {
 
     // Creating the Closing Sample pages event
     async function closeBtn() {
-        const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+        const isMobile = /Mobi|Android/i.test(navigator.userAgent) || window.innerWidth <= 480;
         const isTablet = /iPad|Tablet|Android(?!.*Mobile)/i.test(navigator.userAgent);
+        // console.log(`|||| :::: Mobile/Tablet : ${isMobile} || ${isTablet}`)
         if (isMobile || isTablet) {
             $('.closeBtn').off('touchend').on('touchend', function() {
                 triggerEvent(false)
@@ -224,7 +236,7 @@ document.addEventListener("DOMContentLoaded", function() {
         loader.fadeIn(200);
         const samplePath: string = 'samples/' + $(this).data('name') + ".html";
         const section: string = $(this).data('name');
-        console.log(`Loading page sample: ${samplePath}`);  // For testing
+        // console.log(`Loading page sample: ${samplePath}`);  // For testing
         await loadSample(samplePath, true);
         loader.fadeOut(200, function() {document.body.style.overflowY = 'hidden';});
         $('.overlayContainer').scrollTop(0);
@@ -250,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function() {
     window.onpopstate = async function (event: any) {
         if (event.state) {
             const sections = event.state.section || event.state.sample;
-            // console.log(`|||||||||||||||||||||||||  ${sections}`);
+            // console.log(`|||||||||||||||||||||||||  ${sections}`); // For testing
             if (sections) {
                 if (event.state.sample) {
                     await loadSample(`samples/${sections}.html`, false);

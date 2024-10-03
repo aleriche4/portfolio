@@ -17,6 +17,7 @@
 	--grey-shadow: rgb(235, 232, 232); /*#ebe8e8*/
 	--grey-border: rgb(204, 204, 204); /*#CCCCCC*/
 	--grey-over: rgb(47, 54, 70); /*#2F3646*/
+	--red-alert: rgb(252, 54, 4); 
 }
 
 html {
@@ -29,7 +30,8 @@ html {
 
 h1, h2 {
 	color: var(--white);
-	display: none
+	display: none;
+	white-space: nowrap;
 }
 
 body {
@@ -39,6 +41,7 @@ body {
 	height: 100%;
 	overflow-y: auto;
 	overflow-x: hidden;
+	color-scheme: light;
 }
 
 sup {
@@ -85,11 +88,9 @@ img {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
     background-color: var(--blue);
     color: var(--white);
-    /* border: 1px solid var(--grey-over);; */
     padding: 8px;
     text-align: center;
 	width: 70vw;
-    /* font-weight: bold; */
     margin: 40% auto;
     border-radius: 5px;
 	font-size: 15px;
@@ -105,6 +106,31 @@ img .lazyload {
 	transition: opacity .15s;
 	opacity: 0.5;
 } */
+
+/* ////////////////// ERROR ////////////////// */
+
+#errorContainer {
+	display: none;
+	position: fixed;
+	width: 100%;
+	margin-top: 260px;
+}
+
+#errorMessage {
+	padding: 20px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 18px;
+	border: 1px;
+	border-color: var(--grey-border);
+	border-style: solid;
+	box-shadow: 0.063rem 0.063rem 0.125rem var(--grey-border);
+	margin: 0 auto 0 auto;
+	max-width: 600px;
+	background-color: var(--white);
+	border-radius: 5px;
+	color: var(--red-alert);
+	text-align: center;
+}
 
 /* ////////////////// LOADER ////////////////// */
 
@@ -418,6 +444,10 @@ ul {
 	margin: 3.125rem 0 1.563rem;
 }
 
+.companyName {
+	font-size: 15px;
+}
+
 .bullet ul {
 	margin: 0.625rem 0 2.75rem 0.125rem
 }
@@ -579,7 +609,7 @@ ul {
 /* /////////////////////  MOBILE /////////////////////////// */
 /* ///////////////////////////////////////////////////////// */
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 480px ) {
 
 	.loaderBox {
 		margin: 65% auto 35% auto;
@@ -645,10 +675,6 @@ ul {
 		color: var(--grey-header);
 	}
 
-	/* .contact {
-		letter-spacing: -0.2px;
-	} */
-
 	a.contact {
 		font-size: 1rem;
 		line-height: 1.125rem;
@@ -669,6 +695,13 @@ ul {
 	.seen {
 		display: none;
 	}
+
+	/* ////////////////// ERROR ////////////////// */
+
+#errorMessage {
+	font-size: 21px;
+	max-width: 70%;
+}
 
 	/* /////////////////// FOOTER MOBILE //////////////////// */
 
@@ -741,6 +774,7 @@ ul {
 
 	.overlayContainer {
 		margin-left: 0;
+		cursor: default;
 		/* width: 100vw;
 		height: 100%;
 		margin-right: 40px !important;
