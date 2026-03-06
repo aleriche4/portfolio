@@ -1,5 +1,69 @@
+# Local portfolio ignores
 gruntfile-foundation.js
-bower_components/
-node_modules/
-npm-debug.log
 dev/
+
+# Node dependencies
+node_modules/
+bower_components/
+
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Build / coverage / temp directories
+lib-cov
+coverage
+*.lcov
+.nyc_output
+.grunt
+.build/Release
+jspm_packages/
+web_modules/
+.cache
+.parcel-cache
+.next
+.nuxt
+.vuepress/dist
+.temp
+.svelte-kit/
+**/.vitepress/dist
+**/.vitepress/cache
+.docusaurus
+.serverless/
+.fusebox/
+.dynamodb/
+.firebase/
+
+# IDE / editor
+.vscode-test
+
+# Yarn v3
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Misc
+.tern-port
+*.tgz
