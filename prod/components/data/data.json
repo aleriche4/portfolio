@@ -7,14 +7,15 @@
         "link": "https://www.weareheartbeat.com/",
         "sample": null,
         "position": "Senior Interactive & Digital Experience Developer",
-        "applications": "VSCode, npm, Grunt, Git, Responsive Design, UI, toolkit, Jira, SmartSVN, GSAP, Animate, Veeva, mailChimp, HandBrake, AfterEffect, Premiere, Photoshop, Fireworks, Adobe Media Encoder and Illustrator",
+        "applications": 
+            "VSCode, npm, Grunt, Git, Jira, SmartSVN, GSAP, Chrome & Firefox Dev Tools, Animate, Photoshop, Figma, Illustrator, After Effects, Premiere, Fireworks, Adobe Media Encoder, HandBrake, DoubleClick Studio, Veeva and MailChimp",
         "technologies": "HTML5, CSS3, SASS, Javascript, GSAP, jQuery, MOV and MP4",
         "achievements": [
             "Solely developed interactive web content, digital modules, and multimedia experiences for major clients including Pfizer, Abbott, Bayer, Gilead, Sunovion, Twirla, and Sanofi, delivering projects 20% faster than previous benchmarks.",
             "Designed interactive touchscreen interfaces and edited video content, improving user engagement by 15%.",
             "Collaborated with creative and account teams to assess feasibility, streamline workflows, and maintain technical and aesthetic standards across projects.",
             "Developed responsive HTML emails and web content, ensuring cross-platform compatibility, high deliverability, and optimized engagement metrics.",
-            "<b>Key Achievement:</b> Contributed to Heartbeat winning Pfizer as a client by delivering high-performing banners that outpaced competitor work, reducing project turnaround time by 20%."
+            "<b>Key Achievement:</b> Contributed to Heartbeat securing Pfizer as a client by delivering high-performing banners that outpaced competitors, reducing project turnaround time by 20%."
         ],
         "note": "Due to confidentiality agreements, I&nbsp;am unable to publicly disclose the work completed for Heartbeat, though it involved significant contributions and expertise in the field."
     },
@@ -26,10 +27,10 @@
         "link": "https://www.digitashealth.com/",
         "sample": null,
         "position": "Interactive & Digital Experience Developer",
-        "applications": "VSCode, Dreamweaver, Firebug, toolkit, SmartSVN, Photoshop, Fireworks and Illustrator",
+        "applications": "VSCode, Dreamweaver, Firebug, SmartSVN, Photoshop, Fireworks, Illustrator, Chrome & Firefox Dev Tools and DoubleClick Studio",
         "technologies": "HTML5, CSS3, Javascript, JQuery, GSAP",
         "achievements": [
-            "Developed interactive web content, digital modules, and multimedia experiences for major pharmaceutical clients including Pfizer, Celebrex, and Vyvance, improving campaign engagement and brand visibility.",
+            "Developed interactive web content, digital modules, and multimedia experiences for major pharmaceutical clients including Pfizer, Celebrex, and Vyvanse, improving campaign engagement and brand visibility.",
             "Optimized content for mobile and cross-device performance, ensuring consistent UX and responsive design.",
             "Built rich media and interactive campaigns using HTML5 animation and JavaScript, delivering engaging digital experiences.",
             "Collaborated with lead developers and project managers to assess technical feasibility, streamline workflows, and deliver projects on schedule."
@@ -43,11 +44,12 @@
         "city": "New York City",
         "link": "https://www.doremus.com/",
         "sample": null,
-        "position": "Senior Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Dreamweaver, Photoshop, Fireworks and Illustrator",
-        "technologies": "ActionScript, Greensock, HTML and CSS",
+        "technologies": "ActionScript, Greensock (GSAP), HTML, CSS",
         "achievements": [
-            "Developed animated Flash banner campaigns to communicate complex financial messaging with clarity and visual impact. Supported new business pitches for JP Morgan and Lockheed Martin by producing persuasive digital creative that elevated presentation effectiveness.",
+            "Developed animated Flash banner campaigns to communicate complex financial messaging with clarity and visual impact.", 
+            "Supported new business pitches for JP Morgan and Lockheed Martin by producing persuasive digital creative that elevated presentation effectiveness.",
             "Refreshed and optimized banner campaigns, enhancing visual clarity, relevance, and alignment with evolving digital initiatives while maintaining brand consistency."
         ],
         "note": null
@@ -59,13 +61,13 @@
         "city": "New York City",
         "link": "https://www.anomaly.com",
         "sample": "anomaly",
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Photoshop, Fireworks, DoubleClick Studio and YouTube video",
-        "technologies": "ActionScript, Timeline and Greensock",
+        "technologies": "ActionScript, Timeline and Greensock (GSAP)",
         "achievements": [
-            "Created standard and rich media Flash banner campaigns, bringing brand stories to life through motion design and dynamic visuals. Supported earlier campaigns (2011) to elevate brand visibility and strengthen audience connection.",
-            "Converse (2013) Produced rich, animated digital banners that reinforced Converse&apos;s energetic and youth-driven identity across key campaign placements.",
-            "Captain Morgan & Converse (2011 Campaigns): Created early Flash-based digital campaigns focused on immersive motion design and strong visual narrative, helping elevate brand visibility and audience engagement across digital platforms."
+            "Created standard and rich media Flash banner campaigns, bringing brand stories to life through motion design and dynamic visuals, including Captain Morgan&apos;s &quot;For Gold and Glory&quot; (2013).",
+            "Converse (2013): Produced rich, animated digital banners reinforcing the brand&apos;s energetic, youth-driven identity across key campaign placements.",
+            "Captain Morgan & Converse (2011 campaigns): Developed early Flash-based digital campaigns with immersive motion design and strong visual narrative, boosting audience engagement and brand visibility."
         ],
         "note": null
     },
@@ -76,11 +78,11 @@
         "city": "New York City",
         "link": "https://www.concentrichx.com/",
         "sample": null,
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Fireworks and Photoshop",
-        "technologies": "ActionScript and GSAP",
+        "technologies": "ActionScript and Greensock (GSAP)",
         "achievements": [
-            "Designed and animated Flash banners, producing visually dynamic content that effectively promoted the brand&nbsp;s marketing initiatives."
+            "Designed and animated Flash banners for Prepopik, producing visually dynamic content that effectively promoted the brand&apos;s marketing initiatives."
         ],
         "note": null
     },
@@ -91,11 +93,11 @@
         "city": "New York City",
         "link": "https://www.hogarth.com/",
         "sample": "hogarth",
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Dreamweaver, Photoshop and Fireworks",
-        "technologies": "ActionScript, HTML, CSS3, GreenSock, Mediamind and Pinterest",
+        "technologies": "ActionScript, HTML, CSS3, Greensock (GSAP), Mediamind and Pinterest",
         "achievements": [
-            "Developed Levi&apos;s<sup>®</sup> #501<sup>®</sup> Campaign expandable rich media banners with interactive elements including Mediamind integration and Pinterest functionality to drive deeper user interaction.",
+            "Developed Levi&apos;s<sup>®</sup> #501<sup>®</sup> Campaign expandable rich media banners with interactive elements, including Mediamind integration and Pinterest functionality, driving deeper user interaction.",
             "Created localized standard banners in six languages, ensuring global reach and brand consistency."
         ],
         "note": null
@@ -107,9 +109,9 @@
         "city": "New York City",
         "link": "https://www.steinias.com/",
         "sample": "stein",
-        "position": "Web Developer / Front End Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Fireworks, Photoshop and Dreamweaver",
-        "technologies": "ActionScript, Greensock, flv, HTML, CSS3 and PointRoll",
+        "technologies": "ActionScript, Greensock (GSAP), flv, HTML, CSS3 and PointRoll",
         "achievements": [
             "Designed and animated standard and rich media banner campaigns for Intralinks, Chicago Board Options Exchange (CBOE), and ADP, delivering interactive, visually compelling creative tailored to high-impact digital initiatives.",
             "Enhanced the Intralinks landing page experience by modernizing the design and aligning it with updated brand standards, improving overall usability and visual cohesion."
@@ -123,9 +125,9 @@
         "city": "New York City",
         "link": "https://www.cc.com/",
         "sample": "comedyCentral",
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Fireworks and Photoshop",
-        "technologies": "ActionScript, flv, GreenSock, timeline and PointRoll",
+        "technologies": "ActionScript, flv, Greensock (GSAP), timeline and PointRoll",
         "achievements": [
             "Developed rich media banners integrating video and dynamic animation for the “Night of Too Many Stars” campaign, promotional digital content that captured audience attention."
         ],
@@ -138,9 +140,9 @@
         "city": "New York City",
         "link": "https://nyc.havas.com/",
         "sample": null,
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Jira, Dreamweaver, Media Encoder, Fireworks, Photoshop and Illustrator",
-        "technologies": "ActionScript, flv, OOP, HTML, CSS, XML, JavaScript, GreenSock, timeline, MOV, PointRoll and DoubleClick",
+        "technologies": "ActionScript, flv, OOP, HTML, CSS, XML, JavaScript, Greensock (GSAP), timeline, MOV, PointRoll and DoubleClick",
         "achievements": [
             "Developed expandable rich media banners featuring integrated video and interactive gaming elements for Lantus and ING Avonex, creating immersive promotional experiences within regulated healthcare environments.",
             "Produced standard and rich media Flash campaigns for major brands including Sanofi, Alcon, Meridian, Prevnar, Tasigna, Symposia, and CMLC, translating complex medical messaging into engaging, compliant digital creative.",
@@ -156,11 +158,11 @@
         "city": "New York City",
         "link": "https://www.juicepharma.com",
         "sample": null,
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, SVN, Photoshop and Fireworks",
-        "technologies": "ActionScript and GreenSock",
+        "technologies": "Greensock (GSAP) and ActionScript",
         "achievements": [
-            "Developed interactive animations and tablet-based digital content for BeneFix<sup>®</sup> (Pfizer), creating an engaging and educational experience designed to clearly communicate the therapeutic benefits of Coagulation Factor IX (recombinant)."
+            "Developed interactive animations and tablet-based digital content for BeneFix<sup>®</sup> (Pfizer), delivering an engaging educational experience to clearly communicate the therapeutic benefits of Coagulation Factor IX (recombinant)."
         ],
         "note": null
     },
@@ -171,11 +173,11 @@
         "city": "New York City",
         "link": "https://www.tbwa.com",
         "sample": "tbwa",
-        "position": "Web Developer",
-        "applications": "Flash, Flash Builder, Firework and Photoshop",
-        "technologies": "ActionScript and GreenSock",
+        "position": "Interactive & Rich Media Developer",
+        "applications": "Photoshop, Fireworks, Flash Builder",
+        "technologies": "Greensock (GSAP), ActionScript",
         "achievements": [
-            "Created animated Flash banners for British Airways and Alli, producing visually captivating and interactive digital advertising that strengthened brand engagement and online visibility."
+            "Created animated banners for British Airways and Alli, delivering visually engaging, interactive digital advertising that strengthened brand engagement and online visibility."
         ],
         "note": null
     },
@@ -186,11 +188,11 @@
         "city": "New York City",
         "link": null,
         "sample": null,
-        "position": "Web Developer",
+        "position": "Interactive Developer",
         "applications": "Flash, Fireworks, Illustrator and SVN",
-        "technologies": "ActionScript, OOP, XML, GreenSock and flv",
+        "technologies": "Greensock (GSAP), ActionScript, OOP, XML, FLV",
         "achievements": [
-            "Led the design and implementation of the Aggrenox tablet app shell, including navigation, interactive features, and animations, across three distinct approaches to deliver a cohesive user experience. Crafted detailed animations and interactive content that amplified educational messaging and visual engagement for healthcare users."
+            "Led the design and implementation of the Aggrenox tablet app shell, including navigation, interactive features, and animations. Delivered a cohesive user experience across three approaches and crafted detailed animations that enhanced educational messaging and visual engagement for healthcare users."
         ],
         "note": null
     },
@@ -201,12 +203,12 @@
         "city": "New York City",
         "link": "https://www.maudeny.com",
         "sample": "maude",
-        "position": "Web Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Media Encoder, Fireworks, Photoshop and Illustrator",
-        "technologies": "ActionScript, flv, GreenSock, PointRoll, EyeWonder and FlashTalking ",
+        "technologies": "Greensock (GSAP), ActionScript, flv, PointRoll, EyeWonder and FlashTalking ",
         "achievements": [
-            "Developed a rich media banner for the MTV Video Music Awards 2010 microsite, prominently featured on the Myspace login page to maximize audience visibility and impact.",
-            "Created dynamic Flash rich media banners for popular TV series including It&nbsp;s Always Sunny in Philadelphia, Sons of Anarchy (FX), Lone Star (Fox), and Dr. Oz (NBC), contributing to high-impact digital campaigns that strengthened show reach and resonance."
+            "Developed a rich media banner for the MTV Video Music Awards 2010 microsite, prominently featured on the Myspace login page to maximize audience visibility.",
+            "Created dynamic rich media banners for TV series including <i>It&apos;s Always Sunny in Philadelphia</i>, <i>Sons of Anarchy</i> (FX), <i>Lone Star</i> (Fox), and <i>Dr. Oz</i> (NBC), contributing to high-impact digital campaigns that strengthened show reachand audience engagement."
         ],
         "note": null
     },
@@ -217,13 +219,13 @@
         "city": "New York City",
         "link": "https://www.bgbgroup.com/",
         "sample": null,
-        "position": "Web Designer / Developer",
-        "applications": "Flash, After Effect, Premiere, Fireworks, Dreamweaver, Illustrator, Photoshop, Media Encoder and SoundForge",
-        "technologies": "ActionScript, HTML, CSS, JavaScript, mp3, MOV and flv",
+        "position": "Interactive & Motion Developer / Designer",
+        "applications": "Photoshop, Illustrator, Fireworks, After Effects, Premiere, Dreamweaver, Media Encoder, SoundForge, Flash",
+        "technologies": "HTML, CSS, JavaScript, Greensock (GSAP), ActionScript, MP3, MOV, FLV",
         "achievements": [
-            "Designed and developed comprehensive Journal Clubs in Flash for Plavix, Sanofi, Avapro-Avalide, Bristol-Myers Squibb, Apixaban, and Onglyza, incorporating video and full navigation features optimized for Tablet PCs to create immersive educational experiences.",
-            "Created three interactive video booths with 3D elements for Belatecept, enhancing the presentation and visual impact of the product.",
-            "Developed and animated a 30-minute “Advisory Board Training” module for Plavix, featuring complete navigation and integrated video content to deliver an engaging, immersive training experience for healthcare professionals."
+            "Designed and developed comprehensive Journal Clubs in Flash for Plavix, Sanofi, Avapro-Avalide, Bristol-Myers Squibb, Apixaban, and Onglyza, incorporating video and full navigation optimized for Tablet PCs to create immersive educational experiences.",
+            "Created three interactive video booths with 3D elements for Belatecept, enhancing product presentation and visual impact.",
+            "Developed and animated a 30-minute “Advisory Board Training” module for Plavix, with complete navigation and integrated video content, delivering an engaging, immersive training experience for healthcare professionals"
         ],
         "note": "Due to confidentiality agreements, I am unable to publicly disclose the work completed for BGB Group, though it involved significant contributions and expertise in the field."
     },
@@ -234,9 +236,9 @@
         "city": "New York City",
         "link": "https://www.weightwatchers.com",
         "sample": null,
-        "position": "Web Designer / Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Photoshop and Fireworks",
-        "technologies": "ActionScrip",
+        "technologies": "ActionScript (legacy Flash)",
         "achievements": [
             "Designed and maintained non-commercial Flash banner campaigns for international websites, localizing content across multiple languages to strengthen global presence and maintain brand consistency."
         ],
@@ -249,12 +251,13 @@
         "city": "New York City",
         "link": null,
         "sample": "cooper",
-        "position": "Web Designer / Developer",
+        "position": "Interactive & Rich Media Developer",
         "applications": "Flash, Fireworks, Dreamweaver, Video Encoder and SoundForge",
         "technologies": "ActionScript, HTML, CSS, MOV and timeline",
         "achievements": [
-            "Produced two Flash e-commercial videos for AXA Equitable, bringing storyboards to life through dynamic motion and animation. Developed concept banners across multiple campaigns, strengthening the brand&nbsp;s digital presence with creative and visually compelling content.",
-            "Designed and executed Flash banner campaigns for Deutsche Bank, delivering interactive and visually engaging digital creative that reinforced marketing initiatives."
+            "Produced two Flash e-commercial videos for AXA Equitable, bringing storyboards to life through dynamic motion and animation. ",
+            "Developed concept banners across multiple campaigns, strengthening the brand&nbsp;s digital presence with creative and visually compelling content.",
+            "Designed and executed Flash banner campaigns for Deutsche Bank, delivering interactive and engaging digital creative that reinforced marketing initiatives."
         ],
         "note": null
     },
@@ -265,11 +268,11 @@
         "city": "New York City",
         "link": "https://www.iil.com",
         "sample": null,
-        "position": "Web Designer / Developer",
-        "applications": "Flash, SoundForge, Dreamweaver, Fireworks, Photoshop, Illustrator, Powerpoint and Turtoise",
-        "technologies": "ActionScript, timeline, flv, mov, HTML, CSS, JavaScript and ASP",
+        "position": "Interactive & Motion Developer / Designer",
+        "applications": "Flash, SoundForge, Dreamweaver, Fireworks, Photoshop, Illustrator, PowerPoint, TortoiseSVN",
+        "technologies": "ActionScript (legacy Flash), timeline-based animation, FLV, MOV, HTML, CSS, JavaScript, ASP",
         "achievements": [
-            "Designed and implemented engaging animations and interactive elements—including knowledge checks, drag-and-drop activities, and simulations—for a $2 million Flash-based training program, delivering immersive and effective learning experiences.",
+            "Designed and implemented engaging animations and interactive elements—including knowledge checks, drag-and-drop activities, and simulations—for a $2M Flash-based training program, delivering immersive and effective learning experiences.",
             "Led the design and development of 5-10 minute Flash overview presentations for Project Management training programs, including Project Management Certification, Six Sigma, and Unified Project Management Methodology (UPMM™), ensuring clear, engaging, and professional training content.",
             "Directed redesign and process improvement initiatives across UPMM™, enhancing overall efficiency, consistency, and learner comprehension.",
             "Produced a variety of print and digital assets, including flyers, ads, and Flash/GIF banners, supporting product promotions, trade shows, and conference initiatives.",
@@ -286,12 +289,12 @@
         "city": "New York City",
         "link": null,
         "sample": null,
-        "position": "Web Designer / Developer",
-        "applications": "VSCode, Animate, Flash, Fireworks, Dreamweaver, Photoshop, Illustrator, SoundForge, Cubase, After Effect, Media Encoder and FTP",
-        "technologies": "HTML5, XHTML, CSS, JavaScript, Jquery, AJAX, JSON, XML, ActionScrip, OOP, flv, MOV and mp3",
+        "position": "Interactive & Motion Developer / Designer",
+        "applications": "VSCode, Animate, Flash, Fireworks, Dreamweaver, Photoshop, Illustrator, SoundForge, Cubase, After Effects, Media Encoder, FTP",
+        "technologies": "HTML5, XHTML, CSS, JavaScript, jQuery, AJAX, JSON, XML, ActionScript, Greensock (GSAP), OOP, FLV, MOV, MP3",
         "achievements": [
             "Led the conceptualization, design, and development of a wide range of creative deliverables, including website design and development, promotional banners, email campaigns, and ongoing site performance analysis, delivering end-to-end digital solutions for clients worldwide.",
-            "Spearheaded end-to-end conceptualization, design, and development of websites, promotional banners, email campaigns, and performance optimization for clients worldwide. Designed and launched over 30 websites for diverse clients, including IIL, allPM.com, Musical Kids International, Exclusive Champagne, and ECBranding, consistently delivering visually compelling, high-performing digital experiences."
+            "Spearheaded end-to-end development of over 30 websites for diverse clients, including IIL, allPM.com, Musical Kids International, Exclusive Champagne, and ECBranding, consistently delivering visually compelling and high-performing digital experiences."
         ],
         "note": null
     }
