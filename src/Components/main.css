@@ -13,6 +13,7 @@
 	--blue-border: rgb(96, 112, 144); /*#607090*/
 	--blue-btn: rgb(133,163,194); /*#85A3C2*/
 	--grey: rgb(153, 153, 153); /*#999999*/
+	--grey2: rgb(120, 120, 120);
 	--grey-header: rgb(197, 190, 190); /*#c5bebe*/
 	--grey-shadow: rgb(235, 232, 232); /*#ebe8e8*/
 	--grey-border: rgb(204, 204, 204); /*#CCCCCC*/
@@ -307,6 +308,16 @@ a.contact {
 }
 
 a.contact:hover {
+	text-decoration: underline;
+	color: var(--grey-over);
+}
+
+a.contactGit {
+	color: var(--grey2);
+	text-decoration: none;
+}
+
+a.contactGit:hover {
 	text-decoration: underline;
 	color: var(--grey-over);
 }
@@ -676,7 +687,7 @@ ul {
 
 	a.contact {
 		font-size: 1rem;
-		line-height: 1.125rem;
+		line-height: 1.25rem;
 		color: var(--grey-header);
 		text-decoration: underline;
 		margin-bottom: 0.625rem;
